@@ -63,7 +63,18 @@ npm install --save sl-test-helpers
 
 ```
 
-## Run its blueprint
+## If running Synchronous tests, such as Unit Tests
+
+For each test helper you wish to use, you will need to import them into each individual Unit Tests. For example:
+
+```
+import { contains } from '../../helpers/sl/synchronous';
+
+```
+
+## If running Asynchronous tests, such as Acceptance Tests
+
+You only need to run the blueprint:
 
 ```
 ember generate sl-test-helpers
