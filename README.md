@@ -59,7 +59,7 @@ There are several utility functions provided in the */test-support/helpers/sl/ut
 ## Install this addon as a Node module
 
 ```
-npm install --save sl-test-helpers
+npm install --save-dev sl-test-helpers
 
 ```
 
@@ -80,6 +80,11 @@ You only need to run the blueprint:
 ember generate sl-test-helpers
 
 ```
+
+If your application is under source control management, such as via Git, make sure to commit the changes made to the following files by the generator:
+
+* tests/helpers/start-app.js
+* tests/.jshintrc
 
 
 ---
