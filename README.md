@@ -22,7 +22,6 @@ This addon provides and registers QUnit test helpers for use in the testing of y
 
 ```
 contains( valuesUnderTest, valuesToTestFor, 'Message passed to ok()' );
-
 ```
 
 Test whether values are contained in other values.  These values can be a combination of Arrays, Strings, or Objects (for which the keys are extracted).  All *valuesToTestFor* must exist in *valuesUnderTest* for this test to pass successfully.
@@ -31,14 +30,12 @@ This test would fail because the Object being tested does not contain keys match
 
 ```
 contains( { c: 1, b: 3 }, [ 'a', 'b' ], 'Contains expected values' );
-
 ```
 
 This test would pass because the Array being tested contains the value of "b":
 
 ```
 contains( [ 'a', 'b' ], 'b', 'Contains expected values' );
-
 ```
 
 ## Synchronous
@@ -69,7 +66,6 @@ There are several utility functions provided in the */test-support/helpers/sl/ut
 
 ```
 npm install --save-dev sl-test-helpers
-
 ```
 
 ## If running Synchronous tests, such as Unit Tests
@@ -78,7 +74,6 @@ For each test helper you wish to use, you will need to import them into each ind
 
 ```
 import { contains } from '../../helpers/sl/synchronous';
-
 ```
 
 ## If running Asynchronous tests, such as Acceptance Tests
@@ -87,7 +82,6 @@ You only need to run the blueprint:
 
 ```
 ember generate sl-test-helpers
-
 ```
 
 If your application is under source control management, such as via Git, make sure to commit the changes made to the following files by the generator:
