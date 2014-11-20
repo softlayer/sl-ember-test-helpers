@@ -21,5 +21,5 @@
 * Increment version number in *package.json*
 * Update CHANGELOG.md
 * After changes have been committed:
-** Tag new version
-*** Do this via the use of Annotated Tags, as described in [http://git-scm.com/book/en/Git-Basics-Tagging](http://git-scm.com/book/en/Git-Basics-Tagging).  Tag names follow the format of "v<version>", where "v" is the literal character and "<version>" follows [Semantic Versioning[(http://semver.org/).  Be certain to also [Share the Tag](http://git-scm.com/book/en/Git-Basics-Tagging#Sharing-Tags) after created.
+    * Tag new version
+        * Do this via the use of Annotated Tags, as described in [http://git-scm.com/book/en/Git-Basics-Tagging](http://git-scm.com/book/en/Git-Basics-Tagging).  Tag names follow the format of "v<version>", where "v" is the literal character and "<version>" follows [Semantic Versioning[(http://semver.org/).  Be certain to also [Share the Tag](http://git-scm.com/book/en/Git-Basics-Tagging#Sharing-Tags) after created.
