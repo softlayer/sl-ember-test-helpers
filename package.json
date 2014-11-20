@@ -2,7 +2,6 @@
   "name": "sl-test-helpers",
   "version": "1.0.0",
   "description": "Ember CLI Addon - QUnit Test Helpers",
-  "private": true,
   "main": "index.js",
   "scripts": {
     "start": "ember server",
