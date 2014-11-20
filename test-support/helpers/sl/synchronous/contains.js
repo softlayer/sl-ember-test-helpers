@@ -13,12 +13,18 @@ import {
  * All values must be present in the values being tested or the test will fail
  *
  * @function contains
+ * @param   {Ember.Application} app (optional)
  * @param   {array|string|object} underTest
  * @param   {mixed} testFor
  * @param   {string} message
  * @returns {void}
  */
-export default function( underTest, testFor, message ) {
+export default function() {
+    var index     = ( 3 === arguments.length ) ? 0 : 1,
+        underTest = arguments[index],
+        testFor   = arguments[index+1],
+        message   = arguments[index+2];
+
     underTest = convertToArray( underTest );
     testFor   = convertToArray( testFor );
 
