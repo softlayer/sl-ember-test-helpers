@@ -43,13 +43,24 @@ contains( [ 'a', 'b' ], 'b', 'Contains expected values' );
 
 ```
 
+## Synchronous
+
+### contains
+
+See description in *Synchronous* section
+
+
 
 ---
 
 # Utilities
 
-There are several utility functions provided in the */test-support/helpers/sl/utils/utils.js* file that, while used internally by the helpers themselves, can be imported as needed for use.
+There are several utility functions provided in the */test-support/helpers/sl/utils/utils.js* file that, while used internally by the helpers themselves, can be imported as needed for use.  These include:
 
+* convertToArray()
+* convertStringToArray()
+* convertObjectKeysToArray()
+* doArraysIntersect()
 
 
 ---
