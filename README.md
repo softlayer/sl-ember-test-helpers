@@ -9,9 +9,7 @@ License: [MIT](LICENSE.md)
 
 # What is sl-test-helpers
 
-This addon registers QUnit test helpers for use in the testing of your application.
-
-There are plans to make it test suite agnostic in the future.
+This addon provides and registers QUnit test helpers for use in the testing of your application.
 
 
 ---
