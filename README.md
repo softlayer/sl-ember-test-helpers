@@ -96,6 +96,13 @@ If your application is under source control management, such as via Git, make su
 * tests/.jshintrc
 
 
+The generator makes changes to the above files assuming the structure of them has not changed much from the default version created during the initial Ember application creation.  If too many changes have been made you will need to manually make the changes below:
+
+* Add `import slregisterTestHelpers from './sl/register-test-helpers';` to the beginning of the *tests/helpers/start-app.js* file
+* In the *tests/helpers/start-app.js* file, place `slregisterTestHelpers();` before the `App.injectTestHelpers` line
+* Add `"contains",` to the `predef` section of the */tests/.jshintrc* file
+
+
 ---
 
 # Versioning
