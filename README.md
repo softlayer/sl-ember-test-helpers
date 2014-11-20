@@ -38,7 +38,7 @@ This test would pass because the Array being tested contains the value of "b":
 contains( [ 'a', 'b' ], 'b', 'Contains expected values' );
 ```
 
-## Synchronous
+## Asynchronous
 
 ### contains
 
