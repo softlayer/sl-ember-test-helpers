@@ -20,7 +20,7 @@ import {
  */
 export default function( underTest, testFor, message ) {
     underTest = convertToArray( underTest );
-    testFor   = convertToArray( underTest );
+    testFor   = convertToArray( testFor );
 
     ok( doArraysIntersect( underTest, testFor ), message );
 }
