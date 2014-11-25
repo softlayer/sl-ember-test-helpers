@@ -1,13 +1,13 @@
 Ember CLI version: **0.1.2**
 
-NPM package name: **sl-test-helpers**
+NPM package name: **sl-ember-test-helpers**
 
 License: [MIT](LICENSE.md)
 
 
 ---
 
-# What is sl-test-helpers
+# What is sl-ember-test-helpers
 
 This addon provides and registers QUnit test helpers for use in the testing of your application.
 
@@ -65,7 +65,7 @@ There are several utility functions provided in the */test-support/helpers/sl/ut
 ## Install this addon as a Node module
 
 ```
-npm install --save-dev sl-test-helpers
+npm install --save-dev sl-ember-test-helpers
 ```
 
 ## If running Synchronous tests, such as Unit Tests
@@ -81,7 +81,7 @@ import { contains } from '../../helpers/sl/synchronous';
 You only need to run the blueprint:
 
 ```
-ember generate sl-test-helpers
+ember generate sl-ember-test-helpers
 ```
 
 If your application is under source control management, such as via Git, make sure to commit the changes made to the following files by the generator:
@@ -110,7 +110,7 @@ Employs [Semantic Versioning 2.0.0](http://semver.org/)
 ---
 
 # Copyright and License
-sl-test-helpers and its source files are Copyright © 2014 [SoftLayer Technologies, Inc.](http://www.softlayer.com/)
+sl-ember-test-helpers and its source files are Copyright © 2014 [SoftLayer Technologies, Inc.](http://www.softlayer.com/)
 The software is [MIT Licensed](LICENSE.md)
 
 

@@ -10,7 +10,7 @@
 * Make any applicable changes to *Synchronous* section in README.md
 * Make any applicable changes to *Asynchronous* section in README.md
 * Make any applicable changes to *Utilities* section in README.md
-* Apply applicable changes to */tests/.jshintrc* entries in */blueprints/sl-test-helpers/index.js*
+* Apply applicable changes to */tests/.jshintrc* entries in */blueprints/sl-ember-test-helpers/index.js*
 * Apply applicable changes to */test-support/helpers/sl/register-test-helpers.js*
 * Apply applicable changes to */test-support/helpers/sl/asynchronous.js*
 * Apply applicable changes to */test-support/helpers/sl/synchronous.js*

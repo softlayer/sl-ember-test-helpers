@@ -1,6 +1,6 @@
 {
-  "name": "sl-test-helpers",
-  "version": "1.0.0",
+  "name": "sl-ember-test-helpers",
+  "version": "0.1.0",
   "description": "Ember CLI Addon - QUnit Test Helpers",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/softlayer/sl-test-helpers"
+    "url": "https://github.com/softlayer/sl-ember-test-helpers"
   },
   "engines": {
     "node": ">= 0.10.0"

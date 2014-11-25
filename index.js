@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  name: 'sl-test-helpers'
+  name: 'sl-ember-test-helpers'
 };

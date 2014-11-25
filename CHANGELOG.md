@@ -1,4 +1,4 @@
-# sl-test-helpers Changelog
+# sl-ember-test-helpers Changelog
 
 ### 1.0.0
 
