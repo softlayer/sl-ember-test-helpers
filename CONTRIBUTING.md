@@ -51,17 +51,15 @@ Here's a quick guide:
 
 2. Run the tests. We only take pull requests with passing tests, and it's great to know that you have a clean slate: `npm install && bower install && ember test`.
 
-3. Create a feature branch.  This project uses the [git-flow branching model](https://github.com/nvie/gitflow) which requires pull requests to be made in feature branches of the `develop` branch.  If you are not using the *git-flow* utility you should still take care to name your branch as `feature/branchName` (the important part is the `feature/` at the beginning) as this is the naming format we will expect when using the tool ourselves.
+3. Add a test for your change. Only refactoring and documentation changes require no new tests. If you are adding functionality or fixing a bug, we need a test!
 
-4. Add a test for your change. Only refactoring and documentation changes require no new tests. If you are adding functionality or fixing a bug, we need a test!
+4. Make the test pass.
 
-5. Make the test pass.
+5. Commit your changes. If your pull request fixes an issue specify it in the commit message. Here's an example: `git commit -m "Close #12 Fix passing of context"`
 
-6. Commit your changes. If your pull request fixes an issue specify it in the commit message. Here's an example: `git commit -m "Close #12 Fix passing of context"`
+6. Push to your fork and submit a pull request againt the `develop` branch (due to our use of the [git-flow branching model](https://github.com/nvie/gitflow)). Please provide us with some explanation of why you made the changes you made. For new features make sure to explain a standard use case to us.
 
-7. Push to your fork and submit a pull request. Please provide us with some explanation of why you made the changes you made. For new features make sure to explain a standard use case to us.
-
-8. Update the Changelog. Please prefix your change with one of the following tags inside brackets: BUGFIX, FEATURE/ENHANCEMENT, INTERNAL. If a change requires a user to change their configuration, `bower.json`, `package.json`, or `Brocfile.js` also add a BREAKING tag within the brackets before any other tags (example [BREAKING BUGFIX]).
+7. Update the Changelog. Please prefix your change with one of the following tags inside brackets: BUGFIX, FEATURE/ENHANCEMENT, INTERNAL. If a change requires a user to change their configuration, `bower.json`, `package.json`, or `Brocfile.js` also add a BREAKING tag within the brackets before any other tags (example [BREAKING BUGFIX]).
 
     - FEATURE and ENHANCEMENT tags are for things that users are interested in. Avoid super technical talk. Craft a
     concise description of the change.
