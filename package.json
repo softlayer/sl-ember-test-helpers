@@ -8,9 +8,11 @@
     "build": "ember build",
     "test": "ember test"
   },
+  "homepage": "http://softlayer.github.io/sl-ember-test-helpers",
+  "bugs": "https://github.com/softlayer/sl-ember-test-helpers/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/softlayer/sl-ember-test-helpers"
+    "url": "https://github.com/softlayer/sl-ember-test-helpers.git"
   },
   "engines": {
     "node": ">= 0.10.0"
@@ -23,9 +25,7 @@
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
-  "authors": [
-    "Jeremy Brown <jebrown@softlayer.com>"
-  ],
+  "author": "Jeremy Brown <jeremy@notmessenger.com> (http://www.notmessenger.com)",
   "license": "MIT",
   "devDependencies": {
     "body-parser": "^1.2.0",
