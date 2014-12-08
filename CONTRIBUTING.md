@@ -59,13 +59,6 @@ Here's a quick guide:
 
 6. Push to your fork and submit a pull request againt the `develop` branch (due to our use of the [git-flow branching model](https://github.com/nvie/gitflow)). Please provide us with some explanation of why you made the changes you made. For new features make sure to explain a standard use case to us.
 
-7. Update the Changelog. Please prefix your change with one of the following tags inside brackets: BUGFIX, FEATURE/ENHANCEMENT, INTERNAL. If a change requires a user to change their configuration, `bower.json`, `package.json`, or `Brocfile.js` also add a BREAKING tag within the brackets before any other tags (example [BREAKING BUGFIX]).
-
-    - FEATURE and ENHANCEMENT tags are for things that users are interested in. Avoid super technical talk. Craft a
-    concise description of the change.
-    - BUGFIX tag is a link to a bug + a link to a patch.
-    - INTERNAL tag is an internal log of changes.
-
 We try to be quick about responding to tickets but sometimes we get a bit backlogged.  If the response is slow, try to find someone on IRC(#softlayer) to give the ticket a review.
 
 Some things that will increase the chance that your pull request is accepted, taken straight from the Ruby on Rails guide:
@@ -95,6 +88,14 @@ new documentation:
     8. Wrap long markdown blocks > 120 characters.
     9. Don't include blank lines after `@param` definitions.
 
+
+#### Style Conventions ####
+
+* `thisPropertyName`
+* `Global.Class.attribute`
+* `thisFunction()`
+* `Global.CONSTANT_NAME`
+* `true`, `false`, `null`, `undefined` (when referring to programming values)
 
 And in case we didn't emphasize it enough: **we love tests!**
 
