@@ -37,3 +37,29 @@ This document captures the steps a project maintainer should follow when releasi
     * `npm publish --registry http://registry.npmjs.org/`
         * Note: `--registry` flag is workaround for occasional issues with default SSL url
 * Merge `master` branch into `develop`
+
+If any of these conditions are true:
+
+* There have been modifications to the *tests/dummy/app* demo application
+* There have been changes to the *bower.json*, *package.json*, or *Brocfile.js* files
+* Ember CLI has been upgraded
+
+Then follow these steps:
+
+* Run `ember build`
+* Copy the following files from */dist* folder outside of the working directory so they can be retained between switching branches:
+    * */dist/index.html*
+    * */dist/assets/dummy.css*
+    * */dist/assets/dummy.js*
+    * */dist/assets/vendor.css*
+    * */dist/assets/vendor.js*
+* Switch to the `gh-pages` branch
+* Replace the same files listed above with their copies, but one folder level higher
+* Within the *index.html* file, replace the following href values:
+    * `favicon.png` with `sl-ember-test-helpers/favicon.png`
+    * `assets/vendor.css` with `sl-ember-test-helpers/assets/vendor.css`
+    * `assets/dummy.css` with `sl-ember-test-helpers/assets/dummy.css`
+    * `assets/vendor.js` with `sl-ember-test-helpers/assets/vendor.js`
+    * `assets/dummy.js` with `sl-ember-test-helpers/assets/dummy.js`
+* Also within the *index.html* file, in the `<meta name="dummy/config/environment"...` tag, replace the `locationType` value from `auto` to `hash`
+* Commit and push the changes
