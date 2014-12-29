@@ -1,4 +1,4 @@
-Ember CLI version: **0.1.4**
+Ember CLI version: **0.1.5**
 
 NPM package name: **sl-ember-test-helpers**
 
@@ -68,7 +68,7 @@ There are several utility functions provided in the */test-support/helpers/sl/ut
 ## Install this addon as a Node module
 
 ```
-npm install --save-dev sl-ember-test-helpers
+ember install:addon sl-ember-test-helpers
 ```
 
 ## If running Synchronous tests, such as Unit Tests
@@ -81,22 +81,17 @@ import { contains } from '../../helpers/sl/synchronous';
 
 ## If running Asynchronous tests, such as Acceptance Tests
 
-You only need to run the blueprint:
-
-```
-ember generate sl-ember-test-helpers
-```
-
-If your application is under source control management, such as via Git, make sure to commit the changes made to the following files by the generator:
+Installing this addon via the `ember install:addon` command will automatically run the generator, which will make changes to the following files:
 
 * tests/helpers/start-app.js
 * tests/.jshintrc
 
+If your application is under source control management, such as via Git, make sure to commit these changes.
 
 The generator makes changes to the above files assuming the structure of them has not changed much from the default version created during the initial Ember application creation.  If too many changes have been made you will need to manually make the changes below:
 
 * Add `import slregisterTestHelpers from './sl/register-test-helpers';` to the beginning of the *tests/helpers/start-app.js* file
-* In the *tests/helpers/start-app.js* file, place `slregisterTestHelpers();` before the `App.injectTestHelpers` line
+* In the *tests/helpers/start-app.js* file, place `slregisterTestHelpers();` before the `application.injectTestHelpers()` line
 * Add `"contains",` to the `predef` section of the */tests/.jshintrc* file
 
 
