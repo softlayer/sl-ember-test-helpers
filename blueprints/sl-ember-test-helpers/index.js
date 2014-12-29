@@ -14,7 +14,7 @@ module.exports = {
             // Execution of registration function
             secondFile         = 'tests/helpers/start-app.js',
             secondText         = "    slregisterTestHelpers();",
-            secondLocationText = "App.setupForTesting();" + EOL,
+            secondLocationText = "application.setupForTesting();" + EOL,
 
             // .jshintrc file
             thirdFile          = 'tests/.jshintrc',
