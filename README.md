@@ -4,6 +4,9 @@ NPM package name: **sl-ember-test-helpers**
 
 License: [MIT](LICENSE.md)
 
+---
+
+[![Build Status](https://travis-ci.org/softlayer/sl-ember-test-helpers.svg?branch=develop)](https://travis-ci.org/softlayer/sl-ember-test-helpers)
 
 ---
 
