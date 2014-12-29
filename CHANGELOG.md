@@ -1,5 +1,13 @@
 # sl-ember-test-helpers Changelog
 
+### 1.2.0
+
+* [#42](https://github.com/softlayer/sl-ember-test-helpers/pull/42) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 0.1.5
+* [#36](https://github.com/softlayer/sl-ember-test-helpers/pull/36) [INTERNAL] Installed ember-cli-es5-shim to faciliate running of tests via TravisCI
+* [#43](https://github.com/softlayer/sl-ember-test-helpers/pull/43) [BREAKING ENHANCEMENT] Changes to blueprint requird by upgrade to Ember CLI 0.1.5
+
+[View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.1.0...v1.2.0)
+
 ### 1.1.0
 
 * [#7](https://github.com/softlayer/sl-ember-test-helpers/pull/7) [DOCUMENTATION] Update Contribution guide
