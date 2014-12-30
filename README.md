@@ -4,7 +4,7 @@ License: [MIT](LICENSE.md)
 
 ---
 
-[![Build Status](https://travis-ci.org/softlayer/sl-ember-test-helpers.svg?branch=develop)](https://travis-ci.org/softlayer/sl-ember-test-helpers)
+[![Build Status](https://travis-ci.org/softlayer/sl-ember-test-helpers.svg?branch=develop)](https://travis-ci.org/softlayer/sl-ember-test-helpers) [![Code Climate](https://codeclimate.com/github/softlayer/sl-ember-test-helpers/badges/gpa.svg)](https://codeclimate.com/github/softlayer/sl-ember-test-helpers)
 
 ---
 
