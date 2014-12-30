@@ -1,7 +1,5 @@
 Ember CLI version: **0.1.5**
 
-NPM package name: **sl-ember-test-helpers**
-
 License: [MIT](LICENSE.md)
 
 ---
