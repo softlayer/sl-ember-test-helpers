@@ -18,6 +18,16 @@ This addon provides and registers QUnit test helpers for use in the testing of y
 
 ## Synchronous
 
+### ajax
+
+Emulates the beginning and completion of an AJAX request or requests.
+
+* `ajax.begin()` triggers the `ajaxStart` event on the document
+* `ajax.begin( 'endpointValue' )` triggers the `ajaxSend` event on the document, passing the supplied endpoint value
+* `ajax.end()` triggers the `ajaxStop` event on the document
+* `ajax.end( 'endpointValue' )` triggers the `ajaxComplete` event on the document, passing the supplied endpoint value
+
+
 ### contains
 
 ```
@@ -39,6 +49,10 @@ contains( [ 'a', 'b' ], 'b', 'Contains expected values' );
 ```
 
 ## Asynchronous
+
+### ajax
+
+See description in *Synchronous* section
 
 ### contains
 
