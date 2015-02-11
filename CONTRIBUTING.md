@@ -20,7 +20,7 @@ Think you've found a bug or have a new feature to suggest? Let us know!
 
 4. Your issue will be verified. The provided demo will be tested for correctness. The sl-ember-test-helpers team will work with you until your issue can be verified.
 
-5. Keep up to date with feedback from the sl-test-helpers team on your ticket. Your ticket may be closed if it becomes
+5. Keep up to date with feedback from the sl-ember-test-helpers team on your ticket. Your ticket may be closed if it becomes
 stale.
 
 6. If possible, submit a Pull Request with a failing test. Better yet, take a stab at fixing the bug yourself if you can!
@@ -40,7 +40,7 @@ The more information you provide, the easier it is for us to validate that there
 # Pull Requests
 
 ## Contributer License Agreement
-Contributions to the sl-test-helpers project require the submission of a contributer license agreement. Individual contributers should review and complete the [Individual CLA](CLA-INDIVIDUAL.md). Contributions made on behalf of a company/employer will necessitate the completion of the [Corporate CLA](CLA-CORPORATE.md).
+Contributions to the sl-ember-test-helpers project require the submission of a contributer license agreement. Individual contributers should review and complete the [Individual CLA](CLA-INDIVIDUAL.md). Contributions made on behalf of a company/employer will necessitate the completion of the [Corporate CLA](CLA-CORPORATE.md).
 
 If you have any questions about either of these documents please contact the same individual listed in the documents you are to send your completed copies to.
 
