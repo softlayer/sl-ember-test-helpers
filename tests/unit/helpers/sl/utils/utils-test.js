@@ -9,84 +9,28 @@ import {
     doArraysIntersect
 } from '../../../../helpers/sl/utils/utils';
 
+import requires from '../../../../helpers/sl/synchronous/requires';
+
 module( 'Unit - utils:sl/utils/utils' );
 
 test( 'convertToArray() exists', function() {
-  ok( convertToArray, 'it exists' );
+    ok( convertToArray, 'it exists' );
 });
 
 test( 'convertStringToArray() exists', function() {
-  ok( convertStringToArray, 'it exists' );
+    ok( convertStringToArray, 'it exists' );
 });
 
 test( 'convertObjectKeysToArray() exists', function() {
-  ok( convertObjectKeysToArray, 'it exists' );
+    ok( convertObjectKeysToArray, 'it exists' );
 });
 
 test( 'doArraysIntersect() exists', function() {
-  ok( doArraysIntersect, 'it exists' );
+    ok( doArraysIntersect, 'it exists' );
 });
 
 test( 'convertToArray() requires either an Array, String, or Object to be provided', function() {
-    // Empty parameter
-
-    var assertionThrown = false;
-
-    try {
-        convertToArray();
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    ok( assertionThrown, 'Parameter was empty' );
-
-    // Number parameter
-
-    assertionThrown = false;
-
-    try {
-        convertToArray( 4 );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    ok( assertionThrown, 'Parameter was not an Array, String, or Object' );
-
-    // Array Parameter
-
-    assertionThrown = false;
-
-    try {
-        convertToArray( [] );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    ok( !assertionThrown, 'Parameter was an Array' );
-
-    // String Parameter
-
-    assertionThrown = false;
-
-    try {
-        convertToArray( 'test' );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    ok( !assertionThrown, 'Parameter was a String' );
-
-    // Object Parameter
-
-    assertionThrown = false;
-
-    try {
-        convertToArray( {} );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    ok( !assertionThrown, 'Parameter was an Object' );
+    requires( convertToArray, [ 'array', 'string', 'object' ] );
 });
 
 test( 'convertToArray() returns expected result', function() {
@@ -105,87 +49,19 @@ test( 'convertToArray() returns expected result', function() {
 });
 
 test( 'convertStringToArray() requires a string to be provided', function() {
-    // Empty argument
-
-    var assertionThrown = false;
-
-    try {
-        convertStringToArray();
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    ok( assertionThrown, 'Argument was empty' );
-
-    // Non-string argument
-
-    assertionThrown = false;
-
-    try {
-        convertStringToArray({test:true});
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    ok( assertionThrown, 'Argument was not a string' );
-
-    // String argument
-
-    assertionThrown = false;
-
-    try {
-        convertStringToArray('test');
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    ok( !assertionThrown, 'Argument was a string' );
+    requires( convertStringToArray, [ 'string' ] );
 });
 
 test( 'convertStringToArray() returns an array with a single element when passed a string without spaces', function() {
     deepEqual( convertStringToArray( 'testString' ), [ 'testString' ] );
 });
 
-test( 'convertStringToArray() returns an array with as many arguments as there are "words" represented in a string passed to it containing spaces', function() {
+test( 'convertStringToArray() returns an array with as many elements as there are "words" represented in a string passed to it containing spaces', function() {
     deepEqual( convertStringToArray( 'the test string' ), [ 'the', 'test', 'string' ] );
 });
 
 test( 'convertObjectKeysToArray() requires an object to be provided', function() {
-    // Empty argument
-
-    var assertionThrown = false;
-
-    try {
-        convertObjectKeysToArray();
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    ok( assertionThrown, 'Argument was empty' );
-
-    // Non-object argument
-
-    assertionThrown = false;
-
-    try {
-        convertObjectKeysToArray('test');
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    ok( assertionThrown, 'Argument was not an object' );
-
-    // Object argument
-
-    assertionThrown = false;
-
-    try {
-        convertObjectKeysToArray({test:true});
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    ok( !assertionThrown, 'Argument was an object' );
+    requires( convertObjectKeysToArray, [ 'object' ] );
 });
 
 test( 'convertObjectKeysToArray() returns an array of object properties', function() {
