@@ -50,6 +50,25 @@ This test would pass because the Array being tested contains the value of "b":
 contains( [ 'a', 'b' ], 'b', 'Contains expected values' );
 ```
 
+### requires
+
+Use this helper to test that an argument passed to a function is of the required type(s).  The first argumens is the function under test and the second argument is an array of types to test for.
+
+```
+requires( functionUnderTest, [ 'string', 'object', 'function' ] );
+```
+
+#### Types
+
+* number
+* string
+* array
+* object
+* function
+* undefined
+* boolean
+
+
 ## Asynchronous
 
 ### ajax
@@ -60,6 +79,9 @@ See description in *Synchronous* section
 
 See description in *Synchronous* section
 
+### requires
+
+See description in *Synchronous* section
 
 
 ---

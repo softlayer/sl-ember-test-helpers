@@ -60,7 +60,7 @@ var convertStringToArray = function( underTest ) {
  */
 var convertObjectKeysToArray = function( underTest ) {
 
-    Ember.assert( 'Object must be supplied', 'object' === typeof underTest );
+    Ember.assert( 'Object must be supplied', 'object' === typeof underTest && !Array.isArray( underTest ) );
 
     return Object.keys( underTest );
 };
