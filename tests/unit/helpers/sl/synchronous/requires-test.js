@@ -4,11 +4,11 @@ import requires from '../../../../helpers/sl/synchronous/requires';
 
 module( 'Unit - helpers:sl/synchronous/requires' );
 
-test( 'it exists', function() {
-  ok( requires, 'it exists' );
+test( 'it exists', function( assert ) {
+    assert.ok( requires, 'it exists' );
 });
 
-test( 'First argument must be a function', function() {
+test( 'First argument must be a function', function( assert ) {
 
     // Number
     var assertionThrown = false;
@@ -19,7 +19,7 @@ test( 'First argument must be a function', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'First parameter was a number' );
+    assert.ok( assertionThrown, 'First parameter was a number' );
 
     // String
     assertionThrown = false;
@@ -30,7 +30,7 @@ test( 'First argument must be a function', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'First parameter was a string' );
+    assert.ok( assertionThrown, 'First parameter was a string' );
 
     // Array
     assertionThrown = false;
@@ -41,7 +41,7 @@ test( 'First argument must be a function', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'First parameter was an array' );
+    assert.ok( assertionThrown, 'First parameter was an array' );
 
     // Object
     assertionThrown = false;
@@ -52,7 +52,7 @@ test( 'First argument must be a function', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'First parameter was an object' );
+    assert.ok( assertionThrown, 'First parameter was an object' );
 
     // Function
     assertionThrown = false;
@@ -63,7 +63,7 @@ test( 'First argument must be a function', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'First parameter was a function' );
+    assert.ok( assertionThrown, 'First parameter was a function' );
 
     // Undefined
     assertionThrown = false;
@@ -74,7 +74,7 @@ test( 'First argument must be a function', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'First parameter was undefined' );
+    assert.ok( assertionThrown, 'First parameter was undefined' );
 
     // Boolean
     assertionThrown = false;
@@ -85,11 +85,11 @@ test( 'First argument must be a function', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'First parameter was a boolean' );
+    assert.ok( assertionThrown, 'First parameter was a boolean' );
 
 });
 
-test( 'Second argument must be an array', function() {
+test( 'Second argument must be an array', function( assert ) {
 
     // Number
     var assertionThrown = false;
@@ -100,7 +100,7 @@ test( 'Second argument must be an array', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'Second parameter was a number' );
+    assert.ok( assertionThrown, 'Second parameter was a number' );
 
     // String
     assertionThrown = false;
@@ -111,7 +111,7 @@ test( 'Second argument must be an array', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'Second parameter was a string' );
+    assert.ok( assertionThrown, 'Second parameter was a string' );
 
     // Array
     assertionThrown = false;
@@ -122,7 +122,7 @@ test( 'Second argument must be an array', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'Second parameter was an array' );
+    assert.ok( assertionThrown, 'Second parameter was an array' );
 
     // Object
     assertionThrown = false;
@@ -133,7 +133,7 @@ test( 'Second argument must be an array', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'Second parameter was an object' );
+    assert.ok( assertionThrown, 'Second parameter was an object' );
 
     // Function
     assertionThrown = false;
@@ -144,7 +144,7 @@ test( 'Second argument must be an array', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'Second parameter was a function' );
+    assert.ok( assertionThrown, 'Second parameter was a function' );
 
     // Undefined
     assertionThrown = false;
@@ -155,7 +155,7 @@ test( 'Second argument must be an array', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'Second parameter was undefined' );
+    assert.ok( assertionThrown, 'Second parameter was undefined' );
 
     // Boolean
     assertionThrown = false;
@@ -166,12 +166,12 @@ test( 'Second argument must be an array', function() {
         assertionThrown = true;
     }
 
-    ok( assertionThrown, 'Second parameter was a boolean' );
+    assert.ok( assertionThrown, 'Second parameter was a boolean' );
 
 });
 
 // @TODO Needs better test support.  See https://github.com/softlayer/sl-ember-test-helpers/issues/59
-test( 'Functions as expected', function() {
+test( 'Functions as expected', function( assert ) {
     var testFunction = function( first ) {
         Ember.assert( 'Test argument must be a function', 'function' === typeof first || 'boolean' === typeof first );
     },
@@ -183,5 +183,5 @@ test( 'Functions as expected', function() {
         assertionThrown = true;
     }
 
-    ok( !assertionThrown, 'Functioned as expected when passed desired argument types' );
+    assert.ok( !assertionThrown, 'Functioned as expected when passed desired argument types' );
 });
