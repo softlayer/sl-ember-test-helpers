@@ -6,12 +6,12 @@ import contains from '../../../../helpers/sl/synchronous/contains';
 
 module( 'Unit - helpers:sl/synchronous/contains' );
 
-test( 'it exists', function() {
-  ok( contains, 'it exists' );
+test( 'it exists', function( assert ) {
+    assert.ok( contains, 'it exists' );
 });
 
-test( 'EMPTY TEST', function() {
-    expect(0);
+test( 'EMPTY TEST', function( assert ) {
+    assert.expect(0);
 
     /*
     The reason this test is empty is because I have yet to find a good way to test the contains() helper.
