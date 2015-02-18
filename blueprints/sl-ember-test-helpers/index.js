@@ -18,7 +18,7 @@ module.exports = {
 
             // .jshintrc file
             thirdFile          = 'tests/.jshintrc',
-            thirdText          = '    "contains",',
+            thirdText          = '    "contains",' + EOL + '    "requires",',
             thirdLocationText  = '"predef": [' + EOL;
 
             // Import statement
