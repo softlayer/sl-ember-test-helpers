@@ -170,18 +170,24 @@ test( 'Second argument must be an array', function( assert ) {
 
 });
 
-// @TODO Needs better test support.  See https://github.com/softlayer/sl-ember-test-helpers/issues/59
+test( 'Return type', function( assert ) {
+    var testFunction = function( first ) {
+        Ember.assert( 'Test argument must be a function or boolean', 'function' === typeof first || 'boolean' === typeof first );
+    },
+    test = requires( testFunction, [ 'function', 'boolean' ] );
+
+    assert.deepEqual( test, { requires: true, messages: '' }, 'Returns expected object' );
+});
+
 test( 'Functions as expected', function( assert ) {
     var testFunction = function( first ) {
-        Ember.assert( 'Test argument must be a function', 'function' === typeof first || 'boolean' === typeof first );
+        Ember.assert( 'Test argument must be a function or boolean', 'function' === typeof first || 'boolean' === typeof first );
     },
-    assertionThrown  = false;
+    test;
 
-    try {
-        requires( testFunction, [ 'function', 'boolean' ] );
-    } catch( error ) {
-        assertionThrown = true;
-    }
+    test = requires( testFunction, [ 'function', 'boolean' ] );
+    assert.ok ( test.requires, 'Functioned as expected when passed desired argument types: ' + test.messages );
 
-    assert.ok( !assertionThrown, 'Functioned as expected when passed desired argument types' );
+    test = requires( testFunction, [ 'function', 'boolean', 'string' ] );
+    assert.ok ( !test.requires, 'Functioned as expected when passed undesired argument types: ' + test.messages );
 });

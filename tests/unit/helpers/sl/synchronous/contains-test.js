@@ -4,32 +4,205 @@ import {
 
 import contains from '../../../../helpers/sl/synchronous/contains';
 
+var utils = require( 'dummy/tests/helpers/sl/utils/utils' );
+
 module( 'Unit - helpers:sl/synchronous/contains' );
 
 test( 'it exists', function( assert ) {
     assert.ok( contains, 'it exists' );
 });
 
-test( 'EMPTY TEST', function( assert ) {
-    assert.expect(0);
+test( 'First non-optional argument must be an array, string or object', function( assert ) {
 
-    /*
-    The reason this test is empty is because I have yet to find a good way to test the contains() helper.
+    // Number
+    var assertionThrown = false;
 
-    Conceptually, all that needs to be tested is whether or not contains() returns the correct boolean response when
-    provided two values to compare.  In reality, I'm torn on whether to be a little more specific in the testing,
-    ensuring that doArraysIntersect() is being called, and more importantly, with the arguments in the correct order.
-    These checks would be done with stubs, spies, etc.
+    try {
+        contains( 12 );
+    } catch( error ) {
+        assertionThrown = true;
+    }
 
-    Even without this more robust testing, the real problem is how to correctly test the call to ok() within contains().
-    I've taken a few stabs at it and never got it quite right.  One workaround would be to just have contains() return
-    a boolean and then use that within your tests in an ok() or other call.  This would solve the testing problem but
-    my intention for this helper was not to serve as a utility class to return a boolean, but to actually be an assertion
-    just like ok(), equals(), and others.
+    assert.ok( assertionThrown, 'First parameter was a number' );
 
-    That specific syntax of course locks the use of this addon into QUnit (as does the use of the message parameter),
-    rather than being flexible and allowing use with other test adapters such as Mocha.  So either the testing suite
-    being used for the application needs to be detected when the generator is ran and the correct syntax injected or it
-    should be more of utility function.  This all of course assume default configuration of the testing suites.
-     */
+    // String
+    assertionThrown = false;
+
+    try {
+        contains( 'testString', {} );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( !assertionThrown, 'First parameter was a string' );
+
+    // Array
+    assertionThrown = false;
+
+    try {
+        contains( [], {} );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( !assertionThrown, 'First parameter was an array' );
+
+    // Object
+    assertionThrown = false;
+
+    try {
+        contains( {}, {} );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( !assertionThrown, 'First parameter was an object' );
+
+    // Function
+    assertionThrown = false;
+
+    try {
+        contains( function(){} );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( assertionThrown, 'First parameter was a function' );
+
+    // Undefined
+    assertionThrown = false;
+
+    try {
+        contains( undefined );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( assertionThrown, 'First parameter was undefined' );
+
+    // Boolean
+    assertionThrown = false;
+
+    try {
+        contains( true );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( assertionThrown, 'First parameter was a boolean' );
+
+});
+
+test( 'Second non-optional argument must be an array, string or object', function( assert ) {
+
+    // Number
+    var assertionThrown = false;
+
+    try {
+        contains( {}, 12 );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( assertionThrown, 'Second parameter was a number' );
+
+    // String
+    assertionThrown = false;
+
+    try {
+        contains( {}, 'testString' );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( !assertionThrown, 'Second parameter was a string' );
+
+    // Array
+    assertionThrown = false;
+
+    try {
+        contains( {}, [] );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( !assertionThrown, 'Second parameter was an array' );
+
+    // Object
+    assertionThrown = false;
+
+    try {
+        contains( {}, {} );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( !assertionThrown, 'Second parameter was an object' );
+
+    // Function
+    assertionThrown = false;
+
+    try {
+        contains( {}, function(){} );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( assertionThrown, 'Second parameter was a function' );
+
+    // Undefined
+    assertionThrown = false;
+
+    try {
+        contains( {}, undefined );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( assertionThrown, 'Second parameter was undefined' );
+
+    // Boolean
+    assertionThrown = false;
+
+    try {
+        contains( {}, true );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok( assertionThrown, 'Second parameter was a boolean' );
+
+});
+
+test( 'Returns value from call to doArraysIntersect()', function( assert ) {
+    var spy = sinon.spy( utils, 'doArraysIntersect' );
+
+    contains( [], [] );
+
+    assert.ok( spy.calledOnce, 'doArraysIntersect() was called' );
+
+    utils.doArraysIntersect.restore();
+});
+
+test( 'Arguments are passed to doArraysIntersect() in the correct order', function( assert ) {
+    var spy = sinon.spy( utils, 'doArraysIntersect' );
+
+    contains( 'b', [ 'd', 'e' ] );
+
+    assert.equal( spy.args[0][0], 'b', 'First argument' );
+    assert.deepEqual( spy.args[0][1], [ 'd', 'e' ], 'Second argument' );
+
+    utils.doArraysIntersect.restore();
+});
+
+test( 'Returns a boolean', function( assert ) {
+    var response;
+
+    response = contains( 'b', [ 'd', 'e' ] );
+
+    assert.propEqual( response, false, 'Is boolean false' );
+
+    response = contains( [ 'd', 'e' ], 'e' );
+
+    assert.propEqual( response, true, 'Is boolean true' );
 });

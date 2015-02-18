@@ -11,7 +11,7 @@ To see which issues are currently being worked on or are scheduled to be worked 
 
 # What is sl-ember-test-helpers
 
-This addon provides and registers QUnit test helpers for use in the testing of your application.
+This addon provides and registers test helpers for use in the testing of your application.  This addon is compatible with QUnit, Mocha, and any other testing framework you wish to use (or at least should be).
 
 
 ---
@@ -33,26 +33,28 @@ Emulates the beginning and completion of an AJAX request or requests.
 ### contains
 
 ```
-contains( valuesUnderTest, valuesToTestFor, 'Message passed to ok()' );
+contains( valuesUnderTest, valuesToTestFor );
 ```
 
-Test whether values are contained in other values.  These values can be a combination of Arrays, Strings, or Objects (for which the keys are extracted).  All *valuesToTestFor* must exist in *valuesUnderTest* for this test to pass successfully.
+Determine whether values are contained in other values.  These values can be a combination of Arrays, Strings, or Objects (for which the keys are extracted).  All *valuesToTestFor* must exist in *valuesUnderTest* for this determination to pass successfully.
 
-This test would fail because the Object being tested does not contain keys matching the values of "a" and "b":
+Calls to `contains()` return a boolean which can then be used in your tests.
 
-```
-contains( { c: 1, b: 3 }, [ 'a', 'b' ], 'Contains expected values' );
-```
-
-This test would pass because the Array being tested contains the value of "b":
+This call would fail because the Object being tested does not contain keys matching the values of "a" and "b":
 
 ```
-contains( [ 'a', 'b' ], 'b', 'Contains expected values' );
+contains( { c: 1, b: 3 }, [ 'a', 'b' ] );
+```
+
+This call would pass because the Array being tested contains the value of "b":
+
+```
+contains( [ 'a', 'b' ], 'b' );
 ```
 
 ### requires
 
-Use this helper to test that an argument passed to a function is of the required type(s).  The first argumens is the function under test and the second argument is an array of types to test for.
+Use this helper to test that an argument passed to a function is of the required type(s).  The first argument is the function under test and the second argument is an array of types to test for.
 
 ```
 requires( functionUnderTest, [ 'string', 'object', 'function' ] );
@@ -67,6 +69,15 @@ requires( functionUnderTest, [ 'string', 'object', 'function' ] );
 * function
 * undefined
 * boolean
+
+The call to `requires` returns an object:
+
+```
+{
+    requires: <boolean: true if functionUnderTest requires the provided arguments, false if not>
+    messages: <string: message per argument type that failed>
+}
+```
 
 
 ## Asynchronous
