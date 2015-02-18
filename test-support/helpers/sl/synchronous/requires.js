@@ -1,7 +1,12 @@
 import Ember from 'ember';
 
-// @TODO Return result of assertions rather than calling ok() - see https://github.com/softlayer/sl-ember-test-helpers/issues/59
-
+/**
+ * Test that an argument passed to a function is of the required type(s).
+ *
+ * @param  {function} methodUnderTest
+ * @param  {array}    requiredTypes
+ * @return {object}
+ */
 export default function( methodUnderTest, requiredTypes ) {
     var typesToTest = {
             'number' : {
@@ -32,7 +37,7 @@ export default function( methodUnderTest, requiredTypes ) {
             'undefined' : {
                 required  : false,
                 testValue : undefined,
-                message   : 'Parameter was empty'
+                message   : 'Parameter was undefined'
             },
             'boolean' : {
                 required  : false,
@@ -40,8 +45,9 @@ export default function( methodUnderTest, requiredTypes ) {
                 message   : 'Parameter was a boolean'
             }
         },
+        testsThatHaveFailed = [],
         assertionThrown,
-        assertionState,
+        assertionPassed,
         property,
         parameter;
 
@@ -70,9 +76,16 @@ export default function( methodUnderTest, requiredTypes ) {
                 assertionThrown = true;
             }
 
-            assertionState = ( parameter['required'] ) ? !assertionThrown : assertionThrown;
+            assertionPassed = ( parameter['required'] ) ? !assertionThrown : assertionThrown;
 
-            ok( assertionState, parameter['message'] );
+            if ( !assertionPassed ) {
+                testsThatHaveFailed.push( parameter['message'] );
+            }
         }
     }
+
+    return {
+        requires: ( 0 === testsThatHaveFailed.length ) ? true : false,
+        messages: testsThatHaveFailed.join( '; ' )
+    };
 }

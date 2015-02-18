@@ -30,7 +30,9 @@ test( 'doArraysIntersect() exists', function( assert ) {
 });
 
 test( 'convertToArray() requires either an Array, String, or Object to be provided', function( assert ) {
-    requires( convertToArray, [ 'array', 'string', 'object' ] );
+    var test = requires( convertToArray, [ 'array', 'string', 'object' ] );
+
+    assert.ok ( test.requires, test.messages );
 });
 
 test( 'convertToArray() returns expected result', function( assert ) {
@@ -49,7 +51,9 @@ test( 'convertToArray() returns expected result', function( assert ) {
 });
 
 test( 'convertStringToArray() requires a string to be provided', function( assert ) {
-    requires( convertStringToArray, [ 'string' ] );
+    var test = requires( convertStringToArray, [ 'string' ] );
+
+    assert.ok ( test.requires, test.messages );
 });
 
 test( 'convertStringToArray() returns an array with a single element when passed a string without spaces', function( assert ) {
@@ -61,7 +65,9 @@ test( 'convertStringToArray() returns an array with as many elements as there ar
 });
 
 test( 'convertObjectKeysToArray() requires an object to be provided', function( assert ) {
-    requires( convertObjectKeysToArray, [ 'object' ] );
+    var test = requires( convertObjectKeysToArray, [ 'object' ] );
+
+    assert.ok ( test.requires, test.messages );
 });
 
 test( 'convertObjectKeysToArray() returns an array of object properties', function( assert ) {

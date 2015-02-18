@@ -23,7 +23,8 @@
     "currentURL",
     "currentPath",
     "currentRouteName",
-    "sinon"
+    "sinon",
+    "require"
   ],
   "node": false,
   "browser": false,
