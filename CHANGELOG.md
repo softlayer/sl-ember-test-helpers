@@ -1,5 +1,15 @@
 # sl-ember-test-helpers Changelog
 
+### 1.3.0
+
+* [#54](https://github.com/softlayer/sl-ember-test-helpers/pull/54) [ENHANCEMENT] Add "AJAX" helper
+* [#60](https://github.com/softlayer/sl-ember-test-helpers/pull/60) [ENHANCEMENT] Add "requires" helper
+* [#61](https://github.com/softlayer/sl-ember-test-helpers/pull/61) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 0.1.15
+* [#62](https://github.com/softlayer/sl-ember-test-helpers/pull/62) [BREAKING ENHANCEMENT] "contains" helper no longer calls ok() itself but instead returns a boolean
+* [#62](https://github.com/softlayer/sl-ember-test-helpers/pull/62) [BREAKING ENHANCEMENT] Changed the index offset for "contains" helper when being ran synchronously vs asynchronously
+
+[View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.2.0...v1.3.0)
+
 ### 1.2.0
 
 * [#42](https://github.com/softlayer/sl-ember-test-helpers/pull/42) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 0.1.5
