@@ -114,7 +114,7 @@ There are several utility functions provided in the */test-support/helpers/sl/ut
 ## Install this addon as a Node module
 
 ```
-ember install:addon sl-ember-test-helpers
+ember install sl-ember-test-helpers
 ```
 
 ## If running Synchronous tests, such as Unit Tests
