@@ -1,5 +1,11 @@
 # sl-ember-test-helpers Changelog
 
+### 1.4.0
+
+* [#72](https://github.com/softlayer/sl-ember-test-helpers/pull/72) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 0.2.3
+
+[View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.3.0...v1.4.0)
+
 ### 1.3.0
 
 * [#54](https://github.com/softlayer/sl-ember-test-helpers/pull/54) [ENHANCEMENT] Add "AJAX" helper
