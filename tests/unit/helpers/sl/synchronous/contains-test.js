@@ -1,12 +1,9 @@
-import {
-  test
-} from 'ember-qunit';
-
+import { test } from 'ember-qunit';
 import contains from '../../../../helpers/sl/synchronous/contains';
 
 var utils = require( 'dummy/tests/helpers/sl/utils/utils' );
 
-module( 'Unit - helpers:sl/synchronous/contains' );
+module( 'Unit | Helper | sl/synchronous/contains' );
 
 test( 'it exists', function( assert ) {
     assert.ok( contains, 'it exists' );

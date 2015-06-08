@@ -1,10 +1,7 @@
-import {
-  test
-} from 'ember-qunit';
-
+import { test } from 'ember-qunit';
 import ajax from '../../../../helpers/sl/synchronous/ajax';
 
-module( 'Unit - helpers:sl/synchronous/ajax' );
+module( 'Unit | Helper | sl/synchronous/ajax' );
 
 test( 'it exists', function( assert ) {
     assert.ok( ajax, 'it exists' );
