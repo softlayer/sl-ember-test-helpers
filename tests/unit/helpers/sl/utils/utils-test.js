@@ -1,17 +1,13 @@
-import {
-  test
-} from 'ember-qunit';
-
+import { test } from 'ember-qunit';
 import {
     convertToArray,
     convertStringToArray,
     convertObjectKeysToArray,
     doArraysIntersect
 } from '../../../../helpers/sl/utils/utils';
-
 import requires from '../../../../helpers/sl/synchronous/requires';
 
-module( 'Unit - utils:sl/utils/utils' );
+module( 'Unit | Utils | sl/utils/utils' );
 
 test( 'convertToArray() exists', function( assert ) {
     assert.ok( convertToArray, 'it exists' );

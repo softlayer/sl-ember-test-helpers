@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { test } from 'ember-qunit';
 import requires from '../../../../helpers/sl/synchronous/requires';
 
-module( 'Unit - helpers:sl/synchronous/requires' );
+module( 'Unit | Helpers | sl/synchronous/requires' );
 
 test( 'it exists', function( assert ) {
     assert.ok( requires, 'it exists' );

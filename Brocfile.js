@@ -1,11 +1,12 @@
 /* jshint node: true */
 /* global require, module */
 
-var EmberAddon   = require( 'ember-cli/lib/broccoli/ember-addon' ),
-    replace      = require( 'broccoli-string-replace' ),
-    env          = require( './config/environment' ),
+var EmberAddon = require( 'ember-cli/lib/broccoli/ember-addon' ),
+    packageConfig = require( './package.json' ),
+    replace = require( 'broccoli-string-replace' ),
+    env = require( './config/environment' ),
     isProduction = ( process.env.EMBER_ENV || 'development' ) === 'production',
-    app          = new EmberAddon(),
+    app = new EmberAddon(),
     tree;
 
 // Use `app.import` to add additional libraries to the generated
@@ -23,8 +24,13 @@ var EmberAddon   = require( 'ember-cli/lib/broccoli/ember-addon' ),
 
 // Testing dependencies
 if ( !isProduction ) {
-    app.import( app.bowerDirectory + '/sinonjs/sinon.js', { type: 'test' } );
-    app.import( app.bowerDirectory + '/sinon-qunit/lib/sinon-qunit.js', { type: 'test' } );
+    app.import( app.bowerDirectory + '/sinonjs/sinon.js', {
+        type: 'test'
+    });
+
+    app.import( app.bowerDirectory + '/sinon-qunit/lib/sinon-qunit.js', {
+        type: 'test'
+    });
 }
 
 tree = replace( app.toTree(), {
@@ -32,11 +38,11 @@ tree = replace( app.toTree(), {
     patterns: [
         {
             match: /REPLACE_META_DESCRIPTION/g,
-            replacement: require('./package.json')['description']
-        },
-        {
+            replacement: packageConfig[ 'description' ]
+        }, {
             match: /REPLACE_META_KEYWORDS/g,
-            replacement: require('./package.json')['keywords'].join( ', ' ) + ', ember, ember cli'
+            replacement: packageConfig[ 'keywords' ].join( ', ' ) +
+                ', ember, ember cli'
         }
     ]
 });
