@@ -1,39 +1,39 @@
 /* globals module */
 
-var EOL = require('os').EOL;
+let EOL = require('os').EOL;
 
 module.exports = {
     description: 'Register test helpers',
 
-    afterInstall: function( options ) {
-            // Import statement
-        var firstFile          = 'tests/helpers/start-app.js',
-            firstText          = "import slregisterTestHelpers from './sl/register-test-helpers';",
-            firstLocationText  = "import Ember from 'ember';" + EOL,
+    afterInstall( options ) {
+        // Import statement
+        let firstFile = 'tests/helpers/start-app.js';
+        let firstText = "import slregisterTestHelpers from './sl/register-test-helpers';";
+        let firstLocationText = "import Ember from 'ember';" + EOL;
 
-            // Execution of registration function
-            secondFile         = 'tests/helpers/start-app.js',
-            secondText         = "    slregisterTestHelpers();",
-            secondLocationText = "application.setupForTesting();" + EOL,
+        // Execution of registration function
+        let secondFile = 'tests/helpers/start-app.js';
+        let secondText = "    slregisterTestHelpers();";
+        let secondLocationText = "application.setupForTesting();" + EOL;
 
-            // .jshintrc file
-            thirdFile          = 'tests/.jshintrc',
-            thirdText          = '    "contains",' + EOL + '    "requires",',
-            thirdLocationText  = '"predef": [' + EOL;
+        // .jshintrc file
+        let thirdFile = 'tests/.jshintrc';
+        let thirdText = '    "contains",' + EOL + '    "requires",';
+        let thirdLocationText = '"predef": [' + EOL;
 
-            // Import statement
+        // Import statement
         return this.insertIntoFile( firstFile, firstText, { after: firstLocationText } )
 
             // Execution of registration function
-            .then( function() {
+            .then( () => {
                 return this.insertIntoFile( secondFile, secondText, { after: secondLocationText } );
-            }.bind(this))
+            })
 
             // .jshintrc file
-            .then( function() {
+            .then( () => {
                 return this.insertIntoFile( thirdFile, thirdText, { after: thirdLocationText } );
-            }.bind(this));
+            });
     },
 
-    normalizeEntityName: function() {}
+    normalizeEntityName() {}
 };

@@ -26,15 +26,15 @@ test( 'doArraysIntersect() exists', function( assert ) {
 });
 
 test( 'convertToArray() requires either an Array, String, or Object to be provided', function( assert ) {
-    var test = requires( convertToArray, [ 'array', 'string', 'object' ] );
+    let test = requires( convertToArray, [ 'array', 'string', 'object' ] );
 
     assert.ok ( test.requires, test.messages );
 });
 
 test( 'convertToArray() returns expected result', function( assert ) {
-    var testResults1 = convertToArray( [ 'a', 'b' ] ),
-        testResults2 = convertToArray( 'testing things' ),
-        testResults3 = convertToArray( { a: 1, b: 2 } );
+    let testResults1 = convertToArray( [ 'a', 'b' ] );
+    let testResults2 = convertToArray( 'testing things' );
+    let testResults3 = convertToArray( { a: 1, b: 2 } );
 
     assert.ok( Array.isArray( testResults1 ) );
     assert.deepEqual( [ 'a', 'b' ], testResults1 );
@@ -47,7 +47,7 @@ test( 'convertToArray() returns expected result', function( assert ) {
 });
 
 test( 'convertStringToArray() requires a string to be provided', function( assert ) {
-    var test = requires( convertStringToArray, [ 'string' ] );
+    let test = requires( convertStringToArray, [ 'string' ] );
 
     assert.ok ( test.requires, test.messages );
 });
@@ -61,7 +61,7 @@ test( 'convertStringToArray() returns an array with as many elements as there ar
 });
 
 test( 'convertObjectKeysToArray() requires an object to be provided', function( assert ) {
-    var test = requires( convertObjectKeysToArray, [ 'object' ] );
+    let test = requires( convertObjectKeysToArray, [ 'object' ] );
 
     assert.ok ( test.requires, test.messages );
 });
@@ -74,7 +74,7 @@ test( 'convertObjectKeysToArray() returns an array of object properties', functi
 test( 'doArraysIntersect() requires both parameters to be Arrays', function( assert ) {
     // First parameter not an Array, second one is
 
-    var assertionThrown = false;
+    let assertionThrown = false;
 
     try {
         doArraysIntersect( '', [] );

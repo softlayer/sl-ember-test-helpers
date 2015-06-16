@@ -11,7 +11,7 @@ test( 'it exists', function( assert ) {
 test( 'First argument must be a function', function( assert ) {
 
     // Number
-    var assertionThrown = false;
+    let assertionThrown = false;
 
     try {
         requires( 12, false );
@@ -92,7 +92,7 @@ test( 'First argument must be a function', function( assert ) {
 test( 'Second argument must be an array', function( assert ) {
 
     // Number
-    var assertionThrown = false;
+    let assertionThrown = false;
 
     try {
         requires( 12, 12 );
@@ -171,8 +171,8 @@ test( 'Second argument must be an array', function( assert ) {
 });
 
 test( 'Return type', function( assert ) {
-    var testFunction = function( first ) {
-        Ember.assert( 'Test argument must be a function or boolean', 'function' === typeof first || 'boolean' === typeof first );
+    let testFunction = function( first ) {
+        Ember.assert( 'Test argument must be a function or boolean', 'function' === Ember.typeOf( first ) || 'boolean' === Ember.typeOf( first ) );
     },
     test = requires( testFunction, [ 'function', 'boolean' ] );
 
@@ -180,8 +180,8 @@ test( 'Return type', function( assert ) {
 });
 
 test( 'Functions as expected', function( assert ) {
-    var testFunction = function( first ) {
-        Ember.assert( 'Test argument must be a function or boolean', 'function' === typeof first || 'boolean' === typeof first );
+    let testFunction = function( first ) {
+        Ember.assert( 'Test argument must be a function or boolean', 'function' === Ember.typeOf( first ) || 'boolean' === Ember.typeOf( first ) );
     },
     test;
 

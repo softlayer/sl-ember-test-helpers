@@ -13,25 +13,25 @@ import {
  * All values must be present in the values being tested or the test will fail
  *
  * @function contains
- * @param   {Ember.Application} app (optional)
- * @param   {array|string|object} underTest
- * @param   {mixed} testFor
- * @throws  {Ember.assert}
- * @returns {boolean}
+ * @param {ember/Application} [app]
+ * @param {Array|String|Object} underTest
+ * @param {Array|String|Object} testFor
+ * @throws {ember/Assert}
+ * @returns {Boolean}
  */
 export default function() {
-    var index     = ( 3 === arguments.length ) ? 1 : 0,
-        underTest = arguments[index],
-        testFor   = arguments[index+1];
+    let index = ( 3 === arguments.length ) ? 1 : 0;
+    let underTest = arguments[ index ];
+    let testFor = arguments[ index + 1 ];
 
     Ember.assert(
         'First non-optional argument must be an array, string or object',
-        'object' === typeof underTest || 'string' === typeof underTest || Array.isArray( underTest )
+        'object' === Ember.typeOf( underTest ) || 'string' === Ember.typeOf( underTest ) || Array.isArray( underTest )
     );
 
     Ember.assert(
         'Second non-optional argument must be an array, string or object',
-        'object' === typeof testFor || 'string' === typeof testFor || Array.isArray( testFor )
+        'object' === Ember.typeOf( testFor ) || 'string' === Ember.typeOf( testFor ) || Array.isArray( testFor )
     );
 
     return doArraysIntersect( convertToArray( underTest ), convertToArray( testFor ) );

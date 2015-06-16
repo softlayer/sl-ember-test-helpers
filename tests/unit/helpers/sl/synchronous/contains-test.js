@@ -1,7 +1,7 @@
 import { test } from 'ember-qunit';
 import contains from '../../../../helpers/sl/synchronous/contains';
 
-var utils = require( 'dummy/tests/helpers/sl/utils/utils' );
+let utils = require( 'dummy/tests/helpers/sl/utils/utils' );
 
 module( 'Unit | Helper | sl/synchronous/contains' );
 
@@ -12,7 +12,7 @@ test( 'it exists', function( assert ) {
 test( 'First non-optional argument must be an array, string or object', function( assert ) {
 
     // Number
-    var assertionThrown = false;
+    let assertionThrown = false;
 
     try {
         contains( 12 );
@@ -93,7 +93,7 @@ test( 'First non-optional argument must be an array, string or object', function
 test( 'Second non-optional argument must be an array, string or object', function( assert ) {
 
     // Number
-    var assertionThrown = false;
+    let assertionThrown = false;
 
     try {
         contains( {}, 12 );
@@ -172,7 +172,7 @@ test( 'Second non-optional argument must be an array, string or object', functio
 });
 
 test( 'Returns value from call to doArraysIntersect()', function( assert ) {
-    var spy = sinon.spy( utils, 'doArraysIntersect' );
+    let spy = sinon.spy( utils, 'doArraysIntersect' );
 
     contains( [], [] );
 
@@ -182,7 +182,7 @@ test( 'Returns value from call to doArraysIntersect()', function( assert ) {
 });
 
 test( 'Arguments are passed to doArraysIntersect() in the correct order', function( assert ) {
-    var spy = sinon.spy( utils, 'doArraysIntersect' );
+    let spy = sinon.spy( utils, 'doArraysIntersect' );
 
     contains( 'b', [ 'd', 'e' ] );
 
@@ -193,7 +193,7 @@ test( 'Arguments are passed to doArraysIntersect() in the correct order', functi
 });
 
 test( 'Returns a boolean', function( assert ) {
-    var response;
+    let response;
 
     response = contains( 'b', [ 'd', 'e' ] );
 
