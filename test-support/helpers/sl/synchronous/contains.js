@@ -16,7 +16,7 @@ import {
  * @param {ember/Application} [app]
  * @param {Array|String|Object} underTest
  * @param {Array|String|Object} testFor
- * @throws {ember/Assert}
+ * @throws {ember.assert}
  * @returns {Boolean}
  */
 export default function() {
@@ -26,12 +26,16 @@ export default function() {
 
     Ember.assert(
         'First non-optional argument must be an array, string or object',
-        'object' === Ember.typeOf( underTest ) || 'string' === Ember.typeOf( underTest ) || Array.isArray( underTest )
+        'object' === Ember.typeOf( underTest ) ||
+        'string' === Ember.typeOf( underTest ) ||
+        'array' === Ember.typeOf( underTest )
     );
 
     Ember.assert(
         'Second non-optional argument must be an array, string or object',
-        'object' === Ember.typeOf( testFor ) || 'string' === Ember.typeOf( testFor ) || Array.isArray( testFor )
+        'object' === Ember.typeOf( testFor ) ||
+        'string' === Ember.typeOf( testFor ) ||
+        'array' === Ember.typeOf( testFor )
     );
 
     return doArraysIntersect( convertToArray( underTest ), convertToArray( testFor ) );

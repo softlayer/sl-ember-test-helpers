@@ -1,25 +1,25 @@
 /* globals module */
 
-let EOL = require('os').EOL;
+var EOL = require('os').EOL;
 
 module.exports = {
     description: 'Register test helpers',
 
     afterInstall( options ) {
         // Import statement
-        let firstFile = 'tests/helpers/start-app.js';
-        let firstText = "import slregisterTestHelpers from './sl/register-test-helpers';";
-        let firstLocationText = "import Ember from 'ember';" + EOL;
+        var firstFile = 'tests/helpers/start-app.js';
+        var firstText = "import slregisterTestHelpers from './sl/register-test-helpers';";
+        var firstLocationText = "import Ember from 'ember';" + EOL;
 
         // Execution of registration function
-        let secondFile = 'tests/helpers/start-app.js';
-        let secondText = "    slregisterTestHelpers();";
-        let secondLocationText = "application.setupForTesting();" + EOL;
+        var secondFile = 'tests/helpers/start-app.js';
+        var secondText = "    slregisterTestHelpers();";
+        var secondLocationText = "application.setupForTesting();" + EOL;
 
         // .jshintrc file
-        let thirdFile = 'tests/.jshintrc';
-        let thirdText = '    "contains",' + EOL + '    "requires",';
-        let thirdLocationText = '"predef": [' + EOL;
+        var thirdFile = 'tests/.jshintrc';
+        var thirdText = '    "contains",' + EOL + '    "requires",';
+        var thirdLocationText = '"predef": [' + EOL;
 
         // Import statement
         return this.insertIntoFile( firstFile, firstText, { after: firstLocationText } )

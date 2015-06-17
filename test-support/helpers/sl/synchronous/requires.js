@@ -46,27 +46,32 @@ export default function( methodUnderTest, requiredTypes ) {
             message: 'Parameter was a boolean'
         }
     };
-    let testsThatHaveFailed = [];
-    let assertionThrown;
-    let assertionPassed;
-    let property;
-    let parameter;
 
-    Ember.assert( 'First argument must be a function', 'function' === Ember.typeOf( methodUnderTest ) );
-    Ember.assert( 'Second argument must be an array', Array.isArray( requiredTypes ) );
+    Ember.assert(
+        'First argument must be a function',
+        'function' === Ember.typeOf( methodUnderTest )
+    );
+    Ember.assert(
+        'Second argument must be an array',
+        'array' === Ember.typeOf( requiredTypes )
+    );
 
     // Set required parameter types
     requiredTypes.forEach( ( item ) => {
         typesToTest[item][ 'required' ] = true;
     });
 
+    let testsThatHaveFailed = [];
+    let property;
     // Test each parameter type
     for ( property in typesToTest ) {
         if ( typesToTest.hasOwnProperty( property ) ) {
             // Reset flag
+            let assertionThrown;
             assertionThrown = false;
 
             // Assign cleaner object reference
+            let parameter;
             parameter = typesToTest[property];
 
             // Test parameter
@@ -76,6 +81,7 @@ export default function( methodUnderTest, requiredTypes ) {
                 assertionThrown = true;
             }
 
+            let assertionPassed;
             assertionPassed = ( parameter[ 'required' ] ) ? !assertionThrown : assertionThrown;
 
             if ( !assertionPassed ) {

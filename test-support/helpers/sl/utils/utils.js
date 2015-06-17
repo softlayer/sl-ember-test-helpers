@@ -5,13 +5,13 @@ import Ember from 'ember';
  *
  * @function
  * @param {Array|String|Object} underTest
- * @throws {Ember.assert} If not provided an Array, String or Object
+ * @throws {ember.assert} If not provided an Array, String or Object
  * @returns {Array}
  */
 let convertToArray = function( underTest ) {
     let returnArray;
 
-    if ( Array.isArray( underTest ) ) {
+    if ( 'array' === Ember.typeOf( underTest ) ) {
         returnArray = underTest;
 
     } else {
@@ -26,7 +26,10 @@ let convertToArray = function( underTest ) {
         }
     }
 
-    Ember.assert( 'String, Object or Array must be supplied', 'undefined' !== Ember.typeOf( returnArray ) );
+    Ember.assert(
+        'String, Object or Array must be supplied',
+        'undefined' !== Ember.typeOf( returnArray )
+    );
 
     return returnArray;
 };
@@ -38,12 +41,15 @@ let convertToArray = function( underTest ) {
  *
  * @function
  * @param {String} underTest
- * @throws {Ember.assert} If argument is not provided or is not a string
+ * @throws {ember.assert} If argument is not provided or is not a string
  * @returns {Array}
  */
 let convertStringToArray = function( underTest ) {
 
-    Ember.assert( 'String must be supplied', 'string' === Ember.typeOf( underTest ) );
+    Ember.assert(
+        'String must be supplied',
+        'string' === Ember.typeOf( underTest )
+    );
 
     return underTest.split( ' ' );
 };
@@ -55,12 +61,16 @@ let convertStringToArray = function( underTest ) {
  *
  * @function
  * @param {Object} underTest
- * @throws {Ember.assert} If argument is not provided or is not an object
+ * @throws {ember.assert} If argument is not provided or is not an object
  * @returns {Array}
  */
 let convertObjectKeysToArray = function( underTest ) {
 
-    Ember.assert( 'Object must be supplied', 'object' === Ember.typeOf( underTest ) && !Array.isArray( underTest ) );
+    Ember.assert(
+        'Object must be supplied',
+        'object' === Ember.typeOf( underTest ) &&
+        'array' !== Ember.typeOf( underTest )
+    );
 
     return Object.keys( underTest );
 };
@@ -75,7 +85,11 @@ let convertObjectKeysToArray = function( underTest ) {
  */
 let doArraysIntersect = function( underTest, testFor ) {
 
-    Ember.assert( 'Parameters must be Arrays', ( Array.isArray( underTest ) && Array.isArray( testFor ) ) );
+    Ember.assert(
+        'Parameters must be Arrays',
+        'array' === Ember.typeOf( underTest ) &&
+        'array' === Ember.typeOf( testFor )
+    );
 
     return testFor.some( function ( v ) {
         return underTest.indexOf( v ) >= 0;

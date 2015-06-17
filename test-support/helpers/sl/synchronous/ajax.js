@@ -15,7 +15,7 @@ class AjaxHelper {
      * Emulate the beginning of an AJAX request
      *
      * @function
-     * @param {String} endpoint
+     * @param {String} [endpoint]
      * @returns {undefined}
      */
     begin( endpoint ) {
@@ -32,7 +32,7 @@ class AjaxHelper {
      * Emulate the conclusion of an AJAX request
      *
      * @function
-     * @param {String} endpoint
+     * @param {String} [endpoint]
      * @returns {undefined}
      */
     end( endpoint ) {

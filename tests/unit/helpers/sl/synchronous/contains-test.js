@@ -6,7 +6,10 @@ let utils = require( 'dummy/tests/helpers/sl/utils/utils' );
 module( 'Unit | Helper | sl/synchronous/contains' );
 
 test( 'it exists', function( assert ) {
-    assert.ok( contains, 'it exists' );
+    assert.ok(
+        contains,
+        'it exists'
+    );
 });
 
 test( 'First non-optional argument must be an array, string or object', function( assert ) {
@@ -20,40 +23,61 @@ test( 'First non-optional argument must be an array, string or object', function
         assertionThrown = true;
     }
 
-    assert.ok( assertionThrown, 'First parameter was a number' );
+    assert.ok(
+        assertionThrown,
+        'First parameter was a number'
+    );
 
     // String
     assertionThrown = false;
 
     try {
-        contains( 'testString', {} );
+        contains(
+            'testString',
+            {}
+        );
     } catch( error ) {
         assertionThrown = true;
     }
 
-    assert.ok( !assertionThrown, 'First parameter was a string' );
+    assert.ok(
+        !assertionThrown,
+        'First parameter was a string'
+    );
 
     // Array
     assertionThrown = false;
 
     try {
-        contains( [], {} );
+        contains(
+            [],
+            {}
+        );
     } catch( error ) {
         assertionThrown = true;
     }
 
-    assert.ok( !assertionThrown, 'First parameter was an array' );
+    assert.ok(
+        !assertionThrown,
+        'First parameter was an array'
+    );
 
     // Object
     assertionThrown = false;
 
     try {
-        contains( {}, {} );
+        contains(
+            {},
+            {}
+        );
     } catch( error ) {
         assertionThrown = true;
     }
 
-    assert.ok( !assertionThrown, 'First parameter was an object' );
+    assert.ok(
+        !assertionThrown,
+        'First parameter was an object'
+    );
 
     // Function
     assertionThrown = false;
@@ -64,7 +88,10 @@ test( 'First non-optional argument must be an array, string or object', function
         assertionThrown = true;
     }
 
-    assert.ok( assertionThrown, 'First parameter was a function' );
+    assert.ok(
+        assertionThrown,
+        'First parameter was a function'
+    );
 
     // Undefined
     assertionThrown = false;
@@ -75,7 +102,10 @@ test( 'First non-optional argument must be an array, string or object', function
         assertionThrown = true;
     }
 
-    assert.ok( assertionThrown, 'First parameter was undefined' );
+    assert.ok(
+        assertionThrown,
+        'First parameter was undefined'
+    );
 
     // Boolean
     assertionThrown = false;
@@ -86,7 +116,10 @@ test( 'First non-optional argument must be an array, string or object', function
         assertionThrown = true;
     }
 
-    assert.ok( assertionThrown, 'First parameter was a boolean' );
+    assert.ok(
+        assertionThrown,
+        'First parameter was a boolean'
+    );
 
 });
 
@@ -96,87 +129,135 @@ test( 'Second non-optional argument must be an array, string or object', functio
     let assertionThrown = false;
 
     try {
-        contains( {}, 12 );
+        contains(
+            {},
+            12
+        );
     } catch( error ) {
         assertionThrown = true;
     }
 
-    assert.ok( assertionThrown, 'Second parameter was a number' );
+    assert.ok(
+        assertionThrown,
+        'Second parameter was a number'
+    );
 
     // String
     assertionThrown = false;
 
     try {
-        contains( {}, 'testString' );
+        contains(
+            {},
+            'testString'
+        );
     } catch( error ) {
         assertionThrown = true;
     }
 
-    assert.ok( !assertionThrown, 'Second parameter was a string' );
+    assert.ok(
+        !assertionThrown,
+        'Second parameter was a string'
+    );
 
     // Array
     assertionThrown = false;
 
     try {
-        contains( {}, [] );
+        contains(
+            {},
+            []
+        );
     } catch( error ) {
         assertionThrown = true;
     }
 
-    assert.ok( !assertionThrown, 'Second parameter was an array' );
+    assert.ok(
+        !assertionThrown,
+        'Second parameter was an array'
+    );
 
     // Object
     assertionThrown = false;
 
     try {
-        contains( {}, {} );
+        contains(
+            {},
+            {}
+        );
     } catch( error ) {
         assertionThrown = true;
     }
 
-    assert.ok( !assertionThrown, 'Second parameter was an object' );
+    assert.ok(
+        !assertionThrown,
+        'Second parameter was an object'
+    );
 
     // Function
     assertionThrown = false;
 
     try {
-        contains( {}, function(){} );
+        contains(
+            {},
+            function(){}
+        );
     } catch( error ) {
         assertionThrown = true;
     }
 
-    assert.ok( assertionThrown, 'Second parameter was a function' );
+    assert.ok(
+        assertionThrown,
+        'Second parameter was a function'
+    );
 
     // Undefined
     assertionThrown = false;
 
     try {
-        contains( {}, undefined );
+        contains(
+            {},
+            undefined
+        );
     } catch( error ) {
         assertionThrown = true;
     }
 
-    assert.ok( assertionThrown, 'Second parameter was undefined' );
+    assert.ok(
+        assertionThrown,
+        'Second parameter was undefined'
+    );
 
     // Boolean
     assertionThrown = false;
 
     try {
-        contains( {}, true );
+        contains(
+            {},
+            true
+        );
     } catch( error ) {
         assertionThrown = true;
     }
 
-    assert.ok( assertionThrown, 'Second parameter was a boolean' );
+    assert.ok(
+        assertionThrown,
+        'Second parameter was a boolean'
+    );
 
 });
 
 test( 'Returns value from call to doArraysIntersect()', function( assert ) {
     let spy = sinon.spy( utils, 'doArraysIntersect' );
 
-    contains( [], [] );
+    contains(
+        [],
+        []
+    );
 
-    assert.ok( spy.calledOnce, 'doArraysIntersect() was called' );
+    assert.ok(
+        spy.calledOnce,
+        'doArraysIntersect() was called'
+    );
 
     utils.doArraysIntersect.restore();
 });
@@ -184,10 +265,20 @@ test( 'Returns value from call to doArraysIntersect()', function( assert ) {
 test( 'Arguments are passed to doArraysIntersect() in the correct order', function( assert ) {
     let spy = sinon.spy( utils, 'doArraysIntersect' );
 
-    contains( 'b', [ 'd', 'e' ] );
+    contains(
+        'b',
+        [ 'd', 'e' ]
+    );
 
-    assert.equal( spy.args[0][0], 'b', 'First argument' );
-    assert.deepEqual( spy.args[0][1], [ 'd', 'e' ], 'Second argument' );
+    assert.equal(
+        spy.args[ 0 ][ 0 ],
+        'b', 'First argument'
+    );
+    assert.deepEqual(
+        spy.args[ 0 ][ 1 ],
+        [ 'd', 'e' ],
+        'Second argument'
+    );
 
     utils.doArraysIntersect.restore();
 });
@@ -195,11 +286,25 @@ test( 'Arguments are passed to doArraysIntersect() in the correct order', functi
 test( 'Returns a boolean', function( assert ) {
     let response;
 
-    response = contains( 'b', [ 'd', 'e' ] );
+    response = contains(
+                    'b',
+                    [ 'd', 'e' ]
+                );
 
-    assert.propEqual( response, false, 'Is boolean false' );
+    assert.propEqual(
+        response,
+        false,
+        'Is boolean false'
+    );
 
-    response = contains( [ 'd', 'e' ], 'e' );
+    response = contains(
+                    [ 'd', 'e' ],
+                    'e'
+                );
 
-    assert.propEqual( response, true, 'Is boolean true' );
+    assert.propEqual(
+        response,
+        true,
+        'Is boolean true'
+    );
 });
