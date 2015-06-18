@@ -25,14 +25,14 @@ module.exports = {
         return this.insertIntoFile( firstFile, firstText, { after: firstLocationText } )
 
             // Execution of registration function
-            .then( () => {
+            .then( function() {
                 return this.insertIntoFile( secondFile, secondText, { after: secondLocationText } );
-            })
+            }.bind(this))
 
             // .jshintrc file
-            .then( () => {
+            .then( function() {
                 return this.insertIntoFile( thirdFile, thirdText, { after: thirdLocationText } );
-            });
+            }.bind(this));
     },
 
     normalizeEntityName() {}

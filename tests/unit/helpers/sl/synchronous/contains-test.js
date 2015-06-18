@@ -272,7 +272,8 @@ test( 'Arguments are passed to doArraysIntersect() in the correct order', functi
 
     assert.equal(
         spy.args[ 0 ][ 0 ],
-        'b', 'First argument'
+        'b',
+        'First argument'
     );
     assert.deepEqual(
         spy.args[ 0 ][ 1 ],
@@ -287,9 +288,9 @@ test( 'Returns a boolean', function( assert ) {
     let response;
 
     response = contains(
-                    'b',
-                    [ 'd', 'e' ]
-                );
+        'b',
+        [ 'd', 'e' ]
+    );
 
     assert.propEqual(
         response,
@@ -298,9 +299,9 @@ test( 'Returns a boolean', function( assert ) {
     );
 
     response = contains(
-                    [ 'd', 'e' ],
-                    'e'
-                );
+        [ 'd', 'e' ],
+        'e'
+    );
 
     assert.propEqual(
         response,

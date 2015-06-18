@@ -40,9 +40,9 @@ test( 'doArraysIntersect() exists', function( assert ) {
 
 test( 'convertToArray() requires either an Array, String, or Object to be provided', function( assert ) {
     let test = requires(
-                    convertToArray,
-                    [ 'array', 'string', 'object' ]
-                );
+        convertToArray,
+        [ 'array', 'string', 'object' ]
+    );
 
     assert.ok (
         test.requires,
@@ -55,19 +55,25 @@ test( 'convertToArray() returns expected result', function( assert ) {
     let testResults2 = convertToArray( 'testing things' );
     let testResults3 = convertToArray( { a: 1, b: 2 } );
 
-    assert.ok( 'array' === Ember.typeOf( testResults1 ) );
+    assert.ok(
+        'array' === Ember.typeOf( testResults1 )
+    );
     assert.deepEqual(
         [ 'a', 'b' ],
         testResults1
     );
 
-    assert.ok( 'array' === Ember.typeOf( testResults2 ) );
+    assert.ok(
+        'array' === Ember.typeOf( testResults2 )
+    );
     assert.deepEqual(
         [ 'testing', 'things' ],
         testResults2
     );
 
-    assert.ok( 'array' === Ember.typeOf( testResults3 ) );
+    assert.ok(
+        'array' === Ember.typeOf( testResults3 )
+    );
     assert.deepEqual(
         [ 'a', 'b' ],
         testResults3
@@ -76,9 +82,9 @@ test( 'convertToArray() returns expected result', function( assert ) {
 
 test( 'convertStringToArray() requires a string to be provided', function( assert ) {
     let test = requires(
-                    convertStringToArray,
-                    [ 'string' ]
-                );
+        convertStringToArray,
+        [ 'string' ]
+    );
 
     assert.ok (
         test.requires,
@@ -102,9 +108,9 @@ test( 'convertStringToArray() returns an array with as many elements as there ar
 
 test( 'convertObjectKeysToArray() requires an object to be provided', function( assert ) {
     let test = requires(
-                    convertObjectKeysToArray,
-                    [ 'object' ]
-                );
+        convertObjectKeysToArray,
+        [ 'object' ]
+    );
 
     assert.ok (
         test.requires,
@@ -114,14 +120,14 @@ test( 'convertObjectKeysToArray() requires an object to be provided', function( 
 
 test( 'convertObjectKeysToArray() returns an array of object properties', function( assert ) {
     assert.deepEqual(
-        convertObjectKeysToArray( {
+        convertObjectKeysToArray({
             testing: true,
             bird: 'duck'
         }),
         [ 'testing', 'bird' ]
     );
     assert.deepEqual(
-        convertObjectKeysToArray( {
+        convertObjectKeysToArray({
             testing2: true,
             bird2: {
                 feathers: true,

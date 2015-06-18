@@ -266,15 +266,15 @@ test( 'Return type', function( assert ) {
         );
     },
     test = requires(
-                testFunction,
-                [ 'function', 'boolean' ]
-            );
+        testFunction,
+        [ 'function', 'boolean' ]
+    );
 
     assert.deepEqual(
-                test,
-                { requires: true, messages: '' },
-                'Returns expected object'
-            );
+        test,
+        { requires: true, messages: '' },
+        'Returns expected object'
+    );
 });
 
 test( 'Functions as expected', function( assert ) {
@@ -288,18 +288,18 @@ test( 'Functions as expected', function( assert ) {
     test;
 
     test = requires(
-                testFunction,
-                [ 'function', 'boolean' ]
-            );
+        testFunction,
+        [ 'function', 'boolean' ]
+    );
     assert.ok (
         test.requires,
         'Functioned as expected when passed desired argument types: ' + test.messages
     );
 
     test = requires(
-                testFunction,
-                [ 'function', 'boolean', 'string' ]
-            );
+        testFunction,
+        [ 'function', 'boolean', 'string' ]
+    );
     assert.ok (
         !test.requires,
         'Functioned as expected when passed undesired argument types: ' + test.messages
