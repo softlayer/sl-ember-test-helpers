@@ -5,7 +5,7 @@ var EOL = require('os').EOL;
 module.exports = {
     description: 'Register test helpers',
 
-    afterInstall( options ) {
+    afterInstall: function( options ) {
         // Import statement
         var firstFile = 'tests/helpers/start-app.js';
         var firstText = "import slregisterTestHelpers from './sl/register-test-helpers';";
@@ -35,5 +35,5 @@ module.exports = {
             }.bind(this));
     },
 
-    normalizeEntityName() {}
+    normalizeEntityName: function() {}
 };
