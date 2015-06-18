@@ -9,27 +9,29 @@ import Ember from 'ember';
  * @returns {Array}
  */
 let convertToArray = function( underTest ) {
-    let returnArray;
-
-    if ( 'array' === Ember.typeOf( underTest ) ) {
-        returnArray = underTest;
-
-    } else {
-        switch( Ember.typeOf( underTest ) ) {
-            case 'string':
-                returnArray = convertStringToArray( underTest );
-                break;
-
-            case 'object':
-                returnArray = convertObjectKeysToArray( underTest );
-                break;
-        }
-    }
 
     Ember.assert(
-        'String, Object or Array must be supplied',
-        'undefined' !== Ember.typeOf( returnArray )
+        'Array, String, or Object must be supplied',
+        'array' === Ember.typeOf( underTest ) ||
+        'string' === Ember.typeOf( underTest ) ||
+        'object' === Ember.typeOf( underTest )
     );
+
+    let returnArray = underTest;
+
+    switch( Ember.typeOf( underTest ) ) {
+        case 'array':
+            returnArray = underTest;
+            break;
+
+        case 'string':
+            returnArray = convertStringToArray( underTest );
+            break;
+
+        case 'object':
+            returnArray = convertObjectKeysToArray( underTest );
+            break;
+    }
 
     return returnArray;
 };
