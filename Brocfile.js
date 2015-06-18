@@ -5,7 +5,6 @@ var EmberAddon = require( 'ember-cli/lib/broccoli/ember-addon' );
 var packageConfig = require( './package.json' );
 var replace = require( 'broccoli-string-replace' );
 var env = require( './config/environment' );
-var isProduction = ( process.env.EMBER_ENV || 'development' ) === 'production';
 var app = new EmberAddon();
 var tree;
 
@@ -23,7 +22,7 @@ var tree;
 // along with the exports of each module as its value.
 
 // Testing dependencies
-if ( !isProduction ) {
+if ( 'production' !== app.env ) {
     app.import( app.bowerDirectory + '/sinonjs/sinon.js', {
         type: 'test'
     });
