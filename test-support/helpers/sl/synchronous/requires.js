@@ -3,89 +3,95 @@ import Ember from 'ember';
 /**
  * Test that an argument passed to a function is of the required type(s).
  *
- * @param  {function} methodUnderTest
- * @param  {array}    requiredTypes
- * @return {object}
+ * @function
+ * @param {Function} methodUnderTest
+ * @param {Array} requiredTypes
+ * @returns {Object}
  */
 export default function( methodUnderTest, requiredTypes ) {
-    var typesToTest = {
-            'number' : {
-                required  : false,
-                testValue : 123987465,
-                message   : 'Parameter was a number'
-            },
-            'string' : {
-                required  : false,
-                testValue : 'testString',
-                message   : 'Parameter was a string'
-            },
-            'array' : {
-                required  : false,
-                testValue : [],
-                message   : 'Parameter was an array'
-            },
-            'object' : {
-                required  : false,
-                testValue : {},
-                message   : 'Parameter was an object'
-            },
-            'function' : {
-                required  : false,
-                testValue : function(){},
-                message   : 'Parameter was a function'
-            },
-            'undefined' : {
-                required  : false,
-                testValue : undefined,
-                message   : 'Parameter was undefined'
-            },
-            'boolean' : {
-                required  : false,
-                testValue : true,
-                message   : 'Parameter was a boolean'
-            }
+    let typesToTest = {
+        'number': {
+            required: false,
+            testValue: 123987465,
+            message: 'Parameter was a number'
         },
-        testsThatHaveFailed = [],
-        assertionThrown,
-        assertionPassed,
-        property,
-        parameter;
+        'string': {
+            required: false,
+            testValue: 'testString',
+            message: 'Parameter was a string'
+        },
+        'array': {
+            required: false,
+            testValue: [],
+            message: 'Parameter was an array'
+        },
+        'object': {
+            required: false,
+            testValue: {},
+            message: 'Parameter was an object'
+        },
+        'function': {
+            required: false,
+            testValue() {},
+            message: 'Parameter was a function'
+        },
+        'undefined': {
+            required: false,
+            testValue: undefined,
+            message: 'Parameter was undefined'
+        },
+        'boolean': {
+            required: false,
+            testValue: true,
+            message: 'Parameter was a boolean'
+        }
+    };
 
-    Ember.assert( 'First argument must be a function', 'function' === typeof methodUnderTest );
-    Ember.assert( 'Second argument must be an array', Array.isArray( requiredTypes ) );
+    Ember.assert(
+        'First argument must be a function',
+        'function' === Ember.typeOf( methodUnderTest )
+    );
+    Ember.assert(
+        'Second argument must be an array',
+        'array' === Ember.typeOf( requiredTypes )
+    );
 
     // Set required parameter types
-    requiredTypes.forEach( function( item ) {
-        typesToTest[item]['required'] = true;
+    requiredTypes.forEach( ( item ) => {
+        typesToTest[item][ 'required' ] = true;
     });
 
+    let testsThatHaveFailed = [];
+    let property;
     // Test each parameter type
     for ( property in typesToTest ) {
         if ( typesToTest.hasOwnProperty( property ) ) {
-
             // Reset flag
+            let assertionThrown;
             assertionThrown = false;
 
             // Assign cleaner object reference
+            let parameter;
             parameter = typesToTest[property];
 
             // Test parameter
             try {
-                methodUnderTest( parameter['testValue'] );
+                methodUnderTest( parameter[ 'testValue' ] );
             } catch( error ) {
                 assertionThrown = true;
             }
 
-            assertionPassed = ( parameter['required'] ) ? !assertionThrown : assertionThrown;
+            let assertionPassed;
+            assertionPassed = ( parameter[ 'required' ] ) ? !assertionThrown : assertionThrown;
 
             if ( !assertionPassed ) {
-                testsThatHaveFailed.push( parameter['message'] );
+                testsThatHaveFailed.push( parameter[ 'message' ] );
             }
         }
     }
 
     return {
-        requires: ( 0 === testsThatHaveFailed.length ) ? true : false,
+        requires: 0 === testsThatHaveFailed.length,
         messages: testsThatHaveFailed.join( '; ' )
     };
 }

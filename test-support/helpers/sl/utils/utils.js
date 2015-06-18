@@ -3,30 +3,33 @@ import Ember from 'ember';
 /**
  * Converts provided parameter into an array
  *
- * @function convertToArray
- * @param   {array|string|object} underTest
- * @throws  {Ember.assert} If not provided an Array, String or Object
- * @returns {array}
+ * @function
+ * @param {Array|String|Object} underTest
+ * @throws {ember.assert} If not provided an Array, String or Object
+ * @returns {Array}
  */
-var convertToArray = function( underTest ) {
-    var returnArray;
+let convertToArray = function( underTest ) {
+    let returnArray;
 
-    if ( Array.isArray( underTest ) ) {
+    if ( 'array' === Ember.typeOf( underTest ) ) {
         returnArray = underTest;
 
     } else {
-        switch( typeof underTest ) {
+        switch( Ember.typeOf( underTest ) ) {
             case 'string':
-                    returnArray = convertStringToArray( underTest );
+                returnArray = convertStringToArray( underTest );
                 break;
 
             case 'object':
-                    returnArray = convertObjectKeysToArray( underTest );
+                returnArray = convertObjectKeysToArray( underTest );
                 break;
         }
     }
 
-    Ember.assert( 'String, Object or Array must be supplied', 'undefined' !== typeof returnArray );
+    Ember.assert(
+        'String, Object or Array must be supplied',
+        'undefined' !== Ember.typeOf( returnArray )
+    );
 
     return returnArray;
 };
@@ -36,14 +39,17 @@ var convertToArray = function( underTest ) {
  *
  * Primarily exists to convert format of call to .prop( 'class' )
  *
- * @function convertStringToArray
- * @param   {string} underTest
- * @throws  {Ember.assert} If argument is not provided or is not a string
- * @returns {array}
+ * @function
+ * @param {String} underTest
+ * @throws {ember.assert} If argument is not provided or is not a string
+ * @returns {Array}
  */
-var convertStringToArray = function( underTest ) {
+let convertStringToArray = function( underTest ) {
 
-    Ember.assert( 'String must be supplied', 'string' === typeof underTest );
+    Ember.assert(
+        'String must be supplied',
+        'string' === Ember.typeOf( underTest )
+    );
 
     return underTest.split( ' ' );
 };
@@ -53,29 +59,37 @@ var convertStringToArray = function( underTest ) {
  *
  * Property names are only extracted from the object provided.  No recursion into nested objects occurs.
  *
- * @function convertObjectKeysToArray
- * @param   {object} underTest
- * @throws  {Ember.assert} If argument is not provided or is not an object
- * @returns {array}
+ * @function
+ * @param {Object} underTest
+ * @throws {ember.assert} If argument is not provided or is not an object
+ * @returns {Array}
  */
-var convertObjectKeysToArray = function( underTest ) {
+let convertObjectKeysToArray = function( underTest ) {
 
-    Ember.assert( 'Object must be supplied', 'object' === typeof underTest && !Array.isArray( underTest ) );
+    Ember.assert(
+        'Object must be supplied',
+        'object' === Ember.typeOf( underTest ) &&
+        'array' !== Ember.typeOf( underTest )
+    );
 
     return Object.keys( underTest );
 };
 
 /**
- * [doArraysIntersect description]
+ * Whether at least one element of the array exists in the other
  *
- * @function doArraysIntersect
- * @param  {array} underTest
- * @param  {array} testFor
- * @return {boolean}
+ * @function
+ * @param {Array} underTest
+ * @param {Array} testFor
+ * @returns {Boolean}
  */
-var doArraysIntersect = function( underTest, testFor ) {
+let doArraysIntersect = function( underTest, testFor ) {
 
-    Ember.assert( 'Parameters must be Arrays', ( Array.isArray( underTest ) && Array.isArray( testFor ) ) );
+    Ember.assert(
+        'Parameters must be Arrays',
+        'array' === Ember.typeOf( underTest ) &&
+        'array' === Ember.typeOf( testFor )
+    );
 
     return testFor.some( function ( v ) {
         return underTest.indexOf( v ) >= 0;

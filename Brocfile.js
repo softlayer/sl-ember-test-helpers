@@ -1,13 +1,13 @@
 /* jshint node: true */
 /* global require, module */
 
-var EmberAddon = require( 'ember-cli/lib/broccoli/ember-addon' ),
-    packageConfig = require( './package.json' ),
-    replace = require( 'broccoli-string-replace' ),
-    env = require( './config/environment' ),
-    isProduction = ( process.env.EMBER_ENV || 'development' ) === 'production',
-    app = new EmberAddon(),
-    tree;
+var EmberAddon = require( 'ember-cli/lib/broccoli/ember-addon' );
+var packageConfig = require( './package.json' );
+var replace = require( 'broccoli-string-replace' );
+var env = require( './config/environment' );
+var isProduction = ( process.env.EMBER_ENV || 'development' ) === 'production';
+var app = new EmberAddon();
+var tree;
 
 // Use `app.import` to add additional libraries to the generated
 // output files.

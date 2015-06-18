@@ -1,39 +1,51 @@
 import Ember from 'ember';
 
-var AjaxHelper = function() {};
+/**
+ * @module
+ */
 
 /**
- * Emulate the beginning of an AJAX request
+ * Sets up the Ajax events for unit tests
  *
- * @param   {Ember.String} endpoint
- * @returns {void}
+ * @class
  */
-AjaxHelper.prototype.begin = function( endpoint ) {
-    Ember.run( function() {
-        if ( endpoint ) {
-            $( document ).trigger( 'ajaxSend', [ null, { url: endpoint } ] );
-        } else {
-            $( document ).trigger( 'ajaxStart' );
-        }
-    });
-};
+class AjaxHelper {
 
-/**
- * Emulate the conclusion of an AJAX request
- *
- * @param   {Ember.String} endpoint
- * @returns {void}
- */
-AjaxHelper.prototype.end = function( endpoint ) {
-    Ember.run( function() {
-        if ( endpoint ) {
-            $( document ).trigger( 'ajaxComplete', [ null, { url: endpoint } ] );
-        } else {
-            $( document ).trigger( 'ajaxStop' );
-        }
-    });
-};
+    /**
+     * Emulate the beginning of an AJAX request
+     *
+     * @function
+     * @param {String} [endpoint]
+     * @returns {undefined}
+     */
+    begin( endpoint ) {
+        Ember.run( () => {
+            if ( endpoint ) {
+                Ember.$( document ).trigger( 'ajaxSend', [ null, { url: endpoint } ] );
+            } else {
+                Ember.$( document ).trigger( 'ajaxStart' );
+            }
+        });
+    }
 
-var helper = new AjaxHelper();
+    /**
+     * Emulate the conclusion of an AJAX request
+     *
+     * @function
+     * @param {String} [endpoint]
+     * @returns {undefined}
+     */
+    end( endpoint ) {
+        Ember.run( () => {
+            if ( endpoint ) {
+                Ember.$( document ).trigger( 'ajaxComplete', [ null, { url: endpoint } ] );
+            } else {
+                Ember.$( document ).trigger( 'ajaxStop' );
+            }
+        });
+    }
+}
+
+let helper = new AjaxHelper();
 
 export default helper;
