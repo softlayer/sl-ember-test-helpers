@@ -1,5 +1,14 @@
 # sl-ember-test-helpers Changelog
 
+### 1.5.0
+
+* [#80](https://github.com/softlayer/sl-ember-test-helpers/pull/80) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 0.2.7
+* [#84](https://github.com/softlayer/sl-ember-test-helpers/pull/84) [ENHANCEMENT] Add support for JSDoc generated documentation
+* [#88](https://github.com/softlayer/sl-ember-test-helpers/pull/88) [BREAKING ENHANCEMENT] Change exported property name
+* [#91](https://github.com/softlayer/sl-ember-test-helpers/pull/91) [BREAKING ENHANCEMENT] Change name of register test helpers function
+
+[View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.4.0...v1.5.0)
+
 ### 1.4.0
 
 * [#72](https://github.com/softlayer/sl-ember-test-helpers/pull/72) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 0.2.3
