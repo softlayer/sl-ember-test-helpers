@@ -193,7 +193,8 @@ define('dummy/templates/application', ['exports'], function (exports) {
         dom.appendChild(el5, el6);
         var el6 = dom.createElement("li");
         var el7 = dom.createElement("a");
-        dom.setAttribute(el7,"href","https://github.com/softlayer/sl-ember-test-helpers/docs");
+        dom.setAttribute(el7,"href","http://softlayer.github.io/sl-ember-test-helpers/docs");
+        dom.setAttribute(el7,"target","new");
         var el8 = dom.createElement("i");
         dom.setAttribute(el8,"class","fa fa-book");
         dom.appendChild(el7, el8);
@@ -1474,7 +1475,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"1.5.0.c6c1b781"});
+  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"1.5.0.47fbefdc"});
 }
 
 /* jshint ignore:end */
