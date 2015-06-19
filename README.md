@@ -24,10 +24,10 @@ This addon provides and registers test helpers for use in the testing of your ap
 
 Emulates the beginning and completion of an AJAX request or requests.
 
-* `begin()` triggers the `ajaxStart` event on the document
-* `begin( 'endpointValue' )` triggers the `ajaxSend` event on the document, passing the supplied endpoint value
-* `end()` triggers the `ajaxStop` event on the document
-* `end( 'endpointValue' )` triggers the `ajaxComplete` event on the document, passing the supplied endpoint value
+* `Ajax.begin()` triggers the `ajaxStart` event on the document
+* `Ajax.begin( 'endpointValue' )` triggers the `ajaxSend` event on the document, passing the supplied endpoint value
+* `Ajax.end()` triggers the `ajaxStop` event on the document
+* `Ajax.end( 'endpointValue' )` triggers the `ajaxComplete` event on the document, passing the supplied endpoint value
 
 
 ### contains
