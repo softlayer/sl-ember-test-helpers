@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><p><a href="https://github.com/softlayer/sl-ember-test-helpers/releases"><img src="https://img.shields.io/github/release/softlayer/sl-ember-test-helpers.svg" alt="Latest Release"></a> <img src="https://img.shields.io/badge/ember%20cli-0.2.7-orange.svg" alt="Ember CLI version"> <a href="LICENSE.md"><img src="https://img.shields.io/npm/l/sl-ember-test-helpers.svg" alt="License"></a> <a href="https://www.npmjs.com/package/sl-ember-test-helpers"><img src="https://img.shields.io/npm/dm/sl-ember-test-helpers.svg" alt="Downloads"></a></p>
+<p><a href="https://david-dm.org/softlayer/sl-ember-test-helpers"><img src="https://img.shields.io/david/softlayer/sl-ember-test-helpers.svg" alt="Dependencies"></a> <a href="https://david-dm.org/softlayer/sl-ember-test-helpers#info=devDependencies"><img src="https://img.shields.io/david/dev/softlayer/sl-ember-test-helpers.svg" alt="Dev Dependencies"></a></p>
+<p><a href="https://travis-ci.org/softlayer/sl-ember-test-helpers"><img src="https://img.shields.io/travis/softlayer/sl-ember-test-helpers/develop.svg" alt="Build Status"></a> <a href="https://codeclimate.com/github/softlayer/sl-ember-test-helpers"><img src="https://img.shields.io/codeclimate/github/softlayer/sl-ember-test-helpers.svg" alt="Code Climate"></a></p>
+<p>To see which issues are currently being worked on or are scheduled to be worked on next, visit <a href="https://huboard.com/softlayer/sl-ember-test-helpers/#/">https://huboard.com/softlayer/sl-ember-test-helpers/#/</a></p>
+<hr>
+<h1>What is sl-ember-test-helpers</h1><p>This addon provides and registers test helpers for use in the testing of your application.  This addon is compatible with QUnit, Mocha, and any other testing framework you wish to use (or at least should be).</p>
+<hr>
+<h1>Provided helpers</h1><h2>Synchronous</h2><h3>ajax</h3><p>Emulates the beginning and completion of an AJAX request or requests.</p>
+<ul>
+<li><code>Ajax.begin()</code> triggers the <code>ajaxStart</code> event on the document</li>
+<li><code>Ajax.begin( 'endpointValue' )</code> triggers the <code>ajaxSend</code> event on the document, passing the supplied endpoint value</li>
+<li><code>Ajax.end()</code> triggers the <code>ajaxStop</code> event on the document</li>
+<li><code>Ajax.end( 'endpointValue' )</code> triggers the <code>ajaxComplete</code> event on the document, passing the supplied endpoint value</li>
+</ul>
+<h3>contains</h3><pre class="prettyprint source"><code>contains( valuesUnderTest, valuesToTestFor );</code></pre><p>Determine whether values are contained in other values.  These values can be a combination of Arrays, Strings, or Objects (for which the keys are extracted).  All <em>valuesToTestFor</em> must exist in <em>valuesUnderTest</em> for this determination to pass successfully.</p>
+<p>Calls to <code>contains()</code> return a boolean which can then be used in your tests.</p>
+<p>This call would fail because the Object being tested does not contain keys matching the values of &quot;a&quot; and &quot;b&quot;:</p>
+<pre class="prettyprint source"><code>contains( { c: 1, b: 3 }, [ 'a', 'b' ] );</code></pre><p>This call would pass because the Array being tested contains the value of &quot;b&quot;:</p>
+<pre class="prettyprint source"><code>contains( [ 'a', 'b' ], 'b' );</code></pre><h3>requires</h3><p>Use this helper to test that an argument passed to a function is of the required type(s).  The first argument is the function under test and the second argument is an array of types to test for.</p>
+<pre class="prettyprint source"><code>requires( functionUnderTest, [ 'string', 'object', 'function' ] );</code></pre><h4>Types</h4><ul>
+<li>number</li>
+<li>string</li>
+<li>array</li>
+<li>object</li>
+<li>function</li>
+<li>undefined</li>
+<li>boolean</li>
+</ul>
+<p>The call to <code>requires</code> returns an object:</p>
+<pre class="prettyprint source"><code>{
+    requires: &lt;boolean: true if functionUnderTest requires the provided arguments, false if not>
+    messages: &lt;string: message per argument type that failed>
+}</code></pre><h2>Asynchronous</h2><h3>ajax</h3><p>See description in <em>Synchronous</em> section</p>
+<h3>contains</h3><p>See description in <em>Synchronous</em> section</p>
+<h3>requires</h3><p>See description in <em>Synchronous</em> section</p>
+<hr>
+<h1>Utilities</h1><p>There are several utility functions provided in the <em>/test-support/helpers/sl/utils/utils.js</em> file that, while used internally by the helpers themselves, can be imported as needed for use.  These include:</p>
+<ul>
+<li>convertToArray()</li>
+<li>convertStringToArray()</li>
+<li>convertObjectKeysToArray()</li>
+<li>doArraysIntersect()</li>
+</ul>
+<hr>
+<h1>How to use this addon in your application</h1><h2>Install this addon as a Node module</h2><pre class="prettyprint source"><code>ember install sl-ember-test-helpers</code></pre><h2>If running Synchronous tests, such as Unit Tests</h2><p>For each test helper you wish to use, you will need to import them into each individual Unit Tests. For example:</p>
+<pre class="prettyprint source"><code>import { contains } from '../../helpers/sl/synchronous';</code></pre><h2>If running Asynchronous tests, such as Acceptance Tests</h2><p>Installing this addon via the <code>ember install:addon</code> command will automatically run the generator, which will make changes to the following files:</p>
+<ul>
+<li>tests/helpers/start-app.js</li>
+<li>tests/.jshintrc</li>
+</ul>
+<p>If your application is under source control management, such as via Git, make sure to commit these changes.</p>
+<p>The generator makes changes to the above files assuming the structure of them has not changed much from the default version created during the initial Ember application creation.  If too many changes have been made you will need to manually make the changes below:</p>
+<ul>
+<li>Add <code>import slRegisterTestHelpers from './sl/register-test-helpers';</code> to the beginning of the <em>tests/helpers/start-app.js</em> file</li>
+<li>In the <em>tests/helpers/start-app.js</em> file, place <code>slRegisterTestHelpers();</code> before the <code>application.injectTestHelpers()</code> line</li>
+<li>Add <code>&quot;contains&quot;,</code> to the <code>predef</code> section of the <em>/tests/.jshintrc</em> file</li>
+</ul>
+<hr>
+<h1>Versioning</h1><p>Employs <a href="http://semver.org/">Semantic Versioning 2.0.0</a></p>
+<hr>
+<h1>Contribution</h1><p><a href="https://github.com/softlayer/sl-ember-test-helpers/blob/master/CONTRIBUTING.md">See CONTRIBUTING.md</a></p>
+<hr>
+<h1>Copyright and License</h1><p>sl-ember-test-helpers and its source files are Copyright © 2014-2015 <a href="http://www.softlayer.com/">SoftLayer Technologies, Inc.</a>
+The software is <a href="https://github.com/softlayer/sl-ember-test-helpers/blob/master/LICENSE.md">MIT Licensed</a></p>
+<hr>
+<h1>Warranty</h1><p>This software is provided “as is” and without any express or implied warranties, including, without limitation, the
+implied warranties of merchantability and fitness for a particular purpose.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-helpers_sl_synchronous_ajax.html">helpers/sl/synchronous/ajax</a></li><li><a href="module-helpers_sl_synchronous_contains.html">helpers/sl/synchronous/contains</a></li><li><a href="module-helpers_sl_synchronous_requires.html">helpers/sl/synchronous/requires</a></li><li><a href="module-helpers_sl_utils_utils.html">helpers/sl/utils/utils</a></li></ul><h3>Classes</h3><ul><li><a href="module-helpers_sl_synchronous_ajax-AjaxHelper.html">AjaxHelper</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Fri Jun 19 2015 10:52:56 GMT-0500 (CDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

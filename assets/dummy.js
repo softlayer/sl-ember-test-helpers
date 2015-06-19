@@ -4,21 +4,35 @@
 
 define('dummy/app', ['exports', 'ember', 'ember/resolver', 'ember/load-initializers', 'dummy/config/environment'], function (exports, Ember, Resolver, loadInitializers, config) {
 
-  'use strict';
+    'use strict';
 
-  var App;
+    var App = undefined;
 
-  Ember['default'].MODEL_FACTORY_INJECTIONS = true;
+    Ember['default'].MODEL_FACTORY_INJECTIONS = true;
 
-  App = Ember['default'].Application.extend({
-    modulePrefix: config['default'].modulePrefix,
-    podModulePrefix: config['default'].podModulePrefix,
-    Resolver: Resolver['default']
-  });
+    App = Ember['default'].Application.extend({
+        modulePrefix: config['default'].modulePrefix,
+        podModulePrefix: config['default'].podModulePrefix,
+        Resolver: Resolver['default']
+    });
 
-  loadInitializers['default'](App, config['default'].modulePrefix);
+    loadInitializers['default'](App, config['default'].modulePrefix);
 
-  exports['default'] = App;
+    exports['default'] = App;
+
+});
+define('dummy/controllers/array', ['exports', 'ember'], function (exports, Ember) {
+
+	'use strict';
+
+	exports['default'] = Ember['default'].Controller;
+
+});
+define('dummy/controllers/object', ['exports', 'ember'], function (exports, Ember) {
+
+	'use strict';
+
+	exports['default'] = Ember['default'].Controller;
 
 });
 define('dummy/initializers/app-version', ['exports', 'dummy/config/environment', 'ember'], function (exports, config, Ember) {
@@ -65,13 +79,13 @@ define('dummy/initializers/export-application-global', ['exports', 'ember', 'dum
 });
 define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], function (exports, Ember, config) {
 
-  'use strict';
+    'use strict';
 
-  var Router = Ember['default'].Router.extend({
-    location: config['default'].locationType
-  });
+    var Router = Ember['default'].Router.extend({
+        location: config['default'].locationType
+    });
 
-  exports['default'] = Router.map(function () {});
+    exports['default'] = Router.map(function () {});
 
 });
 define('dummy/templates/application', ['exports'], function (exports) {
@@ -82,7 +96,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
     var child0 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.1",
+        revision: "Ember@1.12.0",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -120,7 +134,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -179,11 +193,11 @@ define('dummy/templates/application', ['exports'], function (exports) {
         dom.appendChild(el5, el6);
         var el6 = dom.createElement("li");
         var el7 = dom.createElement("a");
-        dom.setAttribute(el7,"href","https://github.com/softlayer/sl-ember-test-helpers/blob/master/README.md");
+        dom.setAttribute(el7,"href","https://github.com/softlayer/sl-ember-test-helpers/docs");
         var el8 = dom.createElement("i");
-        dom.setAttribute(el8,"class","fa fa-wrench");
+        dom.setAttribute(el8,"class","fa fa-book");
         dom.appendChild(el7, el8);
-        var el8 = dom.createTextNode(" Get Started");
+        var el8 = dom.createTextNode(" Documentation");
         dom.appendChild(el7, el8);
         dom.appendChild(el6, el7);
         dom.appendChild(el5, el6);
@@ -319,7 +333,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
   exports['default'] = Ember.HTMLBars.template((function() {
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.1",
+      revision: "Ember@1.12.0",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -362,7 +376,8 @@ define('dummy/templates/index', ['exports'], function (exports) {
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("h3");
         var el4 = dom.createElement("a");
-        dom.setAttribute(el4,"href","https://github.com/softlayer/sl-ember-test-helpers/blob/master/README.md");
+        dom.setAttribute(el4,"href","http://softlayer.github.io/sl-ember-test-helpers/docs");
+        dom.setAttribute(el4,"target","new");
         var el5 = dom.createElement("i");
         dom.setAttribute(el5,"class","fa fa-book fa-5x");
         dom.appendChild(el4, el5);
@@ -372,7 +387,8 @@ define('dummy/templates/index', ['exports'], function (exports) {
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("p");
         var el4 = dom.createElement("a");
-        dom.setAttribute(el4,"href","https://github.com/softlayer/sl-ember-test-helpers/blob/master/README.md");
+        dom.setAttribute(el4,"href","http://softlayer.github.io/sl-ember-test-helpers/docs");
+        dom.setAttribute(el4,"target","new");
         var el5 = dom.createElement("b");
         var el6 = dom.createTextNode("Documentation");
         dom.appendChild(el5, el6);
@@ -382,7 +398,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n\n    ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
         dom.setAttribute(el2,"class","col-md-6 text-center");
@@ -452,16 +468,16 @@ define('dummy/tests/app.jshint', function () {
 });
 define('dummy/tests/helpers/resolver', ['exports', 'ember/resolver', 'dummy/config/environment'], function (exports, Resolver, config) {
 
-  'use strict';
+    'use strict';
 
-  var resolver = Resolver['default'].create();
+    var resolver = Resolver['default'].create();
 
-  resolver.namespace = {
-    modulePrefix: config['default'].modulePrefix,
-    podModulePrefix: config['default'].podModulePrefix
-  };
+    resolver.namespace = {
+        modulePrefix: config['default'].modulePrefix,
+        podModulePrefix: config['default'].podModulePrefix
+    };
 
-  exports['default'] = resolver;
+    exports['default'] = resolver;
 
 });
 define('dummy/tests/helpers/resolver.jshint', function () {
@@ -480,19 +496,19 @@ define('dummy/tests/helpers/sl/register-test-helpers', ['exports', 'ember', 'dum
 
     exports['default'] = function () {
         Ember['default'].Test.registerHelper('contains', synchronous.contains);
-        Ember['default'].Test.registerHelper('ajax', synchronous.ajax);
+        Ember['default'].Test.registerHelper('Ajax', synchronous.AjaxHelper);
         Ember['default'].Test.registerHelper('requires', synchronous.requires);
     }
 
 });
-define('dummy/tests/helpers/sl/synchronous', ['exports', 'dummy/tests/helpers/sl/synchronous/contains', 'dummy/tests/helpers/sl/synchronous/ajax', 'dummy/tests/helpers/sl/synchronous/requires'], function (exports, contains, ajax, requires) {
+define('dummy/tests/helpers/sl/synchronous', ['exports', 'dummy/tests/helpers/sl/synchronous/ajax', 'dummy/tests/helpers/sl/synchronous/contains', 'dummy/tests/helpers/sl/synchronous/requires'], function (exports, AjaxHelper, contains, requires) {
 
 	'use strict';
 
 
 
+	exports.AjaxHelper = AjaxHelper['default'];
 	exports.contains = contains['default'];
-	exports.ajax = ajax['default'];
 	exports.requires = requires['default'];
 
 });
@@ -500,43 +516,61 @@ define('dummy/tests/helpers/sl/synchronous/ajax', ['exports', 'ember'], function
 
     'use strict';
 
-    var AjaxHelper = function AjaxHelper() {};
+    var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-    /**
-     * Emulate the beginning of an AJAX request
-     *
-     * @param   {Ember.String} endpoint
-     * @returns {void}
-     */
-    AjaxHelper.prototype.begin = function (endpoint) {
-        Ember['default'].run(function () {
-            if (endpoint) {
-                $(document).trigger('ajaxSend', [null, { url: endpoint }]);
-            } else {
-                $(document).trigger('ajaxStart');
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+    var AjaxHelper = (function () {
+        function AjaxHelper() {
+            _classCallCheck(this, AjaxHelper);
+        }
+
+        _createClass(AjaxHelper, null, [{
+            key: 'begin',
+
+            /**
+             * Emulate the beginning of an AJAX request
+             *
+             * @function
+             * @static
+             * @param {String} [endpoint]
+             * @returns {undefined}
+             */
+            value: function begin(endpoint) {
+                Ember['default'].run(function () {
+                    if (endpoint) {
+                        Ember['default'].$(document).trigger('ajaxSend', [null, { url: endpoint }]);
+                    } else {
+                        Ember['default'].$(document).trigger('ajaxStart');
+                    }
+                });
             }
-        });
-    };
+        }, {
+            key: 'end',
 
-    /**
-     * Emulate the conclusion of an AJAX request
-     *
-     * @param   {Ember.String} endpoint
-     * @returns {void}
-     */
-    AjaxHelper.prototype.end = function (endpoint) {
-        Ember['default'].run(function () {
-            if (endpoint) {
-                $(document).trigger('ajaxComplete', [null, { url: endpoint }]);
-            } else {
-                $(document).trigger('ajaxStop');
+            /**
+             * Emulate the conclusion of an AJAX request
+             *
+             * @function
+             * @static
+             * @param {String} [endpoint]
+             * @returns {undefined}
+             */
+            value: function end(endpoint) {
+                Ember['default'].run(function () {
+                    if (endpoint) {
+                        Ember['default'].$(document).trigger('ajaxComplete', [null, { url: endpoint }]);
+                    } else {
+                        Ember['default'].$(document).trigger('ajaxStop');
+                    }
+                });
             }
-        });
-    };
+        }]);
 
-    var helper = new AjaxHelper();
+        return AjaxHelper;
+    })();
 
-    exports['default'] = helper;
+    exports['default'] = AjaxHelper;
 
 });
 define('dummy/tests/helpers/sl/synchronous/contains', ['exports', 'ember', 'dummy/tests/helpers/sl/utils/utils'], function (exports, Ember, utils) {
@@ -544,13 +578,13 @@ define('dummy/tests/helpers/sl/synchronous/contains', ['exports', 'ember', 'dumm
     'use strict';
 
     exports['default'] = function () {
-        var index = 3 === arguments.length ? 1 : 0,
-            underTest = arguments[index],
-            testFor = arguments[index + 1];
+        var index = 3 === arguments.length ? 1 : 0;
+        var underTest = arguments[index];
+        var testFor = arguments[index + 1];
 
-        Ember['default'].assert('First non-optional argument must be an array, string or object', 'object' === typeof underTest || 'string' === typeof underTest || Array.isArray(underTest));
+        Ember['default'].assert('First non-optional argument must be an array, string or object', 'object' === Ember['default'].typeOf(underTest) || 'string' === Ember['default'].typeOf(underTest) || 'array' === Ember['default'].typeOf(underTest));
 
-        Ember['default'].assert('Second non-optional argument must be an array, string or object', 'object' === typeof testFor || 'string' === typeof testFor || Array.isArray(testFor));
+        Ember['default'].assert('Second non-optional argument must be an array, string or object', 'object' === Ember['default'].typeOf(testFor) || 'string' === Ember['default'].typeOf(testFor) || 'array' === Ember['default'].typeOf(testFor));
 
         return utils.doArraysIntersect(utils.convertToArray(underTest), utils.convertToArray(testFor));
     }
@@ -560,24 +594,24 @@ define('dummy/tests/helpers/sl/synchronous/requires', ['exports', 'ember'], func
 
     'use strict';
 
-    exports['default'] = function (methodUnderTest, requiredTypes) {
+    var requiresHelper = function requiresHelper(methodUnderTest, requiredTypes) {
         var typesToTest = {
-            number: {
+            'number': {
                 required: false,
                 testValue: 123987465,
                 message: 'Parameter was a number'
             },
-            string: {
+            'string': {
                 required: false,
                 testValue: 'testString',
                 message: 'Parameter was a string'
             },
-            array: {
+            'array': {
                 required: false,
                 testValue: [],
                 message: 'Parameter was an array'
             },
-            object: {
+            'object': {
                 required: false,
                 testValue: {},
                 message: 'Parameter was an object'
@@ -587,61 +621,63 @@ define('dummy/tests/helpers/sl/synchronous/requires', ['exports', 'ember'], func
                 testValue: function testValue() {},
                 message: 'Parameter was a function'
             },
-            undefined: {
+            'undefined': {
                 required: false,
                 testValue: undefined,
                 message: 'Parameter was undefined'
             },
-            boolean: {
+            'boolean': {
                 required: false,
                 testValue: true,
                 message: 'Parameter was a boolean'
             }
-        },
-            testsThatHaveFailed = [],
-            assertionThrown,
-            assertionPassed,
-            property,
-            parameter;
+        };
 
-        Ember['default'].assert('First argument must be a function', 'function' === typeof methodUnderTest);
-        Ember['default'].assert('Second argument must be an array', Array.isArray(requiredTypes));
+        Ember['default'].assert('First argument must be a function', 'function' === Ember['default'].typeOf(methodUnderTest));
+        Ember['default'].assert('Second argument must be an array', 'array' === Ember['default'].typeOf(requiredTypes));
 
         // Set required parameter types
         requiredTypes.forEach(function (item) {
-            typesToTest[item].required = true;
+            typesToTest[item]['required'] = true;
         });
+
+        var testsThatHaveFailed = [];
+        var property = undefined;
 
         // Test each parameter type
         for (property in typesToTest) {
             if (typesToTest.hasOwnProperty(property)) {
-
                 // Reset flag
+                var assertionThrown = undefined;
                 assertionThrown = false;
 
                 // Assign cleaner object reference
+                var parameter = undefined;
                 parameter = typesToTest[property];
 
                 // Test parameter
                 try {
-                    methodUnderTest(parameter.testValue);
+                    methodUnderTest(parameter['testValue']);
                 } catch (error) {
                     assertionThrown = true;
                 }
 
-                assertionPassed = parameter.required ? !assertionThrown : assertionThrown;
+                var assertionPassed = undefined;
+                assertionPassed = parameter['required'] ? !assertionThrown : assertionThrown;
 
                 if (!assertionPassed) {
-                    testsThatHaveFailed.push(parameter.message);
+                    testsThatHaveFailed.push(parameter['message']);
                 }
             }
         }
 
         return {
-            requires: 0 === testsThatHaveFailed.length ? true : false,
+            requires: 0 === testsThatHaveFailed.length,
             messages: testsThatHaveFailed.join('; ')
         };
-    }
+    };
+
+    exports['default'] = requiresHelper;
 
 });
 define('dummy/tests/helpers/sl/utils/utils', ['exports', 'ember'], function (exports, Ember) {
@@ -649,23 +685,24 @@ define('dummy/tests/helpers/sl/utils/utils', ['exports', 'ember'], function (exp
     'use strict';
 
     var convertToArray = function convertToArray(underTest) {
-        var returnArray;
 
-        if (Array.isArray(underTest)) {
-            returnArray = underTest;
-        } else {
-            switch (typeof underTest) {
-                case 'string':
-                    returnArray = convertStringToArray(underTest);
-                    break;
+        Ember['default'].assert('Array, String, or Object must be supplied', 'array' === Ember['default'].typeOf(underTest) || 'string' === Ember['default'].typeOf(underTest) || 'object' === Ember['default'].typeOf(underTest));
 
-                case 'object':
-                    returnArray = convertObjectKeysToArray(underTest);
-                    break;
-            }
+        var returnArray = underTest;
+
+        switch (Ember['default'].typeOf(underTest)) {
+            case 'array':
+                returnArray = underTest;
+                break;
+
+            case 'string':
+                returnArray = convertStringToArray(underTest);
+                break;
+
+            case 'object':
+                returnArray = convertObjectKeysToArray(underTest);
+                break;
         }
-
-        Ember['default'].assert('String, Object or Array must be supplied', 'undefined' !== typeof returnArray);
 
         return returnArray;
     };
@@ -675,14 +712,14 @@ define('dummy/tests/helpers/sl/utils/utils', ['exports', 'ember'], function (exp
      *
      * Primarily exists to convert format of call to .prop( 'class' )
      *
-     * @function convertStringToArray
-     * @param   {string} underTest
-     * @throws  {Ember.assert} If argument is not provided or is not a string
-     * @returns {array}
+     * @function
+     * @param {String} underTest
+     * @throws {ember.assert} If argument is not provided or is not a string
+     * @returns {Array}
      */
     var convertStringToArray = function convertStringToArray(underTest) {
 
-        Ember['default'].assert('String must be supplied', 'string' === typeof underTest);
+        Ember['default'].assert('String must be supplied', 'string' === Ember['default'].typeOf(underTest));
 
         return underTest.split(' ');
     };
@@ -692,29 +729,29 @@ define('dummy/tests/helpers/sl/utils/utils', ['exports', 'ember'], function (exp
      *
      * Property names are only extracted from the object provided.  No recursion into nested objects occurs.
      *
-     * @function convertObjectKeysToArray
-     * @param   {object} underTest
-     * @throws  {Ember.assert} If argument is not provided or is not an object
-     * @returns {array}
+     * @function
+     * @param {Object} underTest
+     * @throws {ember.assert} If argument is not provided or is not an object
+     * @returns {Array}
      */
     var convertObjectKeysToArray = function convertObjectKeysToArray(underTest) {
 
-        Ember['default'].assert('Object must be supplied', 'object' === typeof underTest && !Array.isArray(underTest));
+        Ember['default'].assert('Object must be supplied', 'object' === Ember['default'].typeOf(underTest) && 'array' !== Ember['default'].typeOf(underTest));
 
         return Object.keys(underTest);
     };
 
     /**
-     * [doArraysIntersect description]
+     * Whether at least one element of the array exists in the other
      *
-     * @function doArraysIntersect
-     * @param  {array} underTest
-     * @param  {array} testFor
-     * @return {boolean}
+     * @function
+     * @param {Array} underTest
+     * @param {Array} testFor
+     * @returns {Boolean}
      */
     var doArraysIntersect = function doArraysIntersect(underTest, testFor) {
 
-        Ember['default'].assert('Parameters must be Arrays', Array.isArray(underTest) && Array.isArray(testFor));
+        Ember['default'].assert('Parameters must be Arrays', 'array' === Ember['default'].typeOf(underTest) && 'array' === Ember['default'].typeOf(testFor));
 
         return testFor.some(function (v) {
             return underTest.indexOf(v) >= 0;
@@ -729,25 +766,25 @@ define('dummy/tests/helpers/sl/utils/utils', ['exports', 'ember'], function (exp
 });
 define('dummy/tests/helpers/start-app', ['exports', 'ember', 'dummy/app', 'dummy/router', 'dummy/config/environment'], function (exports, Ember, Application, Router, config) {
 
-  'use strict';
+    'use strict';
 
 
 
-  exports['default'] = startApp;
-  function startApp(attrs) {
-    var application;
+    exports['default'] = startApp;
+    function startApp(attrs) {
+        var application = undefined;
 
-    var attributes = Ember['default'].merge({}, config['default'].APP);
-    attributes = Ember['default'].merge(attributes, attrs); // use defaults, but you can override;
+        var attributes = Ember['default'].merge({}, config['default'].APP);
+        attributes = Ember['default'].merge(attributes, attrs); // use defaults, but you can override;
 
-    Ember['default'].run(function () {
-      application = Application['default'].create(attributes);
-      application.setupForTesting();
-      application.injectTestHelpers();
-    });
+        Ember['default'].run(function () {
+            application = Application['default'].create(attributes);
+            application.setupForTesting();
+            application.injectTestHelpers();
+        });
 
-    return application;
-  }
+        return application;
+    }
 
 });
 define('dummy/tests/helpers/start-app.jshint', function () {
@@ -787,56 +824,56 @@ define('dummy/tests/test-helper.jshint', function () {
   });
 
 });
-define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember-qunit', 'dummy/tests/helpers/sl/synchronous/ajax'], function (ember_qunit, ajax) {
+define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qunit', 'dummy/tests/helpers/sl/synchronous/ajax'], function (Ember, ember_qunit, AjaxHelper) {
 
     'use strict';
 
-    module('Unit - helpers:sl/synchronous/ajax');
+    module('Unit | Helper | sl/synchronous/ajax');
 
     ember_qunit.test('it exists', function (assert) {
-        assert.ok(ajax['default'], 'it exists');
+        assert.ok(AjaxHelper['default'], 'it exists');
     });
 
     ember_qunit.test('begin() with no parameter triggers "ajaxStart" event on document', function (assert) {
-        var spy = sinon.spy($.prototype, 'trigger');
+        var spy = sinon.spy(Ember['default'].$.prototype, 'trigger');
 
-        ajax['default'].begin();
+        AjaxHelper['default'].begin();
 
         assert.equal(spy.args[0][0], 'ajaxStart');
 
-        $.prototype.trigger.restore();
+        Ember['default'].$.prototype.trigger.restore();
     });
 
     ember_qunit.test('begin() with parameter triggers "ajaxSend" event on document', function (assert) {
-        var spy = sinon.spy($.prototype, 'trigger');
+        var spy = sinon.spy(Ember['default'].$.prototype, 'trigger');
 
-        ajax['default'].begin('testEndpoint');
+        AjaxHelper['default'].begin('testEndpoint');
 
         assert.equal(spy.args[0][0], 'ajaxSend');
-        assert.equal(spy.args[0][1][1].url, 'testEndpoint');
+        assert.equal(spy.args[0][1][1]['url'], 'testEndpoint');
 
-        $.prototype.trigger.restore();
+        Ember['default'].$.prototype.trigger.restore();
     });
 
     ember_qunit.test('end() with no parameter triggers "ajaxStop" event on document', function (assert) {
-        var spy = sinon.spy($.prototype, 'trigger');
+        var spy = sinon.spy(Ember['default'].$.prototype, 'trigger');
 
-        ajax['default'].end();
+        AjaxHelper['default'].end();
 
         assert.equal(spy.args[0][0], 'ajaxStop');
 
-        $.prototype.trigger.restore();
+        Ember['default'].$.prototype.trigger.restore();
     });
 
     ember_qunit.test('end() with parameter triggers "ajaxComplete" event on document', function (assert) {
-        var spy = sinon.spy($.prototype, 'trigger');
+        var spy = sinon.spy(Ember['default'].$.prototype, 'trigger');
 
-        ajax['default'].end('testEndpoint');
+        AjaxHelper['default'].end('testEndpoint');
 
         assert.equal(spy.args[0][0], 'ajaxComplete');
-        assert.equal(spy.args[0][1][1].url, 'testEndpoint');
+        assert.equal(spy.args[0][1][1]['url'], 'testEndpoint');
 
-        $.prototype.trigger.restore();
+        Ember['default'].$.prototype.trigger.restore();
     });
 
 });
@@ -856,7 +893,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/contains-test', ['ember-qunit', 
 
     var utils = require('dummy/tests/helpers/sl/utils/utils');
 
-    module('Unit - helpers:sl/synchronous/contains');
+    module('Unit | Helper | sl/synchronous/contains');
 
     ember_qunit.test('it exists', function (assert) {
         assert.ok(contains['default'], 'it exists');
@@ -1044,7 +1081,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/contains-test', ['ember-qunit', 
     });
 
     ember_qunit.test('Returns a boolean', function (assert) {
-        var response;
+        var response = undefined;
 
         response = contains['default']('b', ['d', 'e']);
 
@@ -1070,7 +1107,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/requires-test', ['ember', 'ember
 
     'use strict';
 
-    module('Unit - helpers:sl/synchronous/requires');
+    module('Unit | Helpers | sl/synchronous/requires');
 
     ember_qunit.test('it exists', function (assert) {
         assert.ok(requires['default'], 'it exists');
@@ -1238,7 +1275,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/requires-test', ['ember', 'ember
 
     ember_qunit.test('Return type', function (assert) {
         var testFunction = function testFunction(first) {
-            Ember['default'].assert('Test argument must be a function or boolean', 'function' === typeof first || 'boolean' === typeof first);
+            Ember['default'].assert('Test argument must be a function or boolean', 'function' === Ember['default'].typeOf(first) || 'boolean' === Ember['default'].typeOf(first));
         },
             test = requires['default'](testFunction, ['function', 'boolean']);
 
@@ -1247,9 +1284,9 @@ define('dummy/tests/unit/helpers/sl/synchronous/requires-test', ['ember', 'ember
 
     ember_qunit.test('Functions as expected', function (assert) {
         var testFunction = function testFunction(first) {
-            Ember['default'].assert('Test argument must be a function or boolean', 'function' === typeof first || 'boolean' === typeof first);
+            Ember['default'].assert('Test argument must be a function or boolean', 'function' === Ember['default'].typeOf(first) || 'boolean' === Ember['default'].typeOf(first));
         },
-            test;
+            test = undefined;
 
         test = requires['default'](testFunction, ['function', 'boolean']);
         assert.ok(test.requires, 'Functioned as expected when passed desired argument types: ' + test.messages);
@@ -1269,11 +1306,11 @@ define('dummy/tests/unit/helpers/sl/synchronous/requires-test.jshint', function 
   });
 
 });
-define('dummy/tests/unit/helpers/sl/utils/utils-test', ['ember-qunit', 'dummy/tests/helpers/sl/utils/utils', 'dummy/tests/helpers/sl/synchronous/requires'], function (ember_qunit, utils, requires) {
+define('dummy/tests/unit/helpers/sl/utils/utils-test', ['ember', 'ember-qunit', 'dummy/tests/helpers/sl/utils/utils', 'dummy/tests/helpers/sl/synchronous/requires'], function (Ember, ember_qunit, utils, requires) {
 
     'use strict';
 
-    module('Unit - utils:sl/utils/utils');
+    module('Unit | Utils | sl/utils/utils');
 
     ember_qunit.test('convertToArray() exists', function (assert) {
         assert.ok(utils.convertToArray, 'it exists');
@@ -1298,17 +1335,17 @@ define('dummy/tests/unit/helpers/sl/utils/utils-test', ['ember-qunit', 'dummy/te
     });
 
     ember_qunit.test('convertToArray() returns expected result', function (assert) {
-        var testResults1 = utils.convertToArray(['a', 'b']),
-            testResults2 = utils.convertToArray('testing things'),
-            testResults3 = utils.convertToArray({ a: 1, b: 2 });
+        var testResults1 = utils.convertToArray(['a', 'b']);
+        var testResults2 = utils.convertToArray('testing things');
+        var testResults3 = utils.convertToArray({ a: 1, b: 2 });
 
-        assert.ok(Array.isArray(testResults1));
+        assert.ok('array' === Ember['default'].typeOf(testResults1));
         assert.deepEqual(['a', 'b'], testResults1);
 
-        assert.ok(Array.isArray(testResults2));
+        assert.ok('array' === Ember['default'].typeOf(testResults2));
         assert.deepEqual(['testing', 'things'], testResults2);
 
-        assert.ok(Array.isArray(testResults3));
+        assert.ok('array' === Ember['default'].typeOf(testResults3));
         assert.deepEqual(['a', 'b'], testResults3);
     });
 
@@ -1333,8 +1370,17 @@ define('dummy/tests/unit/helpers/sl/utils/utils-test', ['ember-qunit', 'dummy/te
     });
 
     ember_qunit.test('convertObjectKeysToArray() returns an array of object properties', function (assert) {
-        assert.deepEqual(utils.convertObjectKeysToArray({ testing: true, bird: 'duck' }), ['testing', 'bird']);
-        assert.deepEqual(utils.convertObjectKeysToArray({ testing2: true, bird2: { feathers: true, tasty: false } }), ['testing2', 'bird2']);
+        assert.deepEqual(utils.convertObjectKeysToArray({
+            testing: true,
+            bird: 'duck'
+        }), ['testing', 'bird']);
+        assert.deepEqual(utils.convertObjectKeysToArray({
+            testing2: true,
+            bird2: {
+                feathers: true,
+                tasty: false
+            }
+        }), ['testing2', 'bird2']);
     });
 
     ember_qunit.test('doArraysIntersect() requires both parameters to be Arrays', function (assert) {
@@ -1377,10 +1423,15 @@ define('dummy/tests/unit/helpers/sl/utils/utils-test', ['ember-qunit', 'dummy/te
 
     ember_qunit.test('doArraysIntersect() functions as expected', function (assert) {
         assert.ok(utils.doArraysIntersect(['a', 'b', 'c'], ['a']), 'Single intersection into multiple');
+
         assert.ok(utils.doArraysIntersect(['a', 'b', 'c'], ['a', 'c']), 'Multiple intersections into multiple');
+
         assert.ok(utils.doArraysIntersect(['a', 'b', 'c'], ['a', 'c', 'd']), 'Multiple intersections into multiple with single non-intersection value');
+
         assert.ok(!utils.doArraysIntersect(['a', 'b', 'c'], ['d']), 'Single non-intersection value into multiple');
+
         assert.ok(!utils.doArraysIntersect(['d'], ['a']), 'Single non-intersection value into single, with non-intersection value');
+
         assert.ok(utils.doArraysIntersect(['d'], ['a', 'd', 'e']), 'Multiple intersections into single, with single intersection value');
     });
 
@@ -1423,7 +1474,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"1.4.0.92d5d7c4"});
+  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"1.5.0.c6c1b781"});
 }
 
 /* jshint ignore:end */
