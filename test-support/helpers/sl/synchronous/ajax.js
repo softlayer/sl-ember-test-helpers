@@ -15,10 +15,11 @@ class AjaxHelper {
      * Emulate the beginning of an AJAX request
      *
      * @function
+     * @static
      * @param {String} [endpoint]
      * @returns {undefined}
      */
-    begin( endpoint ) {
+    static begin( endpoint ) {
         Ember.run( () => {
             if ( endpoint ) {
                 Ember.$( document ).trigger( 'ajaxSend', [ null, { url: endpoint } ] );
@@ -32,10 +33,11 @@ class AjaxHelper {
      * Emulate the conclusion of an AJAX request
      *
      * @function
+     * @static
      * @param {String} [endpoint]
      * @returns {undefined}
      */
-    end( endpoint ) {
+    static end( endpoint ) {
         Ember.run( () => {
             if ( endpoint ) {
                 Ember.$( document ).trigger( 'ajaxComplete', [ null, { url: endpoint } ] );
@@ -46,6 +48,4 @@ class AjaxHelper {
     }
 }
 
-let helper = new AjaxHelper();
-
-export default helper;
+export default AjaxHelper;
