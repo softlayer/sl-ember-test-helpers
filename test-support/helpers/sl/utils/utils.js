@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 /**
+ * @module
+ */
+
+/**
  * Converts provided parameter into an array
  *
  * @function

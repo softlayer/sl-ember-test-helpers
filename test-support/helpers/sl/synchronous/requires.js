@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 /**
+ * @module
+ */
+
+/**
  * Test that an argument passed to a function is of the required type(s).
  *
  * @function
@@ -8,7 +12,7 @@ import Ember from 'ember';
  * @param {Array} requiredTypes
  * @returns {Object}
  */
-export default function( methodUnderTest, requiredTypes ) {
+let requiresHelper = function( methodUnderTest, requiredTypes ) {
     let typesToTest = {
         'number': {
             required: false,
@@ -63,6 +67,7 @@ export default function( methodUnderTest, requiredTypes ) {
 
     let testsThatHaveFailed = [];
     let property;
+
     // Test each parameter type
     for ( property in typesToTest ) {
         if ( typesToTest.hasOwnProperty( property ) ) {
@@ -94,4 +99,6 @@ export default function( methodUnderTest, requiredTypes ) {
         requires: 0 === testsThatHaveFailed.length,
         messages: testsThatHaveFailed.join( '; ' )
     };
-}
+};
+
+export default requiresHelper;

@@ -7,6 +7,10 @@ import {
 } from '../utils/utils';
 
 /**
+ * @module
+ */
+
+/**
  * Test whether value(s) are contained in other values.
  *
  * Value(s) to test for can be a single value or an array of values.
@@ -16,7 +20,7 @@ import {
  * @param {ember/Application} [app]
  * @param {Array|String|Object} underTest
  * @param {Array|String|Object} testFor
- * @throws {ember.assert}
+ * @throws {ember.assert} If parameters are not an array, string, or object
  * @returns {Boolean}
  */
 export default function() {
