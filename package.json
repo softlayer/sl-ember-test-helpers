@@ -23,7 +23,8 @@
     "helper"
   ],
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "http://softlayer.github.io/sl-ember-test-helpers"
   },
   "author": "Jeremy Brown <jeremy@notmessenger.com> (http://www.notmessenger.com)",
   "license": "MIT",
