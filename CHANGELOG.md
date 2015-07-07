@@ -1,5 +1,12 @@
 # sl-ember-test-helpers Changelog
 
+### 1.6.0
+
+* [#97](https://github.com/softlayer/sl-ember-test-helpers/pull/97) [ENHANCEMENT] Uninstall ember-jsdoc; install ember-cli-jsdoc
+* [#99](https://github.com/softlayer/sl-ember-test-helpers/pull/99) Remove `develop` branch
+
+[View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.5.0...v1.6.0)
+
 ### 1.5.0
 
 * [#80](https://github.com/softlayer/sl-ember-test-helpers/pull/80) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 0.2.7
