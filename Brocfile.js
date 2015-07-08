@@ -33,7 +33,10 @@ if ( 'production' !== app.env ) {
 }
 
 tree = replace( app.toTree(), {
-    files: [ 'index.html' ],
+    files: [
+        'index.html',
+        'assets/dummy.js'
+    ],
     patterns: [
         {
             match: /REPLACE_META_DESCRIPTION/g,
@@ -42,7 +45,10 @@ tree = replace( app.toTree(), {
             match: /REPLACE_META_KEYWORDS/g,
             replacement: packageConfig[ 'keywords' ].join( ', ' ) +
                 ', ember, ember cli'
-        }
+        }, {
+            match: /REPLACE_APPLICATION_VERSION/g,
+            replacement: packageConfig[ 'version' ]
+         }
     ]
 });
 
