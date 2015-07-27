@@ -132,6 +132,23 @@ test( 'First argument must be a function', function( assert ) {
         'First parameter was a boolean'
     );
 
+    // Null
+    assertionThrown = false;
+
+    try {
+        requires(
+            null,
+            false
+        );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok(
+        assertionThrown,
+        'First parameter was null'
+    );
+
 });
 
 test( 'Second argument must be an array', function( assert ) {
@@ -253,6 +270,23 @@ test( 'Second argument must be an array', function( assert ) {
     assert.ok(
         assertionThrown,
         'Second parameter was a boolean'
+    );
+
+    // Null
+    assertionThrown = false;
+
+    try {
+        requires(
+            null,
+            null
+        );
+    } catch( error ) {
+        assertionThrown = true;
+    }
+
+    assert.ok(
+        assertionThrown,
+        'Second parameter was null'
     );
 
 });
