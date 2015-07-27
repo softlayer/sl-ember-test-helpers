@@ -22,15 +22,13 @@ var tree;
 // along with the exports of each module as its value.
 
 // Testing dependencies
-if ( 'production' !== app.env ) {
-    app.import( app.bowerDirectory + '/sinonjs/sinon.js', {
-        type: 'test'
-    });
+app.import( app.bowerDirectory + '/sinonjs/sinon.js', {
+    type: 'test'
+});
 
-    app.import( app.bowerDirectory + '/sinon-qunit/lib/sinon-qunit.js', {
-        type: 'test'
-    });
-}
+app.import( app.bowerDirectory + '/sinon-qunit/lib/sinon-qunit.js', {
+    type: 'test'
+});
 
 tree = replace( app.toTree(), {
     files: [
