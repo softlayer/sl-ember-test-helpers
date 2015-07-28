@@ -48,6 +48,11 @@ let requiresHelper = function( methodUnderTest, requiredTypes ) {
             required: false,
             testValue: true,
             message: 'Parameter was a boolean'
+        },
+        'null': {
+            required: false,
+            testValue: null,
+            message: 'Parameter was null'
         }
     };
 
