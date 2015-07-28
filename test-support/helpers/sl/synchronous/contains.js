@@ -28,19 +28,27 @@ export default function() {
     let underTest = arguments[ index ];
     let testFor = arguments[ index + 1 ];
 
+    /* jshint ignore:start */
     Ember.assert(
         'First non-optional argument must be an array, string or object',
-        'object' === Ember.typeOf( underTest ) ||
-        'string' === Ember.typeOf( underTest ) ||
-        'array' === Ember.typeOf( underTest )
+        (
+            'object' === Ember.typeOf( underTest ) ||
+            'string' === Ember.typeOf( underTest ) ||
+            'array' === Ember.typeOf( underTest )
+        ) &&
+        'symbol' !== typeof underTest
     );
 
     Ember.assert(
         'Second non-optional argument must be an array, string or object',
-        'object' === Ember.typeOf( testFor ) ||
-        'string' === Ember.typeOf( testFor ) ||
-        'array' === Ember.typeOf( testFor )
+        (
+            'object' === Ember.typeOf( testFor ) ||
+            'string' === Ember.typeOf( testFor ) ||
+            'array' === Ember.typeOf( testFor )
+        ) &&
+        'symbol' !== typeof testFor
     );
+    /* jshint ignore:end */
 
     return doArraysIntersect( convertToArray( underTest ), convertToArray( testFor ) );
 }
