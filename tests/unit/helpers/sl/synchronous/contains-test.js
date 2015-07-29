@@ -1,228 +1,223 @@
 import Ember from 'ember';
 import { test } from 'ember-qunit';
-import contains from '../../../../helpers/sl/synchronous/contains';
+import requires from '../../../../helpers/sl/synchronous/requires';
 
-let utils = require( 'dummy/tests/helpers/sl/utils/utils' );
-
-module( 'Unit | Helper | sl/synchronous/contains' );
+module( 'Unit | Helpers | sl/synchronous/requires' );
 
 test( 'it exists', function( assert ) {
     assert.ok(
-        contains,
+        requires,
         'it exists'
     );
 });
 
-test( 'First non-optional argument must be an array, string or object', function( assert ) {
+test( 'First argument must be a function', function( assert ) {
     const testPropertyOne = Ember.Object.create({
-        parameter: 'null'
+        parameter: undefined
     });
 
     const testPropertyTwo = Ember.Object.create({
-        parameter: 'null'
+        parameter: undefined
     });
 
-    const callContains = () => contains( testPropertyOne.parameter, testPropertyTwo.parameter );
+    const callRequires = () => requires( testPropertyOne.parameter, testPropertyTwo.parameter );
 
     // Number
-    testPropertyOne.set( 'parameter', 2 );
-    testPropertyTwo.set( 'parameter', [] );
+    testPropertyOne.set( 'parameter', 123 );
+    testPropertyTwo.set( 'parameter', false );
 
     assert.throws(
-        callContains,
+        callRequires,
         'First parameter was a number'
+    );
+
+    // String
+    testPropertyOne.set( 'parameter', 'testString' );
+
+    assert.throws(
+        callRequires,
+        'First parameter was a string'
+    );
+
+    // Array
+    testPropertyOne.set( 'parameter', [] );
+
+    assert.throws(
+        callRequires,
+        'First parameter was an array'
+    );
+
+    // Object
+    testPropertyOne.set( 'parameter', {} );
+
+    assert.throws(
+        callRequires,
+        'First parameter was an object'
     );
 
     // Function
     testPropertyOne.set( 'parameter', function(){} );
-    testPropertyTwo.set( 'parameter', [] );
 
     assert.throws(
-        callContains,
+        callRequires,
         'First parameter was a function'
-    );
-    
-    // Boolean
-    testPropertyOne.set( 'parameter', false );
-    testPropertyTwo.set( 'parameter', [] );
-
-    assert.throws(
-        callContains,
-        'First parameter was false'
     );
 
     // Undefined
     testPropertyOne.set( 'parameter', undefined );
-    testPropertyTwo.set( 'parameter', [] );
 
     assert.throws(
-        callContains,
+        callRequires,
         'First parameter was undefined'
     );
 
-    // Array
-    testPropertyOne.set( 'parameter', ['2'] );
-    testPropertyTwo.set( 'parameter', ['2'] );
+    // Boolean
+    testPropertyOne.set( 'parameter', false );
 
-    assert.ok(
-        callContains(),
-        'First parameter was an array'
+    assert.throws(
+        callRequires,
+        'First parameter was a boolean'
     );
 
-    // Object
-    testPropertyOne.set( 'parameter', { test: 'test' } );
-    testPropertyTwo.set( 'parameter', { test: 'test' } );
+    // Function, Array
+    testPropertyOne.set( 'parameter', function(){} );
+    testPropertyTwo.set( 'parameter', [] );
 
     assert.ok(
-        callContains(),
-        'First parameter was an object'
-    );
-
-    // String
-    testPropertyOne.set( 'parameter', 'testString' );
-    testPropertyTwo.set( 'parameter', 'testString' );
-
-    assert.ok(
-        callContains(),
-        'First parameter was a string'
+        callRequires(),
+        'First parameter was a function and second parameter is an array'
     );
 });
 
-test( 'Second non-optional argument must be an array, string or object', function( assert ) {
+test( 'Second argument must be an array', function( assert ) {
     const testPropertyOne = Ember.Object.create({
-        parameter: 'null'
+        parameter: undefined
     });
 
     const testPropertyTwo = Ember.Object.create({
-        parameter: 'null'
+        parameter: undefined
     });
 
-    const callContains = () => contains( testPropertyOne.parameter, testPropertyTwo.parameter );
+    const callRequires = () => requires( testPropertyOne.parameter, testPropertyTwo.parameter );
 
     // Number
-    testPropertyOne.set( 'parameter', [] );
-    testPropertyTwo.set( 'parameter', 2 );
+    testPropertyOne.set( 'parameter', 123 );
+    testPropertyTwo.set( 'parameter', 123 );
 
     assert.throws(
-        callContains,
+        callRequires,
         'Second parameter was a number'
-    );
-
-    // Function
-    testPropertyOne.set( 'parameter', [] );
-    testPropertyTwo.set( 'parameter', function(){} );
-
-    assert.throws(
-        callContains,
-        'second parameter was a function'
-    );
-    
-    // Boolean
-    testPropertyOne.set( 'parameter', [] );
-    testPropertyTwo.set( 'parameter', false );
-
-    assert.throws(
-        callContains,
-        'second parameter was false'
-    );
-
-    // Undefined
-    testPropertyOne.set( 'parameter', [] );
-    testPropertyTwo.set( 'parameter', undefined );
-
-    assert.throws(
-        callContains,
-        'second parameter was undefined'
-    );
-
-    // Array
-    testPropertyOne.set( 'parameter', ['2'] );
-    testPropertyTwo.set( 'parameter', ['2'] );
-
-    assert.ok(
-        callContains(),
-        'First parameter was an array'
-    );
-
-    // Object
-    testPropertyOne.set( 'parameter', {test:'test'} );
-    testPropertyTwo.set( 'parameter', {test: 'test'} );
-
-    assert.ok(
-        callContains(),
-        'First parameter was an object'
     );
 
     // String
     testPropertyOne.set( 'parameter', 'testString' );
     testPropertyTwo.set( 'parameter', 'testString' );
 
+    assert.throws(
+        callRequires,
+        'Second parameter was a string'
+    );
+
+    // Array
+    testPropertyOne.set( 'parameter', [] );
+    testPropertyTwo.set( 'parameter', [] );
+
+    assert.throws(
+        callRequires,
+        'Second parameter was an array'
+    );
+
+    // Object
+    testPropertyOne.set( 'parameter', {} );
+    testPropertyTwo.set( 'parameter', {} );
+
+    assert.throws(
+        callRequires,
+        'Second parameter was an object'
+    );
+
+    // Function
+    testPropertyOne.set( 'parameter', function(){} );
+    testPropertyTwo.set( 'parameter', function(){} );
+
+    assert.throws(
+        callRequires,
+        'Second parameter was a function'
+    );
+
+    // Undefined
+    testPropertyOne.set( 'parameter', undefined );
+    testPropertyTwo.set( 'parameter', undefined );
+
+    assert.throws(
+        callRequires,
+        'Second parameter was undefined'
+    );
+
+    // Boolean
+    testPropertyOne.set( 'parameter', false );
+    testPropertyTwo.set( 'parameter', false );
+
+    assert.throws(
+        callRequires,
+        'Second parameter was a boolean'
+    );
+
+    // Function, Array
+    testPropertyOne.set( 'parameter', function(){} );
+    testPropertyTwo.set( 'parameter', [] );
+
     assert.ok(
-        callContains(),
-        'First parameter was a string'
+        callRequires(),
+        'First parameter was a function and second parameter and array'
     );
 });
 
-test( 'Returns value from call to doArraysIntersect()', function( assert ) {
-    let spy = sinon.spy( utils, 'doArraysIntersect' );
-
-    contains(
-        [],
-        []
+test( 'Return type', function( assert ) {
+    let testFunction = function( first ) {
+        Ember.assert(
+            'Test argument must be a function or boolean',
+            'function' === Ember.typeOf( first ) ||
+            'boolean' === Ember.typeOf( first )
+        );
+    },
+    test = requires(
+        testFunction,
+        [ 'function', 'boolean' ]
     );
 
-    assert.ok(
-        spy.calledOnce,
-        'doArraysIntersect() was called'
-    );
-
-    utils.doArraysIntersect.restore();
-});
-
-test( 'Arguments are passed to doArraysIntersect() in the correct order', function( assert ) {
-    let spy = sinon.spy( utils, 'doArraysIntersect' );
-
-    contains(
-        'b',
-        [ 'd', 'e' ]
-    );
-
-    assert.equal(
-        spy.args[ 0 ][ 0 ],
-        'b',
-        'First argument'
-    );
     assert.deepEqual(
-        spy.args[ 0 ][ 1 ],
-        [ 'd', 'e' ],
-        'Second argument'
+        test,
+        { requires: true, messages: '' },
+        'Returns expected object'
     );
-
-    utils.doArraysIntersect.restore();
 });
 
-test( 'Returns a boolean', function( assert ) {
-    let response;
+test( 'Functions as expected', function( assert ) {
+    let testFunction = function( first ) {
+        Ember.assert(
+            'Test argument must be a function or boolean',
+            'function' === Ember.typeOf( first ) ||
+            'boolean' === Ember.typeOf( first )
+        );
+    },
+    test;
 
-    response = contains(
-        'b',
-        [ 'd', 'e' ]
+    test = requires(
+        testFunction,
+        [ 'function', 'boolean' ]
+    );
+    assert.ok (
+        test.requires,
+        'Functioned as expected when passed desired argument types: ' + test.messages
     );
 
-    assert.propEqual(
-        response,
-        false,
-        'Is boolean false'
+    test = requires(
+        testFunction,
+        [ 'function', 'boolean', 'string' ]
     );
-
-    response = contains(
-        [ 'd', 'e' ],
-        'e'
-    );
-
-    assert.propEqual(
-        response,
-        true,
-        'Is boolean true'
+    assert.ok (
+        !test.requires,
+        'Functioned as expected when passed undesired argument types: ' + test.messages
     );
 });

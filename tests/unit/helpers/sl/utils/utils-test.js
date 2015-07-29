@@ -45,41 +45,41 @@ test( 'convertToArray() requires either an Array, String, or Object to be provid
 
     const callConvertToArray = () => convertToArray( properties.parameters );
 
-    // Null
+    // null
     properties.set( 'parameters', null );
-    
+
     assert.throws(
         callConvertToArray,
         'property was null'
     );
 
-    // Undefined
+    // undefined
     properties.set( 'parameters', undefined );
-    
+
     assert.throws(
         callConvertToArray,
         'property was undefined'
     );
-    
+
     // Boolean
     properties.set( 'parameters', false );
-    
+
     assert.throws(
         callConvertToArray,
         'property was a Boolean'
     );
-    
+
     // Number
     properties.set( 'parameters', 132 );
-    
+
     assert.throws(
         callConvertToArray,
         'property was a Number'
     );
-    
+
     // Function
     properties.set( 'parameters', function(){} );
-    
+
     assert.throws(
         callConvertToArray,
         'property was a Function'
@@ -87,23 +87,23 @@ test( 'convertToArray() requires either an Array, String, or Object to be provid
 
     // Array
     properties.set( 'parameters', [] );
-    
+
     assert.ok(
         callConvertToArray(),
         'property was an Array'
     );
-    
+
     // String
     properties.set( 'parameters', 'test string' );
-    
+
     assert.ok(
         callConvertToArray(),
         'property was a String'
     );
-    
+
     // Object
     properties.set( 'parameters', {} );
-    
+
     assert.ok(
         callConvertToArray(),
         'property was an Object'
@@ -147,41 +147,41 @@ test( 'convertStringToArray() requires a string to be provided', function( asser
 
     const callConvertStringToArray = () => convertStringToArray( properties.parameters );
 
-    // Null
+    // null
     properties.set( 'parameters', null );
-    
+
     assert.throws(
         callConvertStringToArray,
         'property was null'
     );
 
-    // Undefined
+    // undefined
     properties.set( 'parameters', undefined );
-    
+
     assert.throws(
         callConvertStringToArray,
         'property was undefined'
     );
-    
+
     // Boolean
     properties.set( 'parameters', false );
-    
+
     assert.throws(
         callConvertStringToArray,
         'property was a Boolean'
     );
-    
+
     // Number
     properties.set( 'parameters', 132 );
-    
+
     assert.throws(
         callConvertStringToArray,
         'property was a Number'
     );
-    
+
     // Function
     properties.set( 'parameters', function(){} );
-    
+
     assert.throws(
         callConvertStringToArray,
         'property was a Function'
@@ -189,15 +189,15 @@ test( 'convertStringToArray() requires a string to be provided', function( asser
 
     // Array
     properties.set( 'parameters', [] );
-    
+
     assert.throws(
         callConvertStringToArray,
         'property was an Array'
     );
-        
+
     // Object
     properties.set( 'parameters', {} );
-    
+
     assert.throws(
         callConvertStringToArray,
         'property was an Object'
@@ -205,7 +205,7 @@ test( 'convertStringToArray() requires a string to be provided', function( asser
 
     // String
     properties.set( 'parameters', 'test string' );
-    
+
     assert.ok(
         callConvertStringToArray(),
         'property was a String'
@@ -286,11 +286,11 @@ test( 'doArraysIntersect() requires both parameters to be Arrays', function( ass
         callDoArraysIntersect,
         'First parameter was a string'
     );
-        
+
     // Both Parameters are arrays
     testPropertyOne.set( 'parameter', ['a'] );
     testPropertyTwo.set( 'parameter', ['a'] );
-    
+
     assert.ok(
         callDoArraysIntersect(),
         'Parameters were both array'
