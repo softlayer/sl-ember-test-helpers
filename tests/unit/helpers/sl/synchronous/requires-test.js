@@ -269,7 +269,7 @@ test( 'doArraysIntersect() requires both parameters to be Arrays', function( ass
 
     const callDoArraysIntersect = () => doArraysIntersect( testPropertyOne.parameter, testPropertyTwo.parameter );
 
-    // Second Parameter is not an array
+    // Second parameter is not an array
     testPropertyOne.set( 'parameter', []);
     testPropertyTwo.set( 'parameter', '');
 
@@ -278,7 +278,16 @@ test( 'doArraysIntersect() requires both parameters to be Arrays', function( ass
         'Second parameter was a string'
     );
 
-    // First Parameter is not an array
+    // Both parameters are null
+    testPropertyOne.set( 'parameter', null);
+    testPropertyTwo.set( 'parameter', null);
+
+    assert.throws(
+        callDoArraysIntersect,
+        'Both parameters are null'
+    );
+
+    // First parameter is not an array
     testPropertyOne.set( 'parameter', '');
     testPropertyTwo.set( 'parameter', []);
 
@@ -287,7 +296,7 @@ test( 'doArraysIntersect() requires both parameters to be Arrays', function( ass
         'First parameter was a string'
     );
         
-    // Both Parameters are arrays
+    // Both parameters are arrays
     testPropertyOne.set( 'parameter', ['a'] );
     testPropertyTwo.set( 'parameter', ['a'] );
     

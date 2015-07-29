@@ -14,12 +14,17 @@ import Ember from 'ember';
  */
 let convertToArray = function( underTest ) {
 
+    /* jshint ignore:start */
     Ember.assert(
         'Array, String, or Object must be supplied',
-        'array' === Ember.typeOf( underTest ) ||
-        'string' === Ember.typeOf( underTest ) ||
-        'object' === Ember.typeOf( underTest )
+        (
+            'array' === Ember.typeOf( underTest ) ||
+            'string' === Ember.typeOf( underTest ) ||
+            'object' === Ember.typeOf( underTest )
+        ) &&
+        'symbol' !== typeof underTest
     );
+    /* jshint ignore:end */
 
     let returnArray = underTest;
 
@@ -72,11 +77,14 @@ let convertStringToArray = function( underTest ) {
  */
 let convertObjectKeysToArray = function( underTest ) {
 
+    /* jshint ignore:start */
     Ember.assert(
         'Object must be supplied',
         'object' === Ember.typeOf( underTest ) &&
-        'array' !== Ember.typeOf( underTest )
+        'array' !== Ember.typeOf( underTest ) &&
+        'symbol' !== typeof underTest
     );
+    /* jshint ignore:end */
 
     return Object.keys( underTest );
 };
