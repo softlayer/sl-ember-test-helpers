@@ -39,21 +39,21 @@ test( 'doArraysIntersect() exists', function( assert ) {
 });
 
 test( 'convertToArray() requires either an Array, String, or Object to be provided', function( assert ) {
-    let test = requires(
+    const testDefinition = requires(
         convertToArray,
         [ 'array', 'string', 'object' ]
     );
 
-    assert.ok (
-        test.requires,
-        test.messages
+    assert.ok(
+        testDefinition.requires,
+        testDefinition.messages
     );
 });
 
 test( 'convertToArray() returns expected result', function( assert ) {
-    let testResults1 = convertToArray( [ 'a', 'b' ] );
-    let testResults2 = convertToArray( 'testing things' );
-    let testResults3 = convertToArray( { a: 1, b: 2 } );
+    const testResults1 = convertToArray( [ 'a', 'b' ] );
+    const testResults2 = convertToArray( 'testing things' );
+    const testResults3 = convertToArray( { a: 1, b: 2 } );
 
     assert.ok(
         'array' === Ember.typeOf( testResults1 )
@@ -81,40 +81,47 @@ test( 'convertToArray() returns expected result', function( assert ) {
 });
 
 test( 'convertStringToArray() requires a string to be provided', function( assert ) {
-    let test = requires(
+    const testDefinition = requires(
         convertStringToArray,
         [ 'string' ]
     );
 
-    assert.ok (
-        test.requires,
-        test.messages
+    assert.ok(
+        testDefinition.requires,
+        testDefinition.messages
     );
 });
 
-test( 'convertStringToArray() returns an array with a single element when passed a string without spaces', function( assert ) {
-    assert.deepEqual(
-        convertStringToArray( 'testString' ),
-        [ 'testString' ]
-    );
-});
+test(
+    'convertStringToArray() returns an array with a single element when passed a string without spaces',
+    function( assert ) {
+        assert.deepEqual(
+            convertStringToArray( 'testString' ),
+            [ 'testString' ]
+        );
+    }
+);
 
-test( 'convertStringToArray() returns an array with as many elements as there are "words" represented in a string passed to it containing spaces', function( assert ) {
-    assert.deepEqual(
-        convertStringToArray( 'the test string' ),
-        [ 'the', 'test', 'string' ]
-    );
-});
+test(
+    'convertStringToArray() returns an array with as many elements as there are "words" ' +
+    ' represented in a string passed to it containing spaces',
+    function( assert ) {
+        assert.deepEqual(
+            convertStringToArray( 'the test string' ),
+            [ 'the', 'test', 'string' ]
+        );
+    }
+);
 
 test( 'convertObjectKeysToArray() requires an object to be provided', function( assert ) {
-    let test = requires(
+    const testDefinition = requires(
         convertObjectKeysToArray,
         [ 'object' ]
     );
 
-    assert.ok (
-        test.requires,
-        test.messages
+    assert.ok(
+        testDefinition.requires,
+        testDefinition.messages
     );
 });
 
@@ -197,47 +204,47 @@ test( 'doArraysIntersect() requires both parameters to be Arrays', function( ass
 test( 'doArraysIntersect() functions as expected', function( assert ) {
     assert.ok(
         doArraysIntersect(
-            ['a','b','c'],
-            ['a'] ),
+            [ 'a', 'b', 'c' ],
+            [ 'a' ] ),
         'Single intersection into multiple'
     );
 
     assert.ok(
         doArraysIntersect(
-            ['a','b','c'],
-            ['a','c']
+            [ 'a', 'b', 'c' ],
+            [ 'a', 'c' ]
         ),
         'Multiple intersections into multiple'
     );
 
     assert.ok(
         doArraysIntersect(
-            ['a','b','c'],
-            ['a','c','d']
+            [ 'a', 'b', 'c' ],
+            [ 'a', 'c', 'd' ]
         ),
         'Multiple intersections into multiple with single non-intersection value'
     );
 
     assert.ok(
         !doArraysIntersect(
-            ['a','b','c'],
-            ['d']
+            [ 'a', 'b', 'c' ],
+            [ 'd' ]
         ),
         'Single non-intersection value into multiple'
     );
 
     assert.ok(
         !doArraysIntersect(
-            ['d'],
-            ['a']
+            [ 'd' ],
+            [ 'a' ]
         ),
         'Single non-intersection value into single, with non-intersection value'
     );
 
     assert.ok(
         doArraysIntersect(
-            ['d'],
-            ['a', 'd', 'e']
+            [ 'd' ],
+            [ 'a', 'd', 'e' ]
         ),
         'Multiple intersections into single, with single intersection value'
     );

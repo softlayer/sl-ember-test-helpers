@@ -12,7 +12,7 @@ test( 'it exists', function( assert ) {
 });
 
 test( 'begin() with no parameter triggers "ajaxStart" event on document', function( assert ) {
-    let spy = sinon.spy( Ember.$.prototype, 'trigger' );
+    const spy = window.sinon.spy( Ember.$.prototype, 'trigger' );
 
     AjaxHelper.begin();
 
@@ -25,16 +25,16 @@ test( 'begin() with no parameter triggers "ajaxStart" event on document', functi
 });
 
 test( 'begin() with parameter triggers "ajaxSend" event on document', function( assert ) {
-    let spy = sinon.spy( Ember.$.prototype, 'trigger' );
+    const spy = window.sinon.spy( Ember.$.prototype, 'trigger' );
 
-    AjaxHelper.begin( 'testEndpoint');
+    AjaxHelper.begin( 'testEndpoint' );
 
     assert.equal(
         spy.args[ 0 ][ 0 ],
         'ajaxSend'
     );
     assert.equal(
-        spy.args[ 0 ][ 1 ][ 1 ][ 'url' ],
+        spy.args[ 0 ][ 1 ][ 1 ].url,
         'testEndpoint'
     );
 
@@ -42,7 +42,7 @@ test( 'begin() with parameter triggers "ajaxSend" event on document', function( 
 });
 
 test( 'end() with no parameter triggers "ajaxStop" event on document', function( assert ) {
-    let spy = sinon.spy( Ember.$.prototype, 'trigger' );
+    const spy = window.sinon.spy( Ember.$.prototype, 'trigger' );
 
     AjaxHelper.end();
 
@@ -55,7 +55,7 @@ test( 'end() with no parameter triggers "ajaxStop" event on document', function(
 });
 
 test( 'end() with parameter triggers "ajaxComplete" event on document', function( assert ) {
-    let spy = sinon.spy( Ember.$.prototype, 'trigger' );
+    const spy = window.sinon.spy( Ember.$.prototype, 'trigger' );
 
     AjaxHelper.end( 'testEndpoint' );
 
@@ -64,7 +64,7 @@ test( 'end() with parameter triggers "ajaxComplete" event on document', function
         'ajaxComplete'
     );
     assert.equal(
-        spy.args[ 0 ][ 1 ][ 1 ][ 'url' ],
+        spy.args[ 0 ][ 1 ][ 1 ].url,
         'testEndpoint'
     );
 

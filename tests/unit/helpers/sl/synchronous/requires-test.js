@@ -86,7 +86,7 @@ test( 'First argument must be a function', function( assert ) {
 
     try {
         requires(
-            function(){},
+            function() {},
             false
         );
     } catch( error ) {
@@ -226,8 +226,8 @@ test( 'Second argument must be an array', function( assert ) {
 
     try {
         requires(
-            function(){},
-            function(){}
+            function() {},
+            function() {}
         );
     } catch( error ) {
         assertionThrown = true;
@@ -292,50 +292,50 @@ test( 'Second argument must be an array', function( assert ) {
 });
 
 test( 'Return type', function( assert ) {
-    let testFunction = function( first ) {
+    const testFunction = function( first ) {
         Ember.assert(
             'Test argument must be a function or boolean',
             'function' === Ember.typeOf( first ) ||
             'boolean' === Ember.typeOf( first )
         );
-    },
-    test = requires(
+    };
+
+    const testDefinition = requires(
         testFunction,
         [ 'function', 'boolean' ]
     );
 
     assert.deepEqual(
-        test,
+        testDefinition,
         { requires: true, messages: '' },
         'Returns expected object'
     );
 });
 
 test( 'Functions as expected', function( assert ) {
-    let testFunction = function( first ) {
+    const testFunction = function( first ) {
         Ember.assert(
             'Test argument must be a function or boolean',
             'function' === Ember.typeOf( first ) ||
             'boolean' === Ember.typeOf( first )
         );
-    },
-    test;
+    };
 
-    test = requires(
+    let testDefinition = requires(
         testFunction,
         [ 'function', 'boolean' ]
     );
-    assert.ok (
-        test.requires,
+    assert.ok(
+        testDefinition.requires,
         'Functioned as expected when passed desired argument types: ' + test.messages
     );
 
-    test = requires(
+    testDefinition = requires(
         testFunction,
         [ 'function', 'boolean', 'string' ]
     );
-    assert.ok (
-        !test.requires,
+    assert.ok(
+        !testDefinition.requires,
         'Functioned as expected when passed undesired argument types: ' + test.messages
     );
 });
