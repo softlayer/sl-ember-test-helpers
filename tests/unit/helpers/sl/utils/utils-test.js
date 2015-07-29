@@ -39,14 +39,74 @@ test( 'doArraysIntersect() exists', function( assert ) {
 });
 
 test( 'convertToArray() requires either an Array, String, or Object to be provided', function( assert ) {
-    let test = requires(
-        convertToArray,
-        [ 'array', 'string', 'object' ]
+    const properties = Ember.Object.create({
+        parameters: undefined
+    });
+
+    const callConvertToArray = () => convertToArray( properties.parameters );
+
+    // Null
+    properties.set( 'parameters', null );
+    
+    assert.throws(
+        callConvertToArray,
+        'property was null'
     );
 
-    assert.ok (
-        test.requires,
-        test.messages
+    // Undefined
+    properties.set( 'parameters', undefined );
+    
+    assert.throws(
+        callConvertToArray,
+        'property was undefined'
+    );
+    
+    // Boolean
+    properties.set( 'parameters', false );
+    
+    assert.throws(
+        callConvertToArray,
+        'property was a Boolean'
+    );
+    
+    // Number
+    properties.set( 'parameters', 132 );
+    
+    assert.throws(
+        callConvertToArray,
+        'property was a Number'
+    );
+    
+    // Function
+    properties.set( 'parameters', function(){} );
+    
+    assert.throws(
+        callConvertToArray,
+        'property was a Function'
+    );
+
+    // Array
+    properties.set( 'parameters', [] );
+    
+    assert.ok(
+        callConvertToArray(),
+        'property was an Array'
+    );
+    
+    // String
+    properties.set( 'parameters', 'test string' );
+    
+    assert.ok(
+        callConvertToArray(),
+        'property was a String'
+    );
+    
+    // Object
+    properties.set( 'parameters', {} );
+    
+    assert.ok(
+        callConvertToArray(),
+        'property was an Object'
     );
 });
 
@@ -81,14 +141,74 @@ test( 'convertToArray() returns expected result', function( assert ) {
 });
 
 test( 'convertStringToArray() requires a string to be provided', function( assert ) {
-    let test = requires(
-        convertStringToArray,
-        [ 'string' ]
+    const properties = Ember.Object.create({
+        parameters: undefined
+    });
+
+    const callConvertStringToArray = () => convertStringToArray( properties.parameters );
+
+    // Null
+    properties.set( 'parameters', null );
+    
+    assert.throws(
+        callConvertStringToArray,
+        'property was null'
     );
 
-    assert.ok (
-        test.requires,
-        test.messages
+    // Undefined
+    properties.set( 'parameters', undefined );
+    
+    assert.throws(
+        callConvertStringToArray,
+        'property was undefined'
+    );
+    
+    // Boolean
+    properties.set( 'parameters', false );
+    
+    assert.throws(
+        callConvertStringToArray,
+        'property was a Boolean'
+    );
+    
+    // Number
+    properties.set( 'parameters', 132 );
+    
+    assert.throws(
+        callConvertStringToArray,
+        'property was a Number'
+    );
+    
+    // Function
+    properties.set( 'parameters', function(){} );
+    
+    assert.throws(
+        callConvertStringToArray,
+        'property was a Function'
+    );
+
+    // Array
+    properties.set( 'parameters', [] );
+    
+    assert.throws(
+        callConvertStringToArray,
+        'property was an Array'
+    );
+        
+    // Object
+    properties.set( 'parameters', {} );
+    
+    assert.throws(
+        callConvertStringToArray,
+        'property was an Object'
+    );
+
+    // String
+    properties.set( 'parameters', 'test string' );
+    
+    assert.ok(
+        callConvertStringToArray(),
+        'property was a String'
     );
 });
 
@@ -139,58 +259,41 @@ test( 'convertObjectKeysToArray() returns an array of object properties', functi
 });
 
 test( 'doArraysIntersect() requires both parameters to be Arrays', function( assert ) {
-    // First parameter not an Array, second one is
+    const testPropertyOne = Ember.Object.create({
+        parameter: undefined
+    });
 
-    let assertionThrown = false;
+    const testPropertyTwo = Ember.Object.create({
+        parameter: undefined
+    });
 
-    try {
-        doArraysIntersect(
-            '',
-            []
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
+    const callDoArraysIntersect = () => doArraysIntersect( testPropertyOne.parameter, testPropertyTwo.parameter );
 
-    assert.ok(
-        assertionThrown,
-        'First parameter was not an Array'
+    // Second Parameter is not an array
+    testPropertyOne.set( 'parameter', []);
+    testPropertyTwo.set( 'parameter', '');
+
+    assert.throws(
+        callDoArraysIntersect,
+        'Second parameter was a string'
     );
 
-    // First parameter is an Array, second one is not
+    // First Parameter is not an array
+    testPropertyOne.set( 'parameter', '');
+    testPropertyTwo.set( 'parameter', []);
 
-    assertionThrown = false;
-
-    try {
-        doArraysIntersect(
-            [],
-            ''
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
-        'Second parameter was not an Array'
+    assert.throws(
+        callDoArraysIntersect,
+        'First parameter was a string'
     );
-
-    // Both parameters are Arrays
-
-    assertionThrown = false;
-
-    try {
-        doArraysIntersect(
-            [],
-            []
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
+        
+    // Both Parameters are arrays
+    testPropertyOne.set( 'parameter', ['a'] );
+    testPropertyTwo.set( 'parameter', ['a'] );
+    
     assert.ok(
-        !assertionThrown,
-        'Both parameters were Arrays'
+        callDoArraysIntersect(),
+        'Parameters were both array'
     );
 });
 

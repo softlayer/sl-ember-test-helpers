@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { test } from 'ember-qunit';
 import contains from '../../../../helpers/sl/synchronous/contains';
 
@@ -13,237 +14,153 @@ test( 'it exists', function( assert ) {
 });
 
 test( 'First non-optional argument must be an array, string or object', function( assert ) {
+    const testPropertyOne = Ember.Object.create({
+        parameter: 'null'
+    });
+
+    const testPropertyTwo = Ember.Object.create({
+        parameter: 'null'
+    });
+
+    const callContains = () => contains( testPropertyOne.parameter, testPropertyTwo.parameter );
 
     // Number
-    let assertionThrown = false;
+    testPropertyOne.set( 'parameter', 2 );
+    testPropertyTwo.set( 'parameter', [] );
 
-    try {
-        contains( 12 );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callContains,
         'First parameter was a number'
     );
 
-    // String
-    assertionThrown = false;
+    // Function
+    testPropertyOne.set( 'parameter', function(){} );
+    testPropertyTwo.set( 'parameter', [] );
 
-    try {
-        contains(
-            'testString',
-            {}
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
+    assert.throws(
+        callContains,
+        'First parameter was a function'
+    );
+    
+    // Boolean
+    testPropertyOne.set( 'parameter', false );
+    testPropertyTwo.set( 'parameter', [] );
 
-    assert.ok(
-        !assertionThrown,
-        'First parameter was a string'
+    assert.throws(
+        callContains,
+        'First parameter was false'
+    );
+
+    // Undefined
+    testPropertyOne.set( 'parameter', undefined );
+    testPropertyTwo.set( 'parameter', [] );
+
+    assert.throws(
+        callContains,
+        'First parameter was undefined'
     );
 
     // Array
-    assertionThrown = false;
-
-    try {
-        contains(
-            [],
-            {}
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
+    testPropertyOne.set( 'parameter', ['2'] );
+    testPropertyTwo.set( 'parameter', ['2'] );
 
     assert.ok(
-        !assertionThrown,
+        callContains(),
         'First parameter was an array'
     );
 
     // Object
-    assertionThrown = false;
-
-    try {
-        contains(
-            {},
-            {}
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
+    testPropertyOne.set( 'parameter', { test: 'test' } );
+    testPropertyTwo.set( 'parameter', { test: 'test' } );
 
     assert.ok(
-        !assertionThrown,
+        callContains(),
         'First parameter was an object'
     );
 
-    // Function
-    assertionThrown = false;
-
-    try {
-        contains( function(){} );
-    } catch( error ) {
-        assertionThrown = true;
-    }
+    // String
+    testPropertyOne.set( 'parameter', 'testString' );
+    testPropertyTwo.set( 'parameter', 'testString' );
 
     assert.ok(
-        assertionThrown,
-        'First parameter was a function'
+        callContains(),
+        'First parameter was a string'
     );
-
-    // Undefined
-    assertionThrown = false;
-
-    try {
-        contains( undefined );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
-        'First parameter was undefined'
-    );
-
-    // Boolean
-    assertionThrown = false;
-
-    try {
-        contains( true );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
-        'First parameter was a boolean'
-    );
-
 });
 
 test( 'Second non-optional argument must be an array, string or object', function( assert ) {
+    const testPropertyOne = Ember.Object.create({
+        parameter: 'null'
+    });
+
+    const testPropertyTwo = Ember.Object.create({
+        parameter: 'null'
+    });
+
+    const callContains = () => contains( testPropertyOne.parameter, testPropertyTwo.parameter );
 
     // Number
-    let assertionThrown = false;
+    testPropertyOne.set( 'parameter', [] );
+    testPropertyTwo.set( 'parameter', 2 );
 
-    try {
-        contains(
-            {},
-            12
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callContains,
         'Second parameter was a number'
     );
 
-    // String
-    assertionThrown = false;
-
-    try {
-        contains(
-            {},
-            'testString'
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        !assertionThrown,
-        'Second parameter was a string'
-    );
-
-    // Array
-    assertionThrown = false;
-
-    try {
-        contains(
-            {},
-            []
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        !assertionThrown,
-        'Second parameter was an array'
-    );
-
-    // Object
-    assertionThrown = false;
-
-    try {
-        contains(
-            {},
-            {}
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        !assertionThrown,
-        'Second parameter was an object'
-    );
-
     // Function
-    assertionThrown = false;
+    testPropertyOne.set( 'parameter', [] );
+    testPropertyTwo.set( 'parameter', function(){} );
 
-    try {
-        contains(
-            {},
-            function(){}
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
+    assert.throws(
+        callContains,
+        'second parameter was a function'
+    );
+    
+    // Boolean
+    testPropertyOne.set( 'parameter', [] );
+    testPropertyTwo.set( 'parameter', false );
 
-    assert.ok(
-        assertionThrown,
-        'Second parameter was a function'
+    assert.throws(
+        callContains,
+        'second parameter was false'
     );
 
     // Undefined
-    assertionThrown = false;
+    testPropertyOne.set( 'parameter', [] );
+    testPropertyTwo.set( 'parameter', undefined );
 
-    try {
-        contains(
-            {},
-            undefined
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
-        'Second parameter was undefined'
+    assert.throws(
+        callContains,
+        'second parameter was undefined'
     );
 
-    // Boolean
-    assertionThrown = false;
-
-    try {
-        contains(
-            {},
-            true
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
+    // Array
+    testPropertyOne.set( 'parameter', ['2'] );
+    testPropertyTwo.set( 'parameter', ['2'] );
 
     assert.ok(
-        assertionThrown,
-        'Second parameter was a boolean'
+        callContains(),
+        'First parameter was an array'
     );
 
+    // Object
+    testPropertyOne.set( 'parameter', {test:'test'} );
+    testPropertyTwo.set( 'parameter', {test: 'test'} );
+
+    assert.ok(
+        callContains(),
+        'First parameter was an object'
+    );
+
+    // String
+    testPropertyOne.set( 'parameter', 'testString' );
+    testPropertyTwo.set( 'parameter', 'testString' );
+
+    assert.ok(
+        callContains(),
+        'First parameter was a string'
+    );
 });
 
 test( 'Returns value from call to doArraysIntersect()', function( assert ) {
