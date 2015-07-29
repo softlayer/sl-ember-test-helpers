@@ -56,7 +56,7 @@ test( 'First argument must be a function', function( assert ) {
     );
 
     // Function
-    testPropertyOne.set( 'parameter', function(){} );
+    testPropertyOne.set( 'parameter', function() {} );
 
     assert.throws(
         callRequires,
@@ -80,7 +80,7 @@ test( 'First argument must be a function', function( assert ) {
     );
 
     // Function, Array
-    testPropertyOne.set( 'parameter', function(){} );
+    testPropertyOne.set( 'parameter', function() {} );
     testPropertyTwo.set( 'parameter', [] );
 
     assert.ok(
@@ -137,8 +137,8 @@ test( 'Second argument must be an array', function( assert ) {
     );
 
     // Function
-    testPropertyOne.set( 'parameter', function(){} );
-    testPropertyTwo.set( 'parameter', function(){} );
+    testPropertyOne.set( 'parameter', function() {} );
+    testPropertyTwo.set( 'parameter', function() {} );
 
     assert.throws(
         callRequires,
@@ -164,7 +164,7 @@ test( 'Second argument must be an array', function( assert ) {
     );
 
     // Function, Array
-    testPropertyOne.set( 'parameter', function(){} );
+    testPropertyOne.set( 'parameter', function() {} );
     testPropertyTwo.set( 'parameter', [] );
 
     assert.ok(
@@ -174,50 +174,52 @@ test( 'Second argument must be an array', function( assert ) {
 });
 
 test( 'Return type', function( assert ) {
-    let testFunction = function( first ) {
+    const testFunction = function( first ) {
         Ember.assert(
             'Test argument must be a function or boolean',
             'function' === Ember.typeOf( first ) ||
             'boolean' === Ember.typeOf( first )
         );
-    },
-    test = requires(
+    };
+
+    const returnTypeTest = requires(
         testFunction,
         [ 'function', 'boolean' ]
     );
 
     assert.deepEqual(
-        test,
+        returnTypeTest,
         { requires: true, messages: '' },
         'Returns expected object'
     );
 });
 
 test( 'Functions as expected', function( assert ) {
-    let testFunction = function( first ) {
+    const testFunction = function( first ) {
         Ember.assert(
             'Test argument must be a function or boolean',
             'function' === Ember.typeOf( first ) ||
             'boolean' === Ember.typeOf( first )
         );
-    },
-    test;
+    };
 
-    test = requires(
+    let functionTest = requires(
         testFunction,
         [ 'function', 'boolean' ]
     );
-    assert.ok (
-        test.requires,
-        'Functioned as expected when passed desired argument types: ' + test.messages
+
+    assert.ok(
+        functionTest.requires,
+        'Functioned as expected when passed desired argument types: ' + functionTest.messages
     );
 
-    test = requires(
+    functionTest = requires(
         testFunction,
         [ 'function', 'boolean', 'string' ]
     );
-    assert.ok (
-        !test.requires,
-        'Functioned as expected when passed undesired argument types: ' + test.messages
+
+    assert.ok(
+        !functionTest.requires,
+        'Functioned as expected when passed undesired argument types: ' + functionTest.messages
     );
 });

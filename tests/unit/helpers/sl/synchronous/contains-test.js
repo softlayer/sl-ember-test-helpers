@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { test } from 'ember-qunit';
 import contains from '../../../../helpers/sl/synchronous/contains';
 
-let utils = require( 'dummy/tests/helpers/sl/utils/utils' );
+const utils = require( 'dummy/tests/helpers/sl/utils/utils' );
 
 module( 'Unit | Helper | sl/synchronous/contains' );
 
@@ -34,7 +34,7 @@ test( 'First non-optional argument must be an array, string or object', function
     );
 
     // function
-    testPropertyOne.set( 'parameter', function(){} );
+    testPropertyOne.set( 'parameter', function() {} );
     testPropertyTwo.set( 'parameter', [] );
 
     assert.throws(
@@ -61,8 +61,8 @@ test( 'First non-optional argument must be an array, string or object', function
     );
 
     // Array
-    testPropertyOne.set( 'parameter', ['2'] );
-    testPropertyTwo.set( 'parameter', ['2'] );
+    testPropertyOne.set( 'parameter', [ '2' ] );
+    testPropertyTwo.set( 'parameter', [ '2' ] );
 
     assert.ok(
         callContains(),
@@ -110,7 +110,7 @@ test( 'Second non-optional argument must be an array, string or object', functio
 
     // function
     testPropertyOne.set( 'parameter', [] );
-    testPropertyTwo.set( 'parameter', function(){} );
+    testPropertyTwo.set( 'parameter', function() {} );
 
     assert.throws(
         callContains,
@@ -136,8 +136,8 @@ test( 'Second non-optional argument must be an array, string or object', functio
     );
 
     // String
-    testPropertyOne.set( 'parameter', ['2'] );
-    testPropertyTwo.set( 'parameter', ['2'] );
+    testPropertyOne.set( 'parameter', [ '2' ] );
+    testPropertyTwo.set( 'parameter', [ '2' ] );
 
     assert.ok(
         callContains(),
@@ -145,8 +145,8 @@ test( 'Second non-optional argument must be an array, string or object', functio
     );
 
     // String
-    testPropertyOne.set( 'parameter', {test:'test'} );
-    testPropertyTwo.set( 'parameter', {test: 'test'} );
+    testPropertyOne.set( 'parameter', { test: 'test'} );
+    testPropertyTwo.set( 'parameter', { test: 'test'} );
 
     assert.ok(
         callContains(),
@@ -164,7 +164,7 @@ test( 'Second non-optional argument must be an array, string or object', functio
 });
 
 test( 'Returns value from call to doArraysIntersect()', function( assert ) {
-    let spy = sinon.spy( utils, 'doArraysIntersect' );
+    const spy = window.sinon.spy( utils, 'doArraysIntersect' );
 
     contains(
         [],
@@ -180,7 +180,7 @@ test( 'Returns value from call to doArraysIntersect()', function( assert ) {
 });
 
 test( 'Arguments are passed to doArraysIntersect() in the correct order', function( assert ) {
-    let spy = sinon.spy( utils, 'doArraysIntersect' );
+    const spy = window.sinon.spy( utils, 'doArraysIntersect' );
 
     contains(
         'b',

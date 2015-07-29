@@ -78,7 +78,7 @@ test( 'convertToArray() requires either an Array, String, or Object to be provid
     );
 
     // Function
-    properties.set( 'parameters', function(){} );
+    properties.set( 'parameters', function() {} );
 
     assert.throws(
         callConvertToArray,
@@ -111,9 +111,9 @@ test( 'convertToArray() requires either an Array, String, or Object to be provid
 });
 
 test( 'convertToArray() returns expected result', function( assert ) {
-    let testResults1 = convertToArray( [ 'a', 'b' ] );
-    let testResults2 = convertToArray( 'testing things' );
-    let testResults3 = convertToArray( { a: 1, b: 2 } );
+    const testResults1 = convertToArray( [ 'a', 'b' ] );
+    const testResults2 = convertToArray( 'testing things' );
+    const testResults3 = convertToArray( { a: 1, b: 2 } );
 
     assert.ok(
         'array' === Ember.typeOf( testResults1 )
@@ -180,7 +180,7 @@ test( 'convertStringToArray() requires a string to be provided', function( asser
     );
 
     // Function
-    properties.set( 'parameters', function(){} );
+    properties.set( 'parameters', function() {} );
 
     assert.throws(
         callConvertStringToArray,
@@ -212,14 +212,16 @@ test( 'convertStringToArray() requires a string to be provided', function( asser
     );
 });
 
-test( 'convertStringToArray() returns an array with a single element when passed a string without spaces', function( assert ) {
+test( 'convertStringToArray() returns an array with a single' +
+      'element when passed a string without spaces', function( assert ) {
     assert.deepEqual(
         convertStringToArray( 'testString' ),
         [ 'testString' ]
     );
 });
 
-test( 'convertStringToArray() returns an array with as many elements as there are "words" represented in a string passed to it containing spaces', function( assert ) {
+test( 'convertStringToArray() returns an array with as many elements as there' +
+      'are "words" represented in a string passed to it containing spaces', function( assert ) {
     assert.deepEqual(
         convertStringToArray( 'the test string' ),
         [ 'the', 'test', 'string' ]
@@ -227,14 +229,14 @@ test( 'convertStringToArray() returns an array with as many elements as there ar
 });
 
 test( 'convertObjectKeysToArray() requires an object to be provided', function( assert ) {
-    let test = requires(
+    const requiredObjectTest = requires(
         convertObjectKeysToArray,
         [ 'object' ]
     );
 
-    assert.ok (
-        test.requires,
-        test.messages
+    assert.ok(
+        requiredObjectTest.requires,
+        requiredObjectTest.messages
     );
 });
 
@@ -270,8 +272,8 @@ test( 'doArraysIntersect() requires both parameters to be Arrays', function( ass
     const callDoArraysIntersect = () => doArraysIntersect( testPropertyOne.parameter, testPropertyTwo.parameter );
 
     // Second Parameter is not an array
-    testPropertyOne.set( 'parameter', []);
-    testPropertyTwo.set( 'parameter', '');
+    testPropertyOne.set( 'parameter', [] );
+    testPropertyTwo.set( 'parameter', '' );
 
     assert.throws(
         callDoArraysIntersect,
@@ -279,8 +281,8 @@ test( 'doArraysIntersect() requires both parameters to be Arrays', function( ass
     );
 
     // First Parameter is not an array
-    testPropertyOne.set( 'parameter', '');
-    testPropertyTwo.set( 'parameter', []);
+    testPropertyOne.set( 'parameter', '' );
+    testPropertyTwo.set( 'parameter', [] );
 
     assert.throws(
         callDoArraysIntersect,
@@ -288,8 +290,8 @@ test( 'doArraysIntersect() requires both parameters to be Arrays', function( ass
     );
 
     // Both Parameters are arrays
-    testPropertyOne.set( 'parameter', ['a'] );
-    testPropertyTwo.set( 'parameter', ['a'] );
+    testPropertyOne.set( 'parameter', [ 'a' ] );
+    testPropertyTwo.set( 'parameter', [ 'a' ] );
 
     assert.ok(
         callDoArraysIntersect(),
@@ -300,47 +302,47 @@ test( 'doArraysIntersect() requires both parameters to be Arrays', function( ass
 test( 'doArraysIntersect() functions as expected', function( assert ) {
     assert.ok(
         doArraysIntersect(
-            ['a','b','c'],
-            ['a'] ),
+            [ 'a', 'b', 'c' ],
+            [ 'a' ] ),
         'Single intersection into multiple'
     );
 
     assert.ok(
         doArraysIntersect(
-            ['a','b','c'],
-            ['a','c']
+            [ 'a', 'b', 'c' ],
+            [ 'a', 'c' ]
         ),
         'Multiple intersections into multiple'
     );
 
     assert.ok(
         doArraysIntersect(
-            ['a','b','c'],
-            ['a','c','d']
+            [ 'a', 'b', 'c' ],
+            [ 'a', 'c', 'd' ]
         ),
         'Multiple intersections into multiple with single non-intersection value'
     );
 
     assert.ok(
         !doArraysIntersect(
-            ['a','b','c'],
-            ['d']
+            [ 'a', 'b', 'c' ],
+            [ 'd' ]
         ),
         'Single non-intersection value into multiple'
     );
 
     assert.ok(
         !doArraysIntersect(
-            ['d'],
-            ['a']
+            [ 'd' ],
+            [ 'a' ]
         ),
         'Single non-intersection value into single, with non-intersection value'
     );
 
     assert.ok(
         doArraysIntersect(
-            ['d'],
-            ['a', 'd', 'e']
+            [ 'd' ],
+            [ 'a', 'd', 'e' ]
         ),
         'Multiple intersections into single, with single intersection value'
     );
