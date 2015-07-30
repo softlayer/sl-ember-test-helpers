@@ -24,7 +24,7 @@ test( 'First argument must be a function', function( assert ) {
 
     // Number
     testPropertyOne.set( 'parameter', 123 );
-    testPropertyTwo.set( 'parameter', false );
+    testPropertyTwo.set( 'parameter', [] );
 
     assert.throws(
         callRequires,
@@ -55,14 +55,6 @@ test( 'First argument must be a function', function( assert ) {
         'First parameter was an object'
     );
 
-    // Function
-    testPropertyOne.set( 'parameter', function() {} );
-
-    assert.throws(
-        callRequires,
-        'First parameter was a function'
-    );
-
     // Undefined
     testPropertyOne.set( 'parameter', undefined );
 
@@ -81,7 +73,6 @@ test( 'First argument must be a function', function( assert ) {
 
     // Function, Array
     testPropertyOne.set( 'parameter', function() {} );
-    testPropertyTwo.set( 'parameter', [] );
 
     assert.ok(
         callRequires(),
@@ -101,7 +92,7 @@ test( 'Second argument must be an array', function( assert ) {
     const callRequires = () => requires( testPropertyOne.parameter, testPropertyTwo.parameter );
 
     // Number
-    testPropertyOne.set( 'parameter', 123 );
+    testPropertyOne.set( 'parameter', function() {} );
     testPropertyTwo.set( 'parameter', 123 );
 
     assert.throws(
@@ -110,7 +101,6 @@ test( 'Second argument must be an array', function( assert ) {
     );
 
     // String
-    testPropertyOne.set( 'parameter', 'testString' );
     testPropertyTwo.set( 'parameter', 'testString' );
 
     assert.throws(
@@ -118,17 +108,7 @@ test( 'Second argument must be an array', function( assert ) {
         'Second parameter was a string'
     );
 
-    // Array
-    testPropertyOne.set( 'parameter', [] );
-    testPropertyTwo.set( 'parameter', [] );
-
-    assert.throws(
-        callRequires,
-        'Second parameter was an array'
-    );
-
     // Object
-    testPropertyOne.set( 'parameter', {} );
     testPropertyTwo.set( 'parameter', {} );
 
     assert.throws(
@@ -137,7 +117,6 @@ test( 'Second argument must be an array', function( assert ) {
     );
 
     // Function
-    testPropertyOne.set( 'parameter', function() {} );
     testPropertyTwo.set( 'parameter', function() {} );
 
     assert.throws(
@@ -146,7 +125,6 @@ test( 'Second argument must be an array', function( assert ) {
     );
 
     // Undefined
-    testPropertyOne.set( 'parameter', undefined );
     testPropertyTwo.set( 'parameter', undefined );
 
     assert.throws(
@@ -155,7 +133,6 @@ test( 'Second argument must be an array', function( assert ) {
     );
 
     // Boolean
-    testPropertyOne.set( 'parameter', false );
     testPropertyTwo.set( 'parameter', false );
 
     assert.throws(
@@ -164,7 +141,6 @@ test( 'Second argument must be an array', function( assert ) {
     );
 
     // Function, Array
-    testPropertyOne.set( 'parameter', function() {} );
     testPropertyTwo.set( 'parameter', [] );
 
     assert.ok(
