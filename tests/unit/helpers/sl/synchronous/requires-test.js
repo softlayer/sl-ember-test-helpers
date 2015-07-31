@@ -71,12 +71,12 @@ test( 'First argument must be a function', function( assert ) {
         'First parameter was a boolean'
     );
 
-    // Function, Array
+    // Function
     testPropertyOne.set( 'parameter', function() {} );
 
     assert.ok(
         callRequires(),
-        'First parameter was a function and second parameter is an array'
+        'First parameter was a function'
     );
 });
 
@@ -140,12 +140,12 @@ test( 'Second argument must be an array', function( assert ) {
         'Second parameter was a boolean'
     );
 
-    // Function, Array
+    // Array
     testPropertyTwo.set( 'parameter', [] );
 
     assert.ok(
         callRequires(),
-        'First parameter was a function and second parameter and array'
+        'Second parameter was an array'
     );
 });
 

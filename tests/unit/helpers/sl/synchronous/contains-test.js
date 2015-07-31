@@ -135,7 +135,7 @@ test( 'Second non-optional argument must be an array, string or object', functio
         'second parameter was undefined'
     );
 
-    // String
+    // Array
     testPropertyOne.set( 'parameter', [ '2' ] );
     testPropertyTwo.set( 'parameter', [ '2' ] );
 
@@ -144,7 +144,7 @@ test( 'Second non-optional argument must be an array, string or object', functio
         'First parameter was an array'
     );
 
-    // String
+    // Object
     testPropertyOne.set( 'parameter', { test: 'test'} );
     testPropertyTwo.set( 'parameter', { test: 'test'} );
 
