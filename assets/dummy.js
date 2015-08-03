@@ -1,7 +1,17 @@
+"use strict";
 /* jshint ignore:start */
 
 /* jshint ignore:end */
 
+define('dummy/acceptance-tests/main', ['exports', 'ember-cli-sri/acceptance-tests/main'], function (exports, main) {
+
+	'use strict';
+
+
+
+	exports['default'] = main['default'];
+
+});
 define('dummy/app', ['exports', 'ember', 'ember/resolver', 'ember/load-initializers', 'dummy/config/environment'], function (exports, Ember, Resolver, loadInitializers, config) {
 
     'use strict';
@@ -35,25 +45,6 @@ define('dummy/controllers/object', ['exports', 'ember'], function (exports, Embe
 	exports['default'] = Ember['default'].Controller;
 
 });
-define('dummy/initializers/app-version', ['exports', 'dummy/config/environment', 'ember'], function (exports, config, Ember) {
-
-  'use strict';
-
-  var classify = Ember['default'].String.classify;
-  var registered = false;
-
-  exports['default'] = {
-    name: 'App Version',
-    initialize: function initialize(container, application) {
-      if (!registered) {
-        var appName = classify(application.toString());
-        Ember['default'].libraries.register(appName, config['default'].APP.version);
-        registered = true;
-      }
-    }
-  };
-
-});
 define('dummy/initializers/export-application-global', ['exports', 'ember', 'dummy/config/environment'], function (exports, Ember, config) {
 
   'use strict';
@@ -61,10 +52,26 @@ define('dummy/initializers/export-application-global', ['exports', 'ember', 'dum
   exports.initialize = initialize;
 
   function initialize(container, application) {
-    var classifiedName = Ember['default'].String.classify(config['default'].modulePrefix);
+    if (config['default'].exportApplicationGlobal !== false) {
+      var value = config['default'].exportApplicationGlobal;
+      var globalName;
 
-    if (config['default'].exportApplicationGlobal && !window[classifiedName]) {
-      window[classifiedName] = application;
+      if (typeof value === 'string') {
+        globalName = value;
+      } else {
+        globalName = Ember['default'].String.classify(config['default'].modulePrefix);
+      }
+
+      if (!window[globalName]) {
+        window[globalName] = application;
+
+        application.reopen({
+          willDestroy: function willDestroy() {
+            this._super.apply(this, arguments);
+            delete window[globalName];
+          }
+        });
+      }
     }
   }
 
@@ -77,6 +84,25 @@ define('dummy/initializers/export-application-global', ['exports', 'ember', 'dum
   };
 
 });
+define('dummy/instance-initializers/app-version', ['exports', 'dummy/config/environment', 'ember'], function (exports, config, Ember) {
+
+  'use strict';
+
+  var classify = Ember['default'].String.classify;
+  var registered = false;
+
+  exports['default'] = {
+    name: 'App Version',
+    initialize: function initialize(application) {
+      if (!registered) {
+        var appName = classify(application.toString());
+        Ember['default'].libraries.register(appName, config['default'].APP.version);
+        registered = true;
+      }
+    }
+  };
+
+});
 define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], function (exports, Ember, config) {
 
     'use strict';
@@ -85,7 +111,9 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
         location: config['default'].locationType
     });
 
-    exports['default'] = Router.map(function () {});
+    Router.map(function () {});
+
+    exports['default'] = Router;
 
 });
 define('dummy/templates/application', ['exports'], function (exports) {
@@ -95,12 +123,25 @@ define('dummy/templates/application', ['exports'], function (exports) {
   exports['default'] = Ember.HTMLBars.template((function() {
     var child0 = (function() {
       return {
-        isHTMLBars: true,
-        revision: "Ember@1.12.0",
-        blockParams: 0,
+        meta: {
+          "revision": "Ember@1.13.5",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 12,
+              "column": 20
+            },
+            "end": {
+              "line": 12,
+              "column": 71
+            }
+          },
+          "moduleName": "dummy/templates/application.hbs"
+        },
+        arity: 0,
         cachedFragment: null,
         hasRendered: false,
-        build: function build(dom) {
+        buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
           var el1 = dom.createElement("i");
           dom.setAttribute(el1,"class","fa fa-home");
@@ -109,36 +150,34 @@ define('dummy/templates/application', ['exports'], function (exports) {
           dom.appendChild(el0, el1);
           return el0;
         },
-        render: function render(context, env, contextualElement) {
-          var dom = env.dom;
-          dom.detectNamespace(contextualElement);
-          var fragment;
-          if (env.useFragmentCache && dom.canClone) {
-            if (this.cachedFragment === null) {
-              fragment = this.build(dom);
-              if (this.hasRendered) {
-                this.cachedFragment = fragment;
-              } else {
-                this.hasRendered = true;
-              }
-            }
-            if (this.cachedFragment) {
-              fragment = dom.cloneNode(this.cachedFragment, true);
-            }
-          } else {
-            fragment = this.build(dom);
-          }
-          return fragment;
-        }
+        buildRenderNodes: function buildRenderNodes() { return []; },
+        statements: [
+
+        ],
+        locals: [],
+        templates: []
       };
     }());
     return {
-      isHTMLBars: true,
-      revision: "Ember@1.12.0",
-      blockParams: 0,
+      meta: {
+        "revision": "Ember@1.13.5",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 32,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/templates/application.hbs"
+      },
+      arity: 0,
       cachedFragment: null,
       hasRendered: false,
-      build: function build(dom) {
+      buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("br");
         dom.appendChild(el0, el1);
@@ -296,33 +335,19 @@ define('dummy/templates/application', ['exports'], function (exports) {
         dom.appendChild(el0, el1);
         return el0;
       },
-      render: function render(context, env, contextualElement) {
-        var dom = env.dom;
-        var hooks = env.hooks, block = hooks.block, content = hooks.content;
-        dom.detectNamespace(contextualElement);
-        var fragment;
-        if (env.useFragmentCache && dom.canClone) {
-          if (this.cachedFragment === null) {
-            fragment = this.build(dom);
-            if (this.hasRendered) {
-              this.cachedFragment = fragment;
-            } else {
-              this.hasRendered = true;
-            }
-          }
-          if (this.cachedFragment) {
-            fragment = dom.cloneNode(this.cachedFragment, true);
-          }
-        } else {
-          fragment = this.build(dom);
-        }
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element0 = dom.childAt(fragment, [2]);
-        var morph0 = dom.createMorphAt(dom.childAt(element0, [1, 1, 1, 3, 1]),0,0);
-        var morph1 = dom.createMorphAt(element0,3,3);
-        block(env, morph0, context, "link-to", ["index"], {}, child0, null);
-        content(env, morph1, context, "outlet");
-        return fragment;
-      }
+        var morphs = new Array(2);
+        morphs[0] = dom.createMorphAt(dom.childAt(element0, [1, 1, 1, 3, 1]),0,0);
+        morphs[1] = dom.createMorphAt(element0,3,3);
+        return morphs;
+      },
+      statements: [
+        ["block","link-to",["index"],[],0,null,["loc",[null,[12,20],[12,83]]]],
+        ["content","outlet",["loc",[null,[22,4],[22,14]]]]
+      ],
+      locals: [],
+      templates: [child0]
     };
   }()));
 
@@ -333,12 +358,25 @@ define('dummy/templates/index', ['exports'], function (exports) {
 
   exports['default'] = Ember.HTMLBars.template((function() {
     return {
-      isHTMLBars: true,
-      revision: "Ember@1.12.0",
-      blockParams: 0,
+      meta: {
+        "revision": "Ember@1.13.5",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 18,
+            "column": 6
+          }
+        },
+        "moduleName": "dummy/templates/index.hbs"
+      },
+      arity: 0,
       cachedFragment: null,
       hasRendered: false,
-      build: function build(dom) {
+      buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("div");
         dom.setAttribute(el1,"class","row");
@@ -349,7 +387,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
         var el3 = dom.createTextNode("\n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("h1");
-        var el4 = dom.createTextNode("sl-ember-test-helpers");
+        var el4 = dom.createTextNode("sl-ember-test-helpers 1.8.0");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n        ");
@@ -432,27 +470,12 @@ define('dummy/templates/index', ['exports'], function (exports) {
         dom.appendChild(el0, el1);
         return el0;
       },
-      render: function render(context, env, contextualElement) {
-        var dom = env.dom;
-        dom.detectNamespace(contextualElement);
-        var fragment;
-        if (env.useFragmentCache && dom.canClone) {
-          if (this.cachedFragment === null) {
-            fragment = this.build(dom);
-            if (this.hasRendered) {
-              this.cachedFragment = fragment;
-            } else {
-              this.hasRendered = true;
-            }
-          }
-          if (this.cachedFragment) {
-            fragment = dom.cloneNode(this.cachedFragment, true);
-          }
-        } else {
-          fragment = this.build(dom);
-        }
-        return fragment;
-      }
+      buildRenderNodes: function buildRenderNodes() { return []; },
+      statements: [
+
+      ],
+      locals: [],
+      templates: []
     };
   }()));
 
@@ -546,8 +569,6 @@ define('dummy/tests/helpers/sl/synchronous/ajax', ['exports', 'ember'], function
                     }
                 });
             }
-        }, {
-            key: 'end',
 
             /**
              * Emulate the conclusion of an AJAX request
@@ -557,6 +578,8 @@ define('dummy/tests/helpers/sl/synchronous/ajax', ['exports', 'ember'], function
              * @param {String} [endpoint]
              * @returns {undefined}
              */
+        }, {
+            key: 'end',
             value: function end(endpoint) {
                 Ember['default'].run(function () {
                     if (endpoint) {
@@ -583,9 +606,11 @@ define('dummy/tests/helpers/sl/synchronous/contains', ['exports', 'ember', 'dumm
         var underTest = arguments[index];
         var testFor = arguments[index + 1];
 
-        Ember['default'].assert('First non-optional argument must be an array, string or object', 'object' === Ember['default'].typeOf(underTest) || 'string' === Ember['default'].typeOf(underTest) || 'array' === Ember['default'].typeOf(underTest));
+        /* jshint ignore:start */
+        Ember['default'].assert('First non-optional argument must be an array, string or object', ('object' === Ember['default'].typeOf(underTest) || 'string' === Ember['default'].typeOf(underTest) || 'array' === Ember['default'].typeOf(underTest)) && 'symbol' !== typeof underTest);
 
-        Ember['default'].assert('Second non-optional argument must be an array, string or object', 'object' === Ember['default'].typeOf(testFor) || 'string' === Ember['default'].typeOf(testFor) || 'array' === Ember['default'].typeOf(testFor));
+        Ember['default'].assert('Second non-optional argument must be an array, string or object', ('object' === Ember['default'].typeOf(testFor) || 'string' === Ember['default'].typeOf(testFor) || 'array' === Ember['default'].typeOf(testFor)) && 'symbol' !== typeof testFor);
+        /* jshint ignore:end */
 
         return utils.doArraysIntersect(utils.convertToArray(underTest), utils.convertToArray(testFor));
     }
@@ -631,6 +656,11 @@ define('dummy/tests/helpers/sl/synchronous/requires', ['exports', 'ember'], func
                 required: false,
                 testValue: true,
                 message: 'Parameter was a boolean'
+            },
+            'null': {
+                required: false,
+                testValue: null,
+                message: 'Parameter was null'
             }
         };
 
@@ -687,7 +717,9 @@ define('dummy/tests/helpers/sl/utils/utils', ['exports', 'ember'], function (exp
 
     var convertToArray = function convertToArray(underTest) {
 
-        Ember['default'].assert('Array, String, or Object must be supplied', 'array' === Ember['default'].typeOf(underTest) || 'string' === Ember['default'].typeOf(underTest) || 'object' === Ember['default'].typeOf(underTest));
+        /* jshint ignore:start */
+        Ember['default'].assert('Array, String, or Object must be supplied', ('array' === Ember['default'].typeOf(underTest) || 'string' === Ember['default'].typeOf(underTest) || 'object' === Ember['default'].typeOf(underTest)) && 'symbol' !== typeof underTest);
+        /* jshint ignore:end */
 
         var returnArray = underTest;
 
@@ -737,7 +769,9 @@ define('dummy/tests/helpers/sl/utils/utils', ['exports', 'ember'], function (exp
      */
     var convertObjectKeysToArray = function convertObjectKeysToArray(underTest) {
 
-        Ember['default'].assert('Object must be supplied', 'object' === Ember['default'].typeOf(underTest) && 'array' !== Ember['default'].typeOf(underTest));
+        /* jshint ignore:start */
+        Ember['default'].assert('Object must be supplied', 'object' === Ember['default'].typeOf(underTest) && 'array' !== Ember['default'].typeOf(underTest) && 'symbol' !== typeof underTest);
+        /* jshint ignore:end */
 
         return Object.keys(underTest);
     };
@@ -765,7 +799,7 @@ define('dummy/tests/helpers/sl/utils/utils', ['exports', 'ember'], function (exp
     exports.doArraysIntersect = doArraysIntersect;
 
 });
-define('dummy/tests/helpers/start-app', ['exports', 'ember', 'dummy/app', 'dummy/router', 'dummy/config/environment'], function (exports, Ember, Application, Router, config) {
+define('dummy/tests/helpers/start-app', ['exports', 'ember', 'dummy/app', 'dummy/config/environment'], function (exports, Ember, Application, config) {
 
     'use strict';
 
@@ -836,7 +870,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qun
     });
 
     ember_qunit.test('begin() with no parameter triggers "ajaxStart" event on document', function (assert) {
-        var spy = sinon.spy(Ember['default'].$.prototype, 'trigger');
+        var spy = window.sinon.spy(Ember['default'].$.prototype, 'trigger');
 
         AjaxHelper['default'].begin();
 
@@ -846,18 +880,18 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qun
     });
 
     ember_qunit.test('begin() with parameter triggers "ajaxSend" event on document', function (assert) {
-        var spy = sinon.spy(Ember['default'].$.prototype, 'trigger');
+        var spy = window.sinon.spy(Ember['default'].$.prototype, 'trigger');
 
         AjaxHelper['default'].begin('testEndpoint');
 
         assert.equal(spy.args[0][0], 'ajaxSend');
-        assert.equal(spy.args[0][1][1]['url'], 'testEndpoint');
+        assert.equal(spy.args[0][1][1].url, 'testEndpoint');
 
         Ember['default'].$.prototype.trigger.restore();
     });
 
     ember_qunit.test('end() with no parameter triggers "ajaxStop" event on document', function (assert) {
-        var spy = sinon.spy(Ember['default'].$.prototype, 'trigger');
+        var spy = window.sinon.spy(Ember['default'].$.prototype, 'trigger');
 
         AjaxHelper['default'].end();
 
@@ -867,12 +901,12 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qun
     });
 
     ember_qunit.test('end() with parameter triggers "ajaxComplete" event on document', function (assert) {
-        var spy = sinon.spy(Ember['default'].$.prototype, 'trigger');
+        var spy = window.sinon.spy(Ember['default'].$.prototype, 'trigger');
 
         AjaxHelper['default'].end('testEndpoint');
 
         assert.equal(spy.args[0][0], 'ajaxComplete');
-        assert.equal(spy.args[0][1][1]['url'], 'testEndpoint');
+        assert.equal(spy.args[0][1][1].url, 'testEndpoint');
 
         Ember['default'].$.prototype.trigger.restore();
     });
@@ -888,7 +922,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test.jshint', function () {
   });
 
 });
-define('dummy/tests/unit/helpers/sl/synchronous/contains-test', ['ember-qunit', 'dummy/tests/helpers/sl/synchronous/contains'], function (ember_qunit, contains) {
+define('dummy/tests/unit/helpers/sl/synchronous/contains-test', ['ember', 'ember-qunit', 'dummy/tests/helpers/sl/synchronous/contains'], function (Ember, ember_qunit, contains) {
 
     'use strict';
 
@@ -901,167 +935,119 @@ define('dummy/tests/unit/helpers/sl/synchronous/contains-test', ['ember-qunit', 
     });
 
     ember_qunit.test('First non-optional argument must be an array, string or object', function (assert) {
+        var testPropertyOne = Ember['default'].Object.create({
+            parameter: 'null'
+        });
+
+        var testPropertyTwo = Ember['default'].Object.create({
+            parameter: 'null'
+        });
+
+        var callContains = function callContains() {
+            return contains['default'](testPropertyOne.parameter, testPropertyTwo.parameter);
+        };
 
         // Number
-        var assertionThrown = false;
+        testPropertyOne.set('parameter', 2);
+        testPropertyTwo.set('parameter', []);
 
-        try {
-            contains['default'](12);
-        } catch (error) {
-            assertionThrown = true;
-        }
+        assert.throws(callContains, 'First parameter was a number');
 
-        assert.ok(assertionThrown, 'First parameter was a number');
+        // function
+        testPropertyOne.set('parameter', function () {});
+        testPropertyTwo.set('parameter', []);
 
-        // String
-        assertionThrown = false;
+        assert.throws(callContains, 'First parameter was a function');
 
-        try {
-            contains['default']('testString', {});
-        } catch (error) {
-            assertionThrown = true;
-        }
+        // boolean
+        testPropertyOne.set('parameter', false);
+        testPropertyTwo.set('parameter', []);
 
-        assert.ok(!assertionThrown, 'First parameter was a string');
+        assert.throws(callContains, 'First parameter was false');
+
+        // undefined
+        testPropertyOne.set('parameter', undefined);
+        testPropertyTwo.set('parameter', []);
+
+        assert.throws(callContains, 'First parameter was undefined');
 
         // Array
-        assertionThrown = false;
+        testPropertyOne.set('parameter', ['2']);
+        testPropertyTwo.set('parameter', ['2']);
 
-        try {
-            contains['default']([], {});
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(!assertionThrown, 'First parameter was an array');
+        assert.ok(callContains(), 'First parameter was an array');
 
         // Object
-        assertionThrown = false;
+        testPropertyOne.set('parameter', { test: 'test' });
+        testPropertyTwo.set('parameter', { test: 'test' });
 
-        try {
-            contains['default']({}, {});
-        } catch (error) {
-            assertionThrown = true;
-        }
+        assert.ok(callContains(), 'First parameter was an object');
 
-        assert.ok(!assertionThrown, 'First parameter was an object');
+        // String
+        testPropertyOne.set('parameter', 'testString');
+        testPropertyTwo.set('parameter', 'testString');
 
-        // Function
-        assertionThrown = false;
-
-        try {
-            contains['default'](function () {});
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'First parameter was a function');
-
-        // Undefined
-        assertionThrown = false;
-
-        try {
-            contains['default'](undefined);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'First parameter was undefined');
-
-        // Boolean
-        assertionThrown = false;
-
-        try {
-            contains['default'](true);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'First parameter was a boolean');
+        assert.ok(callContains(), 'First parameter was a string');
     });
 
     ember_qunit.test('Second non-optional argument must be an array, string or object', function (assert) {
+        var testPropertyOne = Ember['default'].Object.create({
+            parameter: 'null'
+        });
+
+        var testPropertyTwo = Ember['default'].Object.create({
+            parameter: 'null'
+        });
+
+        var callContains = function callContains() {
+            return contains['default'](testPropertyOne.parameter, testPropertyTwo.parameter);
+        };
 
         // Number
-        var assertionThrown = false;
+        testPropertyOne.set('parameter', []);
+        testPropertyTwo.set('parameter', 2);
 
-        try {
-            contains['default']({}, 12);
-        } catch (error) {
-            assertionThrown = true;
-        }
+        assert.throws(callContains, 'Second parameter was a number');
 
-        assert.ok(assertionThrown, 'Second parameter was a number');
+        // function
+        testPropertyOne.set('parameter', []);
+        testPropertyTwo.set('parameter', function () {});
 
-        // String
-        assertionThrown = false;
+        assert.throws(callContains, 'second parameter was a function');
 
-        try {
-            contains['default']({}, 'testString');
-        } catch (error) {
-            assertionThrown = true;
-        }
+        // boolean
+        testPropertyOne.set('parameter', []);
+        testPropertyTwo.set('parameter', false);
 
-        assert.ok(!assertionThrown, 'Second parameter was a string');
+        assert.throws(callContains, 'second parameter was false');
+
+        // undefined
+        testPropertyOne.set('parameter', []);
+        testPropertyTwo.set('parameter', undefined);
+
+        assert.throws(callContains, 'second parameter was undefined');
 
         // Array
-        assertionThrown = false;
+        testPropertyOne.set('parameter', ['2']);
+        testPropertyTwo.set('parameter', ['2']);
 
-        try {
-            contains['default']({}, []);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(!assertionThrown, 'Second parameter was an array');
+        assert.ok(callContains(), 'First parameter was an array');
 
         // Object
-        assertionThrown = false;
+        testPropertyOne.set('parameter', { test: 'test' });
+        testPropertyTwo.set('parameter', { test: 'test' });
 
-        try {
-            contains['default']({}, {});
-        } catch (error) {
-            assertionThrown = true;
-        }
+        assert.ok(callContains(), 'First parameter was an object');
 
-        assert.ok(!assertionThrown, 'Second parameter was an object');
+        // String
+        testPropertyOne.set('parameter', 'testString');
+        testPropertyTwo.set('parameter', 'testString');
 
-        // Function
-        assertionThrown = false;
-
-        try {
-            contains['default']({}, function () {});
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'Second parameter was a function');
-
-        // Undefined
-        assertionThrown = false;
-
-        try {
-            contains['default']({}, undefined);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'Second parameter was undefined');
-
-        // Boolean
-        assertionThrown = false;
-
-        try {
-            contains['default']({}, true);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'Second parameter was a boolean');
+        assert.ok(callContains(), 'First parameter was a string');
     });
 
     ember_qunit.test('Returns value from call to doArraysIntersect()', function (assert) {
-        var spy = sinon.spy(utils, 'doArraysIntersect');
+        var spy = window.sinon.spy(utils, 'doArraysIntersect');
 
         contains['default']([], []);
 
@@ -1071,7 +1057,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/contains-test', ['ember-qunit', 
     });
 
     ember_qunit.test('Arguments are passed to doArraysIntersect() in the correct order', function (assert) {
-        var spy = sinon.spy(utils, 'doArraysIntersect');
+        var spy = window.sinon.spy(utils, 'doArraysIntersect');
 
         contains['default']('b', ['d', 'e']);
 
@@ -1115,185 +1101,127 @@ define('dummy/tests/unit/helpers/sl/synchronous/requires-test', ['ember', 'ember
     });
 
     ember_qunit.test('First argument must be a function', function (assert) {
+        var testPropertyOne = Ember['default'].Object.create({
+            parameter: undefined
+        });
+
+        var testPropertyTwo = Ember['default'].Object.create({
+            parameter: undefined
+        });
+
+        var callRequires = function callRequires() {
+            return requires['default'](testPropertyOne.parameter, testPropertyTwo.parameter);
+        };
 
         // Number
-        var assertionThrown = false;
+        testPropertyOne.set('parameter', 123);
+        testPropertyTwo.set('parameter', []);
 
-        try {
-            requires['default'](12, false);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'First parameter was a number');
+        assert.throws(callRequires, 'First parameter was a number');
 
         // String
-        assertionThrown = false;
+        testPropertyOne.set('parameter', 'testString');
 
-        try {
-            requires['default']('testString', false);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'First parameter was a string');
+        assert.throws(callRequires, 'First parameter was a string');
 
         // Array
-        assertionThrown = false;
+        testPropertyOne.set('parameter', []);
 
-        try {
-            requires['default']([], false);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'First parameter was an array');
+        assert.throws(callRequires, 'First parameter was an array');
 
         // Object
-        assertionThrown = false;
+        testPropertyOne.set('parameter', {});
 
-        try {
-            requires['default']({}, false);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'First parameter was an object');
-
-        // Function
-        assertionThrown = false;
-
-        try {
-            requires['default'](function () {}, false);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'First parameter was a function');
+        assert.throws(callRequires, 'First parameter was an object');
 
         // Undefined
-        assertionThrown = false;
+        testPropertyOne.set('parameter', undefined);
 
-        try {
-            requires['default'](undefined, false);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'First parameter was undefined');
+        assert.throws(callRequires, 'First parameter was undefined');
 
         // Boolean
-        assertionThrown = false;
+        testPropertyOne.set('parameter', false);
 
-        try {
-            requires['default'](true, false);
-        } catch (error) {
-            assertionThrown = true;
-        }
+        assert.throws(callRequires, 'First parameter was a boolean');
 
-        assert.ok(assertionThrown, 'First parameter was a boolean');
+        // Function
+        testPropertyOne.set('parameter', function () {});
+
+        assert.ok(callRequires(), 'First parameter was a function');
     });
 
     ember_qunit.test('Second argument must be an array', function (assert) {
+        var testPropertyOne = Ember['default'].Object.create({
+            parameter: undefined
+        });
+
+        var testPropertyTwo = Ember['default'].Object.create({
+            parameter: undefined
+        });
+
+        var callRequires = function callRequires() {
+            return requires['default'](testPropertyOne.parameter, testPropertyTwo.parameter);
+        };
 
         // Number
-        var assertionThrown = false;
+        testPropertyOne.set('parameter', function () {});
+        testPropertyTwo.set('parameter', 123);
 
-        try {
-            requires['default'](12, 12);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'Second parameter was a number');
+        assert.throws(callRequires, 'Second parameter was a number');
 
         // String
-        assertionThrown = false;
+        testPropertyTwo.set('parameter', 'testString');
 
-        try {
-            requires['default']('testString', 'testString');
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'Second parameter was a string');
-
-        // Array
-        assertionThrown = false;
-
-        try {
-            requires['default']([], []);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'Second parameter was an array');
+        assert.throws(callRequires, 'Second parameter was a string');
 
         // Object
-        assertionThrown = false;
+        testPropertyTwo.set('parameter', {});
 
-        try {
-            requires['default']({}, {});
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'Second parameter was an object');
+        assert.throws(callRequires, 'Second parameter was an object');
 
         // Function
-        assertionThrown = false;
+        testPropertyTwo.set('parameter', function () {});
 
-        try {
-            requires['default'](function () {}, function () {});
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'Second parameter was a function');
+        assert.throws(callRequires, 'Second parameter was a function');
 
         // Undefined
-        assertionThrown = false;
+        testPropertyTwo.set('parameter', undefined);
 
-        try {
-            requires['default'](undefined, undefined);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(assertionThrown, 'Second parameter was undefined');
+        assert.throws(callRequires, 'Second parameter was undefined');
 
         // Boolean
-        assertionThrown = false;
+        testPropertyTwo.set('parameter', false);
 
-        try {
-            requires['default'](true, false);
-        } catch (error) {
-            assertionThrown = true;
-        }
+        assert.throws(callRequires, 'Second parameter was a boolean');
 
-        assert.ok(assertionThrown, 'Second parameter was a boolean');
+        // Array
+        testPropertyTwo.set('parameter', []);
+
+        assert.ok(callRequires(), 'Second parameter was an array');
     });
 
     ember_qunit.test('Return type', function (assert) {
         var testFunction = function testFunction(first) {
             Ember['default'].assert('Test argument must be a function or boolean', 'function' === Ember['default'].typeOf(first) || 'boolean' === Ember['default'].typeOf(first));
-        },
-            test = requires['default'](testFunction, ['function', 'boolean']);
+        };
 
-        assert.deepEqual(test, { requires: true, messages: '' }, 'Returns expected object');
+        var returnTypeTest = requires['default'](testFunction, ['function', 'boolean']);
+
+        assert.deepEqual(returnTypeTest, { requires: true, messages: '' }, 'Returns expected object');
     });
 
     ember_qunit.test('Functions as expected', function (assert) {
         var testFunction = function testFunction(first) {
             Ember['default'].assert('Test argument must be a function or boolean', 'function' === Ember['default'].typeOf(first) || 'boolean' === Ember['default'].typeOf(first));
-        },
-            test = undefined;
+        };
 
-        test = requires['default'](testFunction, ['function', 'boolean']);
-        assert.ok(test.requires, 'Functioned as expected when passed desired argument types: ' + test.messages);
+        var functionTest = requires['default'](testFunction, ['function', 'boolean']);
 
-        test = requires['default'](testFunction, ['function', 'boolean', 'string']);
-        assert.ok(!test.requires, 'Functioned as expected when passed undesired argument types: ' + test.messages);
+        assert.ok(functionTest.requires, 'Functioned as expected when passed desired argument types: ' + functionTest.messages);
+
+        functionTest = requires['default'](testFunction, ['function', 'boolean', 'string']);
+
+        assert.ok(!functionTest.requires, 'Functioned as expected when passed undesired argument types: ' + functionTest.messages);
     });
 
 });
@@ -1330,9 +1258,53 @@ define('dummy/tests/unit/helpers/sl/utils/utils-test', ['ember', 'ember-qunit', 
     });
 
     ember_qunit.test('convertToArray() requires either an Array, String, or Object to be provided', function (assert) {
-        var test = requires['default'](utils.convertToArray, ['array', 'string', 'object']);
+        var properties = Ember['default'].Object.create({
+            parameters: undefined
+        });
 
-        assert.ok(test.requires, test.messages);
+        var callConvertToArray = function callConvertToArray() {
+            return utils.convertToArray(properties.parameters);
+        };
+
+        // null
+        properties.set('parameters', null);
+
+        assert.throws(callConvertToArray, 'property was null');
+
+        // undefined
+        properties.set('parameters', undefined);
+
+        assert.throws(callConvertToArray, 'property was undefined');
+
+        // Boolean
+        properties.set('parameters', false);
+
+        assert.throws(callConvertToArray, 'property was a Boolean');
+
+        // Number
+        properties.set('parameters', 132);
+
+        assert.throws(callConvertToArray, 'property was a Number');
+
+        // Function
+        properties.set('parameters', function () {});
+
+        assert.throws(callConvertToArray, 'property was a Function');
+
+        // Array
+        properties.set('parameters', []);
+
+        assert.ok(callConvertToArray(), 'property was an Array');
+
+        // String
+        properties.set('parameters', 'test string');
+
+        assert.ok(callConvertToArray(), 'property was a String');
+
+        // Object
+        properties.set('parameters', {});
+
+        assert.ok(callConvertToArray(), 'property was an Object');
     });
 
     ember_qunit.test('convertToArray() returns expected result', function (assert) {
@@ -1351,23 +1323,67 @@ define('dummy/tests/unit/helpers/sl/utils/utils-test', ['ember', 'ember-qunit', 
     });
 
     ember_qunit.test('convertStringToArray() requires a string to be provided', function (assert) {
-        var test = requires['default'](utils.convertStringToArray, ['string']);
+        var properties = Ember['default'].Object.create({
+            parameters: undefined
+        });
 
-        assert.ok(test.requires, test.messages);
+        var callConvertStringToArray = function callConvertStringToArray() {
+            return utils.convertStringToArray(properties.parameters);
+        };
+
+        // null
+        properties.set('parameters', null);
+
+        assert.throws(callConvertStringToArray, 'property was null');
+
+        // undefined
+        properties.set('parameters', undefined);
+
+        assert.throws(callConvertStringToArray, 'property was undefined');
+
+        // Boolean
+        properties.set('parameters', false);
+
+        assert.throws(callConvertStringToArray, 'property was a Boolean');
+
+        // Number
+        properties.set('parameters', 132);
+
+        assert.throws(callConvertStringToArray, 'property was a Number');
+
+        // Function
+        properties.set('parameters', function () {});
+
+        assert.throws(callConvertStringToArray, 'property was a Function');
+
+        // Array
+        properties.set('parameters', []);
+
+        assert.throws(callConvertStringToArray, 'property was an Array');
+
+        // Object
+        properties.set('parameters', {});
+
+        assert.throws(callConvertStringToArray, 'property was an Object');
+
+        // String
+        properties.set('parameters', 'test string');
+
+        assert.ok(callConvertStringToArray(), 'property was a String');
     });
 
-    ember_qunit.test('convertStringToArray() returns an array with a single element when passed a string without spaces', function (assert) {
+    ember_qunit.test('convertStringToArray() returns an array with a single' + 'element when passed a string without spaces', function (assert) {
         assert.deepEqual(utils.convertStringToArray('testString'), ['testString']);
     });
 
-    ember_qunit.test('convertStringToArray() returns an array with as many elements as there are "words" represented in a string passed to it containing spaces', function (assert) {
+    ember_qunit.test('convertStringToArray() returns an array with as many elements as there' + 'are "words" represented in a string passed to it containing spaces', function (assert) {
         assert.deepEqual(utils.convertStringToArray('the test string'), ['the', 'test', 'string']);
     });
 
     ember_qunit.test('convertObjectKeysToArray() requires an object to be provided', function (assert) {
-        var test = requires['default'](utils.convertObjectKeysToArray, ['object']);
+        var requiredObjectTest = requires['default'](utils.convertObjectKeysToArray, ['object']);
 
-        assert.ok(test.requires, test.messages);
+        assert.ok(requiredObjectTest.requires, requiredObjectTest.messages);
     });
 
     ember_qunit.test('convertObjectKeysToArray() returns an array of object properties', function (assert) {
@@ -1385,41 +1401,35 @@ define('dummy/tests/unit/helpers/sl/utils/utils-test', ['ember', 'ember-qunit', 
     });
 
     ember_qunit.test('doArraysIntersect() requires both parameters to be Arrays', function (assert) {
-        // First parameter not an Array, second one is
+        var testPropertyOne = Ember['default'].Object.create({
+            parameter: undefined
+        });
 
-        var assertionThrown = false;
+        var testPropertyTwo = Ember['default'].Object.create({
+            parameter: undefined
+        });
 
-        try {
-            utils.doArraysIntersect('', []);
-        } catch (error) {
-            assertionThrown = true;
-        }
+        var callDoArraysIntersect = function callDoArraysIntersect() {
+            return utils.doArraysIntersect(testPropertyOne.parameter, testPropertyTwo.parameter);
+        };
 
-        assert.ok(assertionThrown, 'First parameter was not an Array');
+        // Second Parameter is not an array
+        testPropertyOne.set('parameter', []);
+        testPropertyTwo.set('parameter', '');
 
-        // First parameter is an Array, second one is not
+        assert.throws(callDoArraysIntersect, 'Second parameter was a string');
 
-        assertionThrown = false;
+        // First Parameter is not an array
+        testPropertyOne.set('parameter', '');
+        testPropertyTwo.set('parameter', []);
 
-        try {
-            utils.doArraysIntersect([], '');
-        } catch (error) {
-            assertionThrown = true;
-        }
+        assert.throws(callDoArraysIntersect, 'First parameter was a string');
 
-        assert.ok(assertionThrown, 'Second parameter was not an Array');
+        // Both Parameters are arrays
+        testPropertyOne.set('parameter', ['a']);
+        testPropertyTwo.set('parameter', ['a']);
 
-        // Both parameters are Arrays
-
-        assertionThrown = false;
-
-        try {
-            utils.doArraysIntersect([], []);
-        } catch (error) {
-            assertionThrown = true;
-        }
-
-        assert.ok(!assertionThrown, 'Both parameters were Arrays');
+        assert.ok(callDoArraysIntersect(), 'Parameters were both array');
     });
 
     ember_qunit.test('doArraysIntersect() functions as expected', function (assert) {
@@ -1475,7 +1485,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"1.5.0.47fbefdc"});
+  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"1.8.0+70ebde58"});
 }
 
 /* jshint ignore:end */
