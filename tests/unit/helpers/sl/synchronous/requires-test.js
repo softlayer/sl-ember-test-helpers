@@ -12,283 +12,141 @@ test( 'it exists', function( assert ) {
 });
 
 test( 'First argument must be a function', function( assert ) {
+    const testPropertyOne = Ember.Object.create({
+        parameter: undefined
+    });
+
+    const testPropertyTwo = Ember.Object.create({
+        parameter: undefined
+    });
+
+    const callRequires = () => requires( testPropertyOne.parameter, testPropertyTwo.parameter );
 
     // Number
-    let assertionThrown = false;
+    testPropertyOne.set( 'parameter', 123 );
+    testPropertyTwo.set( 'parameter', [] );
 
-    try {
-        requires(
-            12,
-            false
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'First parameter was a number'
     );
 
     // String
-    assertionThrown = false;
+    testPropertyOne.set( 'parameter', 'testString' );
 
-    try {
-        requires(
-            'testString',
-            false
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'First parameter was a string'
     );
 
     // Array
-    assertionThrown = false;
+    testPropertyOne.set( 'parameter', [] );
 
-    try {
-        requires(
-            [],
-            false
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'First parameter was an array'
     );
 
     // Object
-    assertionThrown = false;
+    testPropertyOne.set( 'parameter', {} );
 
-    try {
-        requires(
-            {},
-            false
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'First parameter was an object'
     );
 
-    // Function
-    assertionThrown = false;
-
-    try {
-        requires(
-            function() {},
-            false
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
-        'First parameter was a function'
-    );
-
     // Undefined
-    assertionThrown = false;
+    testPropertyOne.set( 'parameter', undefined );
 
-    try {
-        requires(
-            undefined,
-            false
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'First parameter was undefined'
     );
 
     // Boolean
-    assertionThrown = false;
+    testPropertyOne.set( 'parameter', false );
 
-    try {
-        requires(
-            true,
-            false
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'First parameter was a boolean'
     );
 
-    // Null
-    assertionThrown = false;
-
-    try {
-        requires(
-            null,
-            false
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
+    // Function
+    testPropertyOne.set( 'parameter', function() {} );
 
     assert.ok(
-        assertionThrown,
-        'First parameter was null'
+        callRequires(),
+        'First parameter was a function'
     );
-
 });
 
 test( 'Second argument must be an array', function( assert ) {
+    const testPropertyOne = Ember.Object.create({
+        parameter: undefined
+    });
+
+    const testPropertyTwo = Ember.Object.create({
+        parameter: undefined
+    });
+
+    const callRequires = () => requires( testPropertyOne.parameter, testPropertyTwo.parameter );
 
     // Number
-    let assertionThrown = false;
+    testPropertyOne.set( 'parameter', function() {} );
+    testPropertyTwo.set( 'parameter', 123 );
 
-    try {
-        requires(
-            12,
-            12
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'Second parameter was a number'
     );
 
     // String
-    assertionThrown = false;
+    testPropertyTwo.set( 'parameter', 'testString' );
 
-    try {
-        requires(
-            'testString',
-            'testString'
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'Second parameter was a string'
     );
 
-    // Array
-    assertionThrown = false;
-
-    try {
-        requires(
-            [],
-            []
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
-        'Second parameter was an array'
-    );
-
     // Object
-    assertionThrown = false;
+    testPropertyTwo.set( 'parameter', {} );
 
-    try {
-        requires(
-            {},
-            {}
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'Second parameter was an object'
     );
 
     // Function
-    assertionThrown = false;
+    testPropertyTwo.set( 'parameter', function() {} );
 
-    try {
-        requires(
-            function() {},
-            function() {}
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'Second parameter was a function'
     );
 
     // Undefined
-    assertionThrown = false;
+    testPropertyTwo.set( 'parameter', undefined );
 
-    try {
-        requires(
-            undefined,
-            undefined
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'Second parameter was undefined'
     );
 
     // Boolean
-    assertionThrown = false;
+    testPropertyTwo.set( 'parameter', false );
 
-    try {
-        requires(
-            true,
-            false
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
-
-    assert.ok(
-        assertionThrown,
+    assert.throws(
+        callRequires,
         'Second parameter was a boolean'
     );
 
-    // Null
-    assertionThrown = false;
-
-    try {
-        requires(
-            null,
-            null
-        );
-    } catch( error ) {
-        assertionThrown = true;
-    }
+    // Array
+    testPropertyTwo.set( 'parameter', [] );
 
     assert.ok(
-        assertionThrown,
-        'Second parameter was null'
+        callRequires(),
+        'Second parameter was an array'
     );
-
 });
 
 test( 'Return type', function( assert ) {
@@ -300,13 +158,13 @@ test( 'Return type', function( assert ) {
         );
     };
 
-    const testDefinition = requires(
+    const returnTypeTest = requires(
         testFunction,
         [ 'function', 'boolean' ]
     );
 
     assert.deepEqual(
-        testDefinition,
+        returnTypeTest,
         { requires: true, messages: '' },
         'Returns expected object'
     );
@@ -321,21 +179,23 @@ test( 'Functions as expected', function( assert ) {
         );
     };
 
-    let testDefinition = requires(
+    let functionTest = requires(
         testFunction,
         [ 'function', 'boolean' ]
     );
+
     assert.ok(
-        testDefinition.requires,
-        'Functioned as expected when passed desired argument types: ' + test.messages
+        functionTest.requires,
+        'Functioned as expected when passed desired argument types: ' + functionTest.messages
     );
 
-    testDefinition = requires(
+    functionTest = requires(
         testFunction,
         [ 'function', 'boolean', 'string' ]
     );
+
     assert.ok(
-        !testDefinition.requires,
-        'Functioned as expected when passed undesired argument types: ' + test.messages
+        !functionTest.requires,
+        'Functioned as expected when passed undesired argument types: ' + functionTest.messages
     );
 });
