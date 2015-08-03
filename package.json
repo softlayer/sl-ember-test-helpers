@@ -1,6 +1,6 @@
 {
   "name": "sl-ember-test-helpers",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Ember CLI Addon - Provides and registers test helpers for use in the testing of your application",
   "scripts": {
     "build": "ember build",
