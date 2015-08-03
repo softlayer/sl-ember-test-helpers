@@ -1,5 +1,11 @@
 # sl-ember-test-helpers Changelog
 
+### 1.8.0
+
+[#107](https://github.com/softlayer/sl-ember-test-helpers/issues/107) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 1.13.6
+
+[View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.7.0...v1.8.0)
+
 ### 1.7.0
 
 * [#102](https://github.com/softlayer/sl-ember-test-helpers/issues/102) [BUGFIX] Correctly account for type of `Symbol`
