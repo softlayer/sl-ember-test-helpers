@@ -1,5 +1,12 @@
 # sl-ember-test-helpers Changelog
 
+### 1.7.0
+
+* [#102](https://github.com/softlayer/sl-ember-test-helpers/issues/102) [BUGFIX] Correctly account for type of `Symbol`
+* Various [INTERNAL ENHANCEMENT]s
+
+[View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.6.0...v1.7.0)
+
 ### 1.6.0
 
 * [#97](https://github.com/softlayer/sl-ember-test-helpers/pull/97) [ENHANCEMENT] Uninstall ember-jsdoc; install ember-cli-jsdoc
@@ -51,4 +58,4 @@
 
 ### 1.0.0
 
-* Initial release
+* Initial releases
