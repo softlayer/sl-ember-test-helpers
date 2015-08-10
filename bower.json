@@ -13,7 +13,5 @@
     "qunit": "~1.17.1",
     "sinonjs": "~1.14.1"
   },
-  "devDependencies": {
-    "sinon-qunit": "~2.0.0"
-  }
+  "devDependencies": {}
 }
