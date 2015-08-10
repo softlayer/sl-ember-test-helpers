@@ -12,8 +12,8 @@ import Ember from 'ember';
  * @param {Array} requiredTypes
  * @returns {Object}
  */
-let requiresHelper = function( methodUnderTest, requiredTypes ) {
-    let typesToTest = {
+const requiresHelper = function( methodUnderTest, requiredTypes ) {
+    const typesToTest = {
         'number': {
             required: false,
             testValue: 123987465,
@@ -70,7 +70,7 @@ let requiresHelper = function( methodUnderTest, requiredTypes ) {
         typesToTest[item][ 'required' ] = true;
     });
 
-    let testsThatHaveFailed = [];
+    const testsThatHaveFailed = [];
     let property;
 
     // Test each parameter type
@@ -81,8 +81,7 @@ let requiresHelper = function( methodUnderTest, requiredTypes ) {
             assertionThrown = false;
 
             // Assign cleaner object reference
-            let parameter;
-            parameter = typesToTest[property];
+            const parameter = typesToTest[property];
 
             // Test parameter
             try {

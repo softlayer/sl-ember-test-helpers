@@ -1,8 +1,6 @@
 import Ember from 'ember';
 import {
     convertToArray,
-    convertStringToArray,
-    convertObjectKeysToArray,
     doArraysIntersect
 } from '../utils/utils';
 
@@ -24,9 +22,9 @@ import {
  * @returns {Boolean}
  */
 export default function() {
-    let index = ( 3 === arguments.length ) ? 1 : 0;
-    let underTest = arguments[ index ];
-    let testFor = arguments[ index + 1 ];
+    const index = ( 3 === arguments.length ) ? 1 : 0;
+    const underTest = arguments[ index ];
+    const testFor = arguments[ index + 1 ];
 
     /* jshint ignore:start */
     Ember.assert(
