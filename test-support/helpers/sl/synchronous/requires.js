@@ -90,7 +90,8 @@ const requiresHelper = function( methodUnderTest, requiredTypes ) {
                 assertionThrown = true;
             }
 
-            const assertionPassed = ( parameter[ 'required' ] ) ? !assertionThrown : assertionThrown;
+            let assertionPassed;
+            assertionPassed = ( parameter[ 'required' ] ) ? !assertionThrown : assertionThrown;
 
             if ( !assertionPassed ) {
                 testsThatHaveFailed.push( parameter[ 'message' ] );
