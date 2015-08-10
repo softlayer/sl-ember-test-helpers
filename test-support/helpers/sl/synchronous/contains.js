@@ -1,8 +1,6 @@
 import Ember from 'ember';
 import {
     convertToArray,
-    convertStringToArray,
-    convertObjectKeysToArray,
     doArraysIntersect
 } from '../utils/utils';
 
