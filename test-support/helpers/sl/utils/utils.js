@@ -12,7 +12,7 @@ import Ember from 'ember';
  * @throws {ember.assert} If not provided an Array, String or Object
  * @returns {Array}
  */
-let convertToArray = function( underTest ) {
+const convertToArray = function( underTest ) {
 
     /* jshint ignore:start */
     Ember.assert(
@@ -55,7 +55,7 @@ let convertToArray = function( underTest ) {
  * @throws {ember.assert} If argument is not provided or is not a string
  * @returns {Array}
  */
-let convertStringToArray = function( underTest ) {
+const convertStringToArray = function( underTest ) {
 
     Ember.assert(
         'String must be supplied',
@@ -75,7 +75,7 @@ let convertStringToArray = function( underTest ) {
  * @throws {ember.assert} If argument is not provided or is not an object
  * @returns {Array}
  */
-let convertObjectKeysToArray = function( underTest ) {
+const convertObjectKeysToArray = function( underTest ) {
 
     /* jshint ignore:start */
     Ember.assert(
@@ -97,7 +97,7 @@ let convertObjectKeysToArray = function( underTest ) {
  * @param {Array} testFor
  * @returns {Boolean}
  */
-let doArraysIntersect = function( underTest, testFor ) {
+const doArraysIntersect = function( underTest, testFor ) {
 
     Ember.assert(
         'Parameters must be Arrays',
@@ -105,7 +105,7 @@ let doArraysIntersect = function( underTest, testFor ) {
         'array' === Ember.typeOf( testFor )
     );
 
-    return testFor.some( function ( v ) {
+    return testFor.some( function( v ) {
         return underTest.indexOf( v ) >= 0;
     });
 };
