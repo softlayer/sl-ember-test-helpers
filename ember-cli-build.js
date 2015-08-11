@@ -15,15 +15,6 @@ module.exports = function( defaults ) {
     behave. You most likely want to be modifying `./index.js` or app's build file
     */
 
-    // Testing dependencies
-    app.import( app.bowerDirectory + '/sinonjs/sinon.js', {
-        type: 'test'
-    });
-
-    app.import( app.bowerDirectory + '/sinon-qunit/lib/sinon-qunit.js', {
-        type: 'test'
-    });
-
     const tree = replace( app.toTree(), {
         files: [
             'index.html',
