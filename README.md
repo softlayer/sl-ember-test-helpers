@@ -1,5 +1,5 @@
 
-[![Latest Release](https://img.shields.io/github/release/softlayer/sl-ember-test-helpers.svg)](https://github.com/softlayer/sl-ember-test-helpers/releases) ![Ember CLI version](https://img.shields.io/badge/ember%20cli-1.13.6-blue.svg) [![License](https://img.shields.io/npm/l/sl-ember-test-helpers.svg)](LICENSE.md) [![Downloads](https://img.shields.io/npm/dm/sl-ember-test-helpers.svg)](https://www.npmjs.com/package/sl-ember-test-helpers)
+[![Latest Release](https://img.shields.io/github/release/softlayer/sl-ember-test-helpers.svg)](https://github.com/softlayer/sl-ember-test-helpers/releases) ![Ember CLI version](https://img.shields.io/badge/ember%20cli-1.13.8-blue.svg) [![License](https://img.shields.io/npm/l/sl-ember-test-helpers.svg)](LICENSE.md) [![Downloads](https://img.shields.io/npm/dm/sl-ember-test-helpers.svg)](https://www.npmjs.com/package/sl-ember-test-helpers)
 
 [![Dependencies](https://img.shields.io/david/softlayer/sl-ember-test-helpers.svg)](https://david-dm.org/softlayer/sl-ember-test-helpers) [![Dev Dependencies](https://img.shields.io/david/dev/softlayer/sl-ember-test-helpers.svg)](https://david-dm.org/softlayer/sl-ember-test-helpers#info=devDependencies)
 
