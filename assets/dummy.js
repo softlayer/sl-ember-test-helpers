@@ -3,13 +3,13 @@
 
 /* jshint ignore:end */
 
-define('dummy/acceptance-tests/main', ['exports', 'ember-cli-sri/acceptance-tests/main'], function (exports, main) {
+define('dummy/acceptance-tests/sinon', ['exports', 'ember-sinon/acceptance-tests/sinon'], function (exports, sinon) {
 
 	'use strict';
 
 
 
-	exports['default'] = main['default'];
+	exports['default'] = sinon['default'];
 
 });
 define('dummy/app', ['exports', 'ember', 'ember/resolver', 'ember/load-initializers', 'dummy/config/environment'], function (exports, Ember, Resolver, loadInitializers, config) {
@@ -31,6 +31,20 @@ define('dummy/app', ['exports', 'ember', 'ember/resolver', 'ember/load-initializ
     exports['default'] = App;
 
 });
+define('dummy/components/app-version', ['exports', 'ember-cli-app-version/components/app-version', 'dummy/config/environment'], function (exports, AppVersionComponent, config) {
+
+  'use strict';
+
+  var _config$APP = config['default'].APP;
+  var name = _config$APP.name;
+  var version = _config$APP.version;
+
+  exports['default'] = AppVersionComponent['default'].extend({
+    version: version,
+    name: name
+  });
+
+});
 define('dummy/controllers/array', ['exports', 'ember'], function (exports, Ember) {
 
 	'use strict';
@@ -45,13 +59,28 @@ define('dummy/controllers/object', ['exports', 'ember'], function (exports, Embe
 	exports['default'] = Ember['default'].Controller;
 
 });
+define('dummy/initializers/app-version', ['exports', 'ember-cli-app-version/initializer-factory', 'dummy/config/environment'], function (exports, initializerFactory, config) {
+
+  'use strict';
+
+  var _config$APP = config['default'].APP;
+  var name = _config$APP.name;
+  var version = _config$APP.version;
+
+  exports['default'] = {
+    name: 'App Version',
+    initialize: initializerFactory['default'](name, version)
+  };
+
+});
 define('dummy/initializers/export-application-global', ['exports', 'ember', 'dummy/config/environment'], function (exports, Ember, config) {
 
   'use strict';
 
   exports.initialize = initialize;
 
-  function initialize(container, application) {
+  function initialize() {
+    var application = arguments[1] || arguments[0];
     if (config['default'].exportApplicationGlobal !== false) {
       var value = config['default'].exportApplicationGlobal;
       var globalName;
@@ -84,25 +113,6 @@ define('dummy/initializers/export-application-global', ['exports', 'ember', 'dum
   };
 
 });
-define('dummy/instance-initializers/app-version', ['exports', 'dummy/config/environment', 'ember'], function (exports, config, Ember) {
-
-  'use strict';
-
-  var classify = Ember['default'].String.classify;
-  var registered = false;
-
-  exports['default'] = {
-    name: 'App Version',
-    initialize: function initialize(application) {
-      if (!registered) {
-        var appName = classify(application.toString());
-        Ember['default'].libraries.register(appName, config['default'].APP.version);
-        registered = true;
-      }
-    }
-  };
-
-});
 define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], function (exports, Ember, config) {
 
     'use strict';
@@ -124,7 +134,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
     var child0 = (function() {
       return {
         meta: {
-          "revision": "Ember@1.13.5",
+          "revision": "Ember@1.13.7",
           "loc": {
             "source": null,
             "start": {
@@ -160,7 +170,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
     }());
     return {
       meta: {
-        "revision": "Ember@1.13.5",
+        "revision": "Ember@1.13.7",
         "loc": {
           "source": null,
           "start": {
@@ -359,7 +369,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
   exports['default'] = Ember.HTMLBars.template((function() {
     return {
       meta: {
-        "revision": "Ember@1.13.5",
+        "revision": "Ember@1.13.7",
         "loc": {
           "source": null,
           "start": {
@@ -387,7 +397,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
         var el3 = dom.createTextNode("\n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("h1");
-        var el4 = dom.createTextNode("sl-ember-test-helpers 1.8.0");
+        var el4 = dom.createTextNode("sl-ember-test-helpers 1.9.0");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n        ");
@@ -484,9 +494,9 @@ define('dummy/tests/app.jshint', function () {
 
   'use strict';
 
-  module('JSHint - .');
-  test('app.js should pass jshint', function() { 
-    ok(true, 'app.js should pass jshint.'); 
+  QUnit.module('JSHint - .');
+  QUnit.test('app.js should pass jshint', function(assert) { 
+    assert.ok(true, 'app.js should pass jshint.'); 
   });
 
 });
@@ -508,9 +518,9 @@ define('dummy/tests/helpers/resolver.jshint', function () {
 
   'use strict';
 
-  module('JSHint - helpers');
-  test('helpers/resolver.js should pass jshint', function() { 
-    ok(true, 'helpers/resolver.js should pass jshint.'); 
+  QUnit.module('JSHint - helpers');
+  QUnit.test('helpers/resolver.js should pass jshint', function(assert) { 
+    assert.ok(true, 'helpers/resolver.js should pass jshint.'); 
   });
 
 });
@@ -683,8 +693,7 @@ define('dummy/tests/helpers/sl/synchronous/requires', ['exports', 'ember'], func
                 assertionThrown = false;
 
                 // Assign cleaner object reference
-                var parameter = undefined;
-                parameter = typesToTest[property];
+                var parameter = typesToTest[property];
 
                 // Test parameter
                 try {
@@ -826,9 +835,9 @@ define('dummy/tests/helpers/start-app.jshint', function () {
 
   'use strict';
 
-  module('JSHint - helpers');
-  test('helpers/start-app.js should pass jshint', function() { 
-    ok(true, 'helpers/start-app.js should pass jshint.'); 
+  QUnit.module('JSHint - helpers');
+  QUnit.test('helpers/start-app.js should pass jshint', function(assert) { 
+    assert.ok(true, 'helpers/start-app.js should pass jshint.'); 
   });
 
 });
@@ -836,9 +845,9 @@ define('dummy/tests/router.jshint', function () {
 
   'use strict';
 
-  module('JSHint - .');
-  test('router.js should pass jshint', function() { 
-    ok(true, 'router.js should pass jshint.'); 
+  QUnit.module('JSHint - .');
+  QUnit.test('router.js should pass jshint', function(assert) { 
+    assert.ok(true, 'router.js should pass jshint.'); 
   });
 
 });
@@ -853,13 +862,13 @@ define('dummy/tests/test-helper.jshint', function () {
 
   'use strict';
 
-  module('JSHint - .');
-  test('test-helper.js should pass jshint', function() { 
-    ok(true, 'test-helper.js should pass jshint.'); 
+  QUnit.module('JSHint - .');
+  QUnit.test('test-helper.js should pass jshint', function(assert) { 
+    assert.ok(true, 'test-helper.js should pass jshint.'); 
   });
 
 });
-define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qunit', 'dummy/tests/helpers/sl/synchronous/ajax'], function (Ember, ember_qunit, AjaxHelper) {
+define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qunit', 'dummy/tests/helpers/sl/synchronous/ajax', 'sinon'], function (Ember, ember_qunit, AjaxHelper, sinon) {
 
     'use strict';
 
@@ -870,7 +879,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qun
     });
 
     ember_qunit.test('begin() with no parameter triggers "ajaxStart" event on document', function (assert) {
-        var spy = window.sinon.spy(Ember['default'].$.prototype, 'trigger');
+        var spy = sinon['default'].spy(Ember['default'].$.prototype, 'trigger');
 
         AjaxHelper['default'].begin();
 
@@ -880,7 +889,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qun
     });
 
     ember_qunit.test('begin() with parameter triggers "ajaxSend" event on document', function (assert) {
-        var spy = window.sinon.spy(Ember['default'].$.prototype, 'trigger');
+        var spy = sinon['default'].spy(Ember['default'].$.prototype, 'trigger');
 
         AjaxHelper['default'].begin('testEndpoint');
 
@@ -891,7 +900,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qun
     });
 
     ember_qunit.test('end() with no parameter triggers "ajaxStop" event on document', function (assert) {
-        var spy = window.sinon.spy(Ember['default'].$.prototype, 'trigger');
+        var spy = sinon['default'].spy(Ember['default'].$.prototype, 'trigger');
 
         AjaxHelper['default'].end();
 
@@ -901,7 +910,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qun
     });
 
     ember_qunit.test('end() with parameter triggers "ajaxComplete" event on document', function (assert) {
-        var spy = window.sinon.spy(Ember['default'].$.prototype, 'trigger');
+        var spy = sinon['default'].spy(Ember['default'].$.prototype, 'trigger');
 
         AjaxHelper['default'].end('testEndpoint');
 
@@ -916,9 +925,9 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test.jshint', function () {
 
   'use strict';
 
-  module('JSHint - unit/helpers/sl/synchronous');
-  test('unit/helpers/sl/synchronous/ajax-test.js should pass jshint', function() { 
-    ok(true, 'unit/helpers/sl/synchronous/ajax-test.js should pass jshint.'); 
+  QUnit.module('JSHint - unit/helpers/sl/synchronous');
+  QUnit.test('unit/helpers/sl/synchronous/ajax-test.js should pass jshint', function(assert) { 
+    assert.ok(true, 'unit/helpers/sl/synchronous/ajax-test.js should pass jshint.'); 
   });
 
 });
@@ -1084,9 +1093,9 @@ define('dummy/tests/unit/helpers/sl/synchronous/contains-test.jshint', function 
 
   'use strict';
 
-  module('JSHint - unit/helpers/sl/synchronous');
-  test('unit/helpers/sl/synchronous/contains-test.js should pass jshint', function() { 
-    ok(true, 'unit/helpers/sl/synchronous/contains-test.js should pass jshint.'); 
+  QUnit.module('JSHint - unit/helpers/sl/synchronous');
+  QUnit.test('unit/helpers/sl/synchronous/contains-test.js should pass jshint', function(assert) { 
+    assert.ok(true, 'unit/helpers/sl/synchronous/contains-test.js should pass jshint.'); 
   });
 
 });
@@ -1229,9 +1238,9 @@ define('dummy/tests/unit/helpers/sl/synchronous/requires-test.jshint', function 
 
   'use strict';
 
-  module('JSHint - unit/helpers/sl/synchronous');
-  test('unit/helpers/sl/synchronous/requires-test.js should pass jshint', function() { 
-    ok(true, 'unit/helpers/sl/synchronous/requires-test.js should pass jshint.'); 
+  QUnit.module('JSHint - unit/helpers/sl/synchronous');
+  QUnit.test('unit/helpers/sl/synchronous/requires-test.js should pass jshint', function(assert) { 
+    assert.ok(true, 'unit/helpers/sl/synchronous/requires-test.js should pass jshint.'); 
   });
 
 });
@@ -1451,9 +1460,9 @@ define('dummy/tests/unit/helpers/sl/utils/utils-test.jshint', function () {
 
   'use strict';
 
-  module('JSHint - unit/helpers/sl/utils');
-  test('unit/helpers/sl/utils/utils-test.js should pass jshint', function() { 
-    ok(true, 'unit/helpers/sl/utils/utils-test.js should pass jshint.'); 
+  QUnit.module('JSHint - unit/helpers/sl/utils');
+  QUnit.test('unit/helpers/sl/utils/utils-test.js should pass jshint', function(assert) { 
+    assert.ok(true, 'unit/helpers/sl/utils/utils-test.js should pass jshint.'); 
   });
 
 });
@@ -1485,7 +1494,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"1.8.0+70ebde58"});
+  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"1.9.0+50dfa536"});
 }
 
 /* jshint ignore:end */
