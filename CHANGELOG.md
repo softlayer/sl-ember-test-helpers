@@ -2,14 +2,14 @@
 
 ### 1.9.0
 
-[#129](https://github.com/softlayer/sl-ember-test-helpers/issues/129) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 1.13.8
-[#128](https://github.com/softlayer/sl-ember-test-helpers/issues/128) [ENHANCEMENT] Synchronize installed version of PhantomJS between TravisCI and dev environment
+* [#129](https://github.com/softlayer/sl-ember-test-helpers/issues/129) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 1.13.8
+* [#128](https://github.com/softlayer/sl-ember-test-helpers/issues/128) [ENHANCEMENT] Synchronize installed version of PhantomJS between TravisCI and dev environment
 
 [View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.8.0...v1.9.0)
 
 ### 1.8.0
 
-[#107](https://github.com/softlayer/sl-ember-test-helpers/issues/107) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 1.13.6
+* [#107](https://github.com/softlayer/sl-ember-test-helpers/issues/107) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 1.13.6
 
 [View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.7.0...v1.8.0)
 
