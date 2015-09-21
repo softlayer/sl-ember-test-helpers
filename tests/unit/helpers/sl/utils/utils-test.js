@@ -212,7 +212,7 @@ test( 'convertStringToArray() requires a string to be provided', function( asser
     );
 });
 
-const testName = 'convertStringToArray() returns an array with a single' +
+let testName = 'convertStringToArray() returns an array with a single' +
 'element when passed a string without spaces';
 
 test( testName, function( assert ) {
@@ -222,7 +222,7 @@ test( testName, function( assert ) {
     );
 });
 
-const testName = 'convertStringToArray() returns an array with as many elements as there' +
+let testName = 'convertStringToArray() returns an array with as many elements as there' +
 'are "words" represented in a string passed to it containing spaces';
 
 test( testName, function( assert ) {
