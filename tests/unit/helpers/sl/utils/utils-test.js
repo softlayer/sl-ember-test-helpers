@@ -212,16 +212,20 @@ test( 'convertStringToArray() requires a string to be provided', function( asser
     );
 });
 
-test( 'convertStringToArray() returns an array with a single' +
-      'element when passed a string without spaces', function( assert ) {
+const testName1 = 'convertStringToArray() returns an array with a single' +
+'element when passed a string without spaces';
+
+test( testName1, function( assert ) {
     assert.deepEqual(
         convertStringToArray( 'testString' ),
         [ 'testString' ]
     );
 });
 
-test( 'convertStringToArray() returns an array with as many elements as there' +
-      'are "words" represented in a string passed to it containing spaces', function( assert ) {
+const testName2 = 'convertStringToArray() returns an array with as many elements as there' +
+'are "words" represented in a string passed to it containing spaces';
+
+test( testName2, function( assert ) {
     assert.deepEqual(
         convertStringToArray( 'the test string' ),
         [ 'the', 'test', 'string' ]
