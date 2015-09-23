@@ -1,0 +1,9 @@
+{
+  "files": {
+    "included": [
+      "/test-support/helpers/sl/*.js",
+      "/test-support/helpers/sl/**/*.js"
+    ],
+    "excluded": []
+  }
+}

@@ -3,7 +3,7 @@
 
 [![Dependencies](https://img.shields.io/david/softlayer/sl-ember-test-helpers.svg)](https://david-dm.org/softlayer/sl-ember-test-helpers) [![Dev Dependencies](https://img.shields.io/david/dev/softlayer/sl-ember-test-helpers.svg)](https://david-dm.org/softlayer/sl-ember-test-helpers#info=devDependencies)
 
-[![Build Status](https://img.shields.io/travis/softlayer/sl-ember-test-helpers/master.svg)](https://travis-ci.org/softlayer/sl-ember-test-helpers) [![Code Climate](https://img.shields.io/codeclimate/github/softlayer/sl-ember-test-helpers.svg)](https://codeclimate.com/github/softlayer/sl-ember-test-helpers) [![Ember Observer](http://emberobserver.com/badges/sl-ember-test-helpers.svg)](http://emberobserver.com/addons/sl-ember-test-helpers)
+[![Build Status](https://img.shields.io/travis/softlayer/sl-ember-test-helpers/master.svg)](https://travis-ci.org/softlayer/sl-ember-test-helpers) [![Code Climate](https://img.shields.io/codeclimate/github/softlayer/sl-ember-test-helpers.svg)](https://codeclimate.com/github/softlayer/sl-ember-test-helpers) [![Ember Observer](http://emberobserver.com/badges/sl-ember-test-helpers.svg)](http://emberobserver.com/addons/sl-ember-test-helpers) [![Inch CI](http://inch-ci.org/github/softlayer/sl-ember-test-helpers.svg?branch=master)](http://inch-ci.org/github/softlayer/sl-ember-test-helpers)
 
 To see which issues are currently being worked on or are scheduled to be worked on next, visit [https://huboard.com/softlayer/sl-ember-test-helpers/#/](https://huboard.com/softlayer/sl-ember-test-helpers/#/)
 
