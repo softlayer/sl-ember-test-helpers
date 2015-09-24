@@ -9,7 +9,7 @@ We use [https://waffle.io/softlayer/sl-ember-test-helpers](https://waffle.io/sof
 
 [![Stories in Ready](https://badge.waffle.io/softlayer/sl-ember-test-helpers.png?label=ready&title=Ready)](https://waffle.io/softlayer/sl-ember-test-helpers) [![Stories in In Progress](https://badge.waffle.io/softlayer/sl-ember-test-helpers.png?label=in%20progress&title=In%20Progress)](https://waffle.io/softlayer/sl-ember-test-helpers) [![Stories in Ready For Review](https://badge.waffle.io/softlayer/sl-ember-test-helpers.png?label=ready%20for%20review&title=Ready%20For%20Review)](https://waffle.io/softlayer/sl-ember-test-helpers) [![Stories in In Review](https://badge.waffle.io/softlayer/sl-ember-test-helpers.png?label=in%20review&title=In%20Review)](https://waffle.io/softlayer/sl-ember-test-helpers)
 
-[![Throughput Graph](https://graphs.waffle.io/softlayer/sl-ember-test-helpers/throughput.svg)](https://waffle.io/softlayer/sl-ember-components/metrics)
+[![Throughput Graph](https://graphs.waffle.io/softlayer/sl-ember-test-helpers/throughput.svg)](https://waffle.io/softlayer/sl-ember-test-helpers/metrics)
 
 
 # What is sl-ember-test-helpers
