@@ -5,7 +5,11 @@
 
 [![Build Status](https://img.shields.io/travis/softlayer/sl-ember-test-helpers/master.svg)](https://travis-ci.org/softlayer/sl-ember-test-helpers) [![Code Climate](https://img.shields.io/codeclimate/github/softlayer/sl-ember-test-helpers.svg)](https://codeclimate.com/github/softlayer/sl-ember-test-helpers) [![Ember Observer](http://emberobserver.com/badges/sl-ember-test-helpers.svg)](http://emberobserver.com/addons/sl-ember-test-helpers) [![Inch CI](http://inch-ci.org/github/softlayer/sl-ember-test-helpers.svg?branch=master)](http://inch-ci.org/github/softlayer/sl-ember-test-helpers)
 
-To see which issues are currently being worked on or are scheduled to be worked on next, visit [https://huboard.com/softlayer/sl-ember-test-helpers/#/](https://huboard.com/softlayer/sl-ember-test-helpers/#/)
+We use [https://waffle.io/softlayer/sl-ember-test-helpers](https://waffle.io/softlayer/sl-ember-test-helpers) to work our issues.
+
+[![Stories in Ready](https://badge.waffle.io/softlayer/sl-ember-test-helpers.png?label=ready&title=Ready)](https://waffle.io/softlayer/sl-ember-test-helpers) [![Stories in In Progress](https://badge.waffle.io/softlayer/sl-ember-test-helpers.png?label=in%20progress&title=In%20Progress)](https://waffle.io/softlayer/sl-ember-test-helpers) [![Stories in Ready For Review](https://badge.waffle.io/softlayer/sl-ember-test-helpers.png?label=ready%20for%20review&title=Ready%20For%20Review)](https://waffle.io/softlayer/sl-ember-test-helpers) [![Stories in In Review](https://badge.waffle.io/softlayer/sl-ember-test-helpers.png?label=in%20review&title=In%20Review)](https://waffle.io/softlayer/sl-ember-test-helpers)
+
+[![Throughput Graph](https://graphs.waffle.io/softlayer/sl-ember-test-helpers/throughput.svg)](https://waffle.io/softlayer/sl-ember-components/metrics)
 
 
 # What is sl-ember-test-helpers
