@@ -4,9 +4,9 @@ This document captures the steps a project maintainer should follow when releasi
 
 ## Steps to follow if there is an addition or removal of Helper or Utility
 
-* Make any applicable changes to *Synchronous* section in README.md
-* Make any applicable changes to *Asynchronous* section in README.md
-* Make any applicable changes to *Utilities* section in README.md
+* Make any applicable changes to *Synchronous* section in *README.md*
+* Make any applicable changes to *Asynchronous* section in *README.md*
+* Make any applicable changes to *Utilities* section in *README.md*
 * Apply applicable changes to */tests/.jshintrc* entries in */blueprints/sl-ember-test-helpers/index.js*
 * Apply applicable changes to */test-support/helpers/sl/register-test-helpers.js*
 * Apply applicable changes to */test-support/helpers/sl/asynchronous.js*
@@ -16,9 +16,11 @@ This document captures the steps a project maintainer should follow when releasi
 ## Steps to follow for every release
 
 * Merge all desired pull requests into `master` branch
+* Create a test Ember application and run `ember install sl-ember-behavior#master` to ensure addon installs correctly
+    * Exercise the functionality of this addon in the test application
 * If change is due to upgrading Ember CLI version
-    * Update Ember CLI version text in README.md file
-* Update CHANGELOG.md
+    * Update Ember CLI version text in *README.md* file
+* Update *CHANGELOG.md*
     * Prefix the entries with one of the following tags inside brackets:
         * BUGFIX
             * A link to a bug and a link to a patch.
@@ -26,7 +28,7 @@ This document captures the steps a project maintainer should follow when releasi
             * Are for things that users are interested in. Avoid super technical talk. Craft a concise description of the change.
         * INTERNAL
             * An internal log of changes.
-    * If a change requires a user to change their configuration, *bower.json*, *package.json*, or *Brocfile.js* also add a BREAKING tag within the brackets before any other tags (example [BREAKING BUGFIX])
+    * If a change requires a user to change their configuration, *bower.json*, *package.json*, or *Brocfile.js* also add a BREAKING tag within the brackets before any other tags (example *[BREAKING BUGFIX]*)
     * Following the pattern of the existing entries for guidance
     * Add appropriately linked "View complete changeset" link at bottom of entries
 * After changes have been committed:
@@ -35,7 +37,7 @@ This document captures the steps a project maintainer should follow when releasi
     * `git push origin --tags`
     * `npm publish --registry http://registry.npmjs.org/`
         * Note: `--registry` flag is workaround for occasional issues with default SSL url
-* Copy the content of the additions made to the CHANGELOG.md file to the Release Notes of the just-released tag
+* Copy the content of the additions made to the *CHANGELOG.md* file to the Release Notes of the just-released tag
 * Run `ember build`
 * Run `npm run docs`
 * Copy the following resources outside of the working directory so they can be retained between switching branches:
