@@ -16,7 +16,7 @@ This document captures the steps a project maintainer should follow when releasi
 ## Steps to follow for every release
 
 * Merge all desired pull requests into `master` branch
-* Create a test Ember application and run `ember install sl-ember-behavior#master` to ensure addon installs correctly
+* Create a test Ember application and run `ember install sl-ember-test-helpers#master` to ensure addon installs correctly
     * Exercise the functionality of this addon in the test application
 * If change is due to upgrading Ember CLI version
     * Update Ember CLI version text in *README.md* file
