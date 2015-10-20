@@ -187,11 +187,12 @@ test( 'Arguments are passed to doArraysIntersect() in the correct order', functi
         [ 'd', 'e' ]
     );
 
-    assert.equal(
-        spy.args[ 0 ][ 0 ],
+    assert.strictEqual(
+        spy.args[ 0 ][ 0 ][ 0 ],
         'b',
         'First argument'
     );
+
     assert.deepEqual(
         spy.args[ 0 ][ 1 ],
         [ 'd', 'e' ],

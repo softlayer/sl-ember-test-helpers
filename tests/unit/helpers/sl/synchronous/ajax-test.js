@@ -17,7 +17,7 @@ test( 'begin() with no parameter triggers "ajaxStart" event on document', functi
 
     AjaxHelper.begin();
 
-    assert.equal(
+    assert.strictEqual(
         spy.args[ 0 ][ 0 ],
         'ajaxStart'
     );
@@ -30,11 +30,11 @@ test( 'begin() with parameter triggers "ajaxSend" event on document', function( 
 
     AjaxHelper.begin( 'testEndpoint' );
 
-    assert.equal(
+    assert.strictEqual(
         spy.args[ 0 ][ 0 ],
         'ajaxSend'
     );
-    assert.equal(
+    assert.strictEqual(
         spy.args[ 0 ][ 1 ][ 1 ].url,
         'testEndpoint'
     );
@@ -47,7 +47,7 @@ test( 'end() with no parameter triggers "ajaxStop" event on document', function(
 
     AjaxHelper.end();
 
-    assert.equal(
+    assert.strictEqual(
         spy.args[ 0 ][ 0 ],
         'ajaxStop'
     );
@@ -60,11 +60,11 @@ test( 'end() with parameter triggers "ajaxComplete" event on document', function
 
     AjaxHelper.end( 'testEndpoint' );
 
-    assert.equal(
+    assert.strictEqual(
         spy.args[ 0 ][ 0 ],
         'ajaxComplete'
     );
-    assert.equal(
+    assert.strictEqual(
         spy.args[ 0 ][ 1 ][ 1 ].url,
         'testEndpoint'
     );
