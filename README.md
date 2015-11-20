@@ -85,6 +85,27 @@ The call to `requires` returns an object:
 }
 ```
 
+### Global Libraries
+
+Use this helper to determine if a component called globally scoped Ember.$, $ or jQuery. You must wrap your component with references to the setup and removal functions.
+
+```
+globalLibraries.setupSpies();
+this.subject();
+globalLibraries.restoreSpies();
+
+assert.strictEqual(
+    globalLibraries.called,
+    false,
+    'There are no references to Ember.$, $ or jQuery'
+);
+```
+
+The call to `called` returns a boolean:
+
+```
+<boolean: true if the spy detects a reference to the global scope, false if not>
+```
 
 ## Asynchronous
 

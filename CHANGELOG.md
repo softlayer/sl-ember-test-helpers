@@ -1,5 +1,11 @@
 # sl-ember-test-helpers Changelog
 
+### 1.10.0
+
+* [#129](https://github.com/softlayer/sl-ember-test-helpers/issues/126) [ENHANCEMENT] Add globalLibraries helper
+
+[View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.9.0...v1.10.0)
+
 ### 1.9.0
 
 * [#129](https://github.com/softlayer/sl-ember-test-helpers/issues/129) [BREAKING ENHANCEMENT] Upgrade to Ember CLI 1.13.8
