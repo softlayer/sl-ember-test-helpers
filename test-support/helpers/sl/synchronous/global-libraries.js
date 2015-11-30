@@ -4,18 +4,40 @@ import sinon from 'sinon';
 export let called;
 export let jqueryAliasSpy;
 export let jquerySpy;
-export let emberJquery;
+export let emberJquerySpy;
 
 export function setupSpies() {
     jqueryAliasSpy = sinon.spy( window, '$' );
     jquerySpy = sinon.spy( window, 'jQuery' );
-    emberJquery = sinon.spy( Ember, '$' );
+    emberJquerySpy = sinon.spy( Ember, '$' );
+}
+
+export function triggerEvents( component ) {
+    Ember.run(() => {
+        [
+          'willInsertElement',
+          'didInsertElement',
+          'willClearRender',
+          'willDestroyElement'
+        ].map(( event ) => {
+            component.trigger( event );
+        });
+    });
+}
+
+export function called() {
+    return jqueryAliasSpy.called || jquerySpy.called || emberJquerySpy.called;
 }
 
 export function restoreSpies() {
-    called = jqueryAliasSpy.called || jquerySpy.called || emberJquery.called;
-
     window.$.restore();
     window.jQuery.restore();
     Ember.$.restore();
 }
+
+export function resetSpies() {
+    jqueryAliasSpy.reset();
+    jquerySpy.reset();
+    emberJquerySpy.reset();
+}
+
