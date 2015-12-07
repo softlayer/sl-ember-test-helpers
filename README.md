@@ -107,7 +107,7 @@ globalLibraries.restoreSpies();
 The `triggerEvents()` function takes a `component` as an argument and triggers the following events on it: willInsertElement, didInsertElement, willClearRender and willDestroyElement. Triggering of the various events
 will ensure that that code that has handlers attached to those events will be exercised, making the helper more effective at detecting global references.
 
-The call to `called()` returns a boolean that is the result of the sinon spies detecting Ember.$, $, or jQuery. Validate `false` to verify that the code within the component does not have global references to
+The call to `called()` returns a boolean that is the result of the sinon spies detecting `Ember.$`, `$`, or `jQuery`. Validate `false` to verify that the code within the component does not have global references to
 `Ember.$`, `$` or `jQuery`.
 
 ```
