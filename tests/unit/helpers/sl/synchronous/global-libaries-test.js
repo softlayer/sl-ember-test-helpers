@@ -30,9 +30,9 @@ test( 'Passes when global libraries are not referenced', function( assert ) {
 
 test( 'triggerEvents triggers respective events', function( assert ) {
     const events = {
-        'willInsertElement': sinon.spy() ,
-        'didInsertElement': sinon.spy() ,
-        'willClearRender': sinon.spy() ,
+        'willInsertElement': sinon.spy(),
+        'didInsertElement': sinon.spy(),
+        'willClearRender': sinon.spy(),
         'willDestroyElement': sinon.spy()
     };
 
