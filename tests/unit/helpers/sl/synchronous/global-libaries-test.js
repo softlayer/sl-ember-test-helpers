@@ -67,6 +67,30 @@ test( 'called() returns true when $ is referenced', function( assert ) {
     globalLibraries.restoreSpies();
 });
 
+test( 'called() returns true when jQuery is referenced', function( assert ) {
+    globalLibraries.setupSpies();
+
+    window.jQuery();
+
+    assert.ok(
+        globalLibraries.called()
+    );
+
+    globalLibraries.restoreSpies();
+});
+
+test( 'called() returns true when Ember.$ is referenced', function( assert ) {
+    globalLibraries.setupSpies();
+
+    Ember.$();
+
+    assert.ok(
+        globalLibraries.called()
+    );
+
+    globalLibraries.restoreSpies();
+});
+
 test( 'called() returns false when global libraries are not referenced', function( assert ) {
     globalLibraries.setupSpies();
 
