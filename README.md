@@ -136,7 +136,7 @@ There are several utility functions provided in the */test-support/helpers/sl/ut
 internally by the helpers themselves, can be imported as needed for use.  These include:
 
 * convertToArray()
- convertStringToArray()
+* convertStringToArray()
 * convertObjectKeysToArray()
 * doArraysIntersect()
 
