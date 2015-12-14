@@ -7,8 +7,8 @@ module.exports = {
     included: function( app ) {
         this._super.included( app );
 
-        if ( app.env === 'development' ) {
-            app.import( 'bower_components/sinonjs/sinon.js' );
+        if ( app.env !== 'production' ) {
+            app.import( 'bower_components/sinonjs/sinon.js', { type: 'test' } );
         }
     }
 };
