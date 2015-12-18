@@ -87,7 +87,7 @@ The call to `requires` returns an object:
 
 ### Global Libraries
 
-Use this helper in your unit tests to determine if a component called globally scoped `Ember.$`, `$` or `jQuery`. You must wrap your component with references to the setup and removal functions.
+Use this helper in your unit tests to determine if a component called globally-scoped `Ember.$`, `$` or `jQuery`. You must wrap your component with references to the setup and removal functions.
 
 ```
 const component = this.subject();
@@ -104,8 +104,8 @@ assert.notOk(
 globalLibraries.restoreSpies();
 ```
 
-The `triggerEvents()` function takes a `component` as an argument and triggers the following events on it: willInsertElement, didInsertElement, willClearRender and willDestroyElement. Triggering of the various events
-will ensure that that code that has handlers attached to those events will be exercised, making the helper more effective at detecting global references.
+The `triggerEvents()` function takes a `component` as an argument and triggers the following events on it: `willInsertElement`, `didInsertElement`, `willClearRender` and `willDestroyElement`. Triggering of the various events
+will ensure code that has handlers attached to those events will be exercised, making the helper more effective at detecting global references.
 
 The call to `called()` returns a boolean that is the result of the sinon spies detecting `Ember.$`, `$`, or `jQuery`. Validate `false` to verify that the code within the component does not have global references to
 `Ember.$`, `$` or `jQuery`.
