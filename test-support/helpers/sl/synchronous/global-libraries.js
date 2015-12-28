@@ -13,13 +13,13 @@ export function setupSpies() {
 }
 
 export function triggerEvents( component ) {
-    Ember.run(() => {
+    Ember.run( () => {
         [
           'willInsertElement',
           'didInsertElement',
           'willClearRender',
           'willDestroyElement'
-        ].map(( event ) => {
+        ].map( ( event ) => {
             component.trigger( event );
         });
     });
