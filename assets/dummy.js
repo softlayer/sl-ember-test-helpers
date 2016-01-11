@@ -3,15 +3,6 @@
 
 /* jshint ignore:end */
 
-define('dummy/acceptance-tests/sinon', ['exports', 'ember-sinon/acceptance-tests/sinon'], function (exports, sinon) {
-
-	'use strict';
-
-
-
-	exports['default'] = sinon['default'];
-
-});
 define('dummy/app', ['exports', 'ember', 'ember/resolver', 'ember/load-initializers', 'dummy/config/environment'], function (exports, Ember, Resolver, loadInitializers, config) {
 
     'use strict';
@@ -103,8 +94,6 @@ define('dummy/initializers/export-application-global', ['exports', 'ember', 'dum
       }
     }
   }
-
-  ;
 
   exports['default'] = {
     name: 'export-application-global',
@@ -397,7 +386,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
         var el3 = dom.createTextNode("\n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("h1");
-        var el4 = dom.createTextNode("sl-ember-test-helpers 1.9.0");
+        var el4 = dom.createTextNode("sl-ember-test-helpers 1.10.0");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n        ");
@@ -496,6 +485,7 @@ define('dummy/tests/app.jshint', function () {
 
   QUnit.module('JSHint - .');
   QUnit.test('app.js should pass jshint', function(assert) { 
+    assert.expect(1);
     assert.ok(true, 'app.js should pass jshint.'); 
   });
 
@@ -520,6 +510,7 @@ define('dummy/tests/helpers/resolver.jshint', function () {
 
   QUnit.module('JSHint - helpers');
   QUnit.test('helpers/resolver.js should pass jshint', function(assert) { 
+    assert.expect(1);
     assert.ok(true, 'helpers/resolver.js should pass jshint.'); 
   });
 
@@ -533,17 +524,6 @@ define('dummy/tests/helpers/sl/register-test-helpers', ['exports', 'ember', 'dum
         Ember['default'].Test.registerHelper('Ajax', synchronous.AjaxHelper);
         Ember['default'].Test.registerHelper('requires', synchronous.requires);
     }
-
-});
-define('dummy/tests/helpers/sl/synchronous', ['exports', 'dummy/tests/helpers/sl/synchronous/ajax', 'dummy/tests/helpers/sl/synchronous/contains', 'dummy/tests/helpers/sl/synchronous/requires'], function (exports, AjaxHelper, contains, requires) {
-
-	'use strict';
-
-
-
-	exports.AjaxHelper = AjaxHelper['default'];
-	exports.contains = contains['default'];
-	exports.requires = requires['default'];
 
 });
 define('dummy/tests/helpers/sl/synchronous/ajax', ['exports', 'ember'], function (exports, Ember) {
@@ -720,6 +700,17 @@ define('dummy/tests/helpers/sl/synchronous/requires', ['exports', 'ember'], func
     exports['default'] = requiresHelper;
 
 });
+define('dummy/tests/helpers/sl/synchronous', ['exports', 'dummy/tests/helpers/sl/synchronous/ajax', 'dummy/tests/helpers/sl/synchronous/contains', 'dummy/tests/helpers/sl/synchronous/requires'], function (exports, AjaxHelper, contains, requires) {
+
+	'use strict';
+
+
+
+	exports.AjaxHelper = AjaxHelper['default'];
+	exports.contains = contains['default'];
+	exports.requires = requires['default'];
+
+});
 define('dummy/tests/helpers/sl/utils/utils', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
@@ -837,6 +828,7 @@ define('dummy/tests/helpers/start-app.jshint', function () {
 
   QUnit.module('JSHint - helpers');
   QUnit.test('helpers/start-app.js should pass jshint', function(assert) { 
+    assert.expect(1);
     assert.ok(true, 'helpers/start-app.js should pass jshint.'); 
   });
 
@@ -847,6 +839,7 @@ define('dummy/tests/router.jshint', function () {
 
   QUnit.module('JSHint - .');
   QUnit.test('router.js should pass jshint', function(assert) { 
+    assert.expect(1);
     assert.ok(true, 'router.js should pass jshint.'); 
   });
 
@@ -864,6 +857,7 @@ define('dummy/tests/test-helper.jshint', function () {
 
   QUnit.module('JSHint - .');
   QUnit.test('test-helper.js should pass jshint', function(assert) { 
+    assert.expect(1);
     assert.ok(true, 'test-helper.js should pass jshint.'); 
   });
 
@@ -883,7 +877,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qun
 
         AjaxHelper['default'].begin();
 
-        assert.equal(spy.args[0][0], 'ajaxStart');
+        assert.strictEqual(spy.args[0][0], 'ajaxStart');
 
         Ember['default'].$.prototype.trigger.restore();
     });
@@ -893,8 +887,8 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qun
 
         AjaxHelper['default'].begin('testEndpoint');
 
-        assert.equal(spy.args[0][0], 'ajaxSend');
-        assert.equal(spy.args[0][1][1].url, 'testEndpoint');
+        assert.strictEqual(spy.args[0][0], 'ajaxSend');
+        assert.strictEqual(spy.args[0][1][1].url, 'testEndpoint');
 
         Ember['default'].$.prototype.trigger.restore();
     });
@@ -904,7 +898,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qun
 
         AjaxHelper['default'].end();
 
-        assert.equal(spy.args[0][0], 'ajaxStop');
+        assert.strictEqual(spy.args[0][0], 'ajaxStop');
 
         Ember['default'].$.prototype.trigger.restore();
     });
@@ -914,8 +908,8 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test', ['ember', 'ember-qun
 
         AjaxHelper['default'].end('testEndpoint');
 
-        assert.equal(spy.args[0][0], 'ajaxComplete');
-        assert.equal(spy.args[0][1][1].url, 'testEndpoint');
+        assert.strictEqual(spy.args[0][0], 'ajaxComplete');
+        assert.strictEqual(spy.args[0][1][1].url, 'testEndpoint');
 
         Ember['default'].$.prototype.trigger.restore();
     });
@@ -927,6 +921,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test.jshint', function () {
 
   QUnit.module('JSHint - unit/helpers/sl/synchronous');
   QUnit.test('unit/helpers/sl/synchronous/ajax-test.js should pass jshint', function(assert) { 
+    assert.expect(1);
     assert.ok(true, 'unit/helpers/sl/synchronous/ajax-test.js should pass jshint.'); 
   });
 
@@ -1070,7 +1065,8 @@ define('dummy/tests/unit/helpers/sl/synchronous/contains-test', ['ember', 'ember
 
         contains['default']('b', ['d', 'e']);
 
-        assert.equal(spy.args[0][0], 'b', 'First argument');
+        assert.strictEqual(spy.args[0][0][0], 'b', 'First argument');
+
         assert.deepEqual(spy.args[0][1], ['d', 'e'], 'Second argument');
 
         utils.doArraysIntersect.restore();
@@ -1095,6 +1091,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/contains-test.jshint', function 
 
   QUnit.module('JSHint - unit/helpers/sl/synchronous');
   QUnit.test('unit/helpers/sl/synchronous/contains-test.js should pass jshint', function(assert) { 
+    assert.expect(1);
     assert.ok(true, 'unit/helpers/sl/synchronous/contains-test.js should pass jshint.'); 
   });
 
@@ -1240,6 +1237,7 @@ define('dummy/tests/unit/helpers/sl/synchronous/requires-test.jshint', function 
 
   QUnit.module('JSHint - unit/helpers/sl/synchronous');
   QUnit.test('unit/helpers/sl/synchronous/requires-test.js should pass jshint', function(assert) { 
+    assert.expect(1);
     assert.ok(true, 'unit/helpers/sl/synchronous/requires-test.js should pass jshint.'); 
   });
 
@@ -1381,11 +1379,15 @@ define('dummy/tests/unit/helpers/sl/utils/utils-test', ['ember', 'ember-qunit', 
         assert.ok(callConvertStringToArray(), 'property was a String');
     });
 
-    ember_qunit.test('convertStringToArray() returns an array with a single' + 'element when passed a string without spaces', function (assert) {
+    var testName1 = 'convertStringToArray() returns an array with a single' + 'element when passed a string without spaces';
+
+    ember_qunit.test(testName1, function (assert) {
         assert.deepEqual(utils.convertStringToArray('testString'), ['testString']);
     });
 
-    ember_qunit.test('convertStringToArray() returns an array with as many elements as there' + 'are "words" represented in a string passed to it containing spaces', function (assert) {
+    var testName2 = 'convertStringToArray() returns an array with as many elements as there' + 'are "words" represented in a string passed to it containing spaces';
+
+    ember_qunit.test(testName2, function (assert) {
         assert.deepEqual(utils.convertStringToArray('the test string'), ['the', 'test', 'string']);
     });
 
@@ -1462,6 +1464,7 @@ define('dummy/tests/unit/helpers/sl/utils/utils-test.jshint', function () {
 
   QUnit.module('JSHint - unit/helpers/sl/utils');
   QUnit.test('unit/helpers/sl/utils/utils-test.js should pass jshint', function(assert) { 
+    assert.expect(1);
     assert.ok(true, 'unit/helpers/sl/utils/utils-test.js should pass jshint.'); 
   });
 
@@ -1494,7 +1497,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"1.9.0+50dfa536"});
+  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"1.10.0+51f52d70"});
 }
 
 /* jshint ignore:end */

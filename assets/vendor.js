@@ -3,9 +3,11 @@
 window.EmberENV = {"FEATURES":{}};
 var runningTests = false;
 
-self.EmberENV.EXTEND_PROTOTYPES = false;
+
 
 /* jshint ignore:end */
+
+;self.EmberENV.EXTEND_PROTOTYPES = false;
 
 ;var define, requireModule, require, requirejs;
 
@@ -20,7 +22,8 @@ self.EmberENV.EXTEND_PROTOTYPES = false;
     _isArray = Array.isArray;
   }
 
-  var registry = {}, seen = {};
+  var registry = {};
+  var seen = {};
   var FAILED = false;
 
   var uuid = 0;
@@ -127,7 +130,6 @@ self.EmberENV.EXTEND_PROTOTYPES = false;
   requirejs = require = requireModule = function(name) {
     var mod = registry[name];
 
-
     if (mod && mod.callback instanceof Alias) {
       mod = registry[mod.callback.name];
     }
@@ -186,15 +188,20 @@ self.EmberENV.EXTEND_PROTOTYPES = false;
           throw new Error('Cannot access parent module of root');
         }
         parentBase.pop();
-      } else if (part === '.') { continue; }
-      else { parentBase.push(part); }
+      } else if (part === '.') {
+        continue;
+      } else { parentBase.push(part); }
     }
 
     return parentBase.join('/');
   }
 
   requirejs.entries = requirejs._eak_seen = registry;
-  requirejs.clear = function(){
+  requirejs.unsee = function(moduleName) {
+    delete seen[moduleName];
+  };
+
+  requirejs.clear = function() {
     requirejs.entries = requirejs._eak_seen = registry = {};
     seen = state = {};
   };
@@ -69812,19 +69819,7 @@ define("ember/load-initializers",
       };
     }
   });
-;define('ember-cli-app-version', ['ember-cli-app-version/index', 'ember', 'exports'], function(__index__, __Ember__, __exports__) {
-  'use strict';
-  var keys = Object.keys || __Ember__['default'].keys;
-  var forEach = Array.prototype.forEach && function(array, cb) {
-    array.forEach(cb);
-  } || __Ember__['default'].EnumerableUtils.forEach;
-
-  forEach(keys(__index__), (function(key) {
-    __exports__[key] = __index__[key];
-  }));
-});
-
-define('ember-cli-app-version/components/app-version', ['exports', 'ember', 'ember-cli-app-version/templates/app-version'], function (exports, Ember, layout) {
+;define('ember-cli-app-version/components/app-version', ['exports', 'ember', 'ember-cli-app-version/templates/app-version'], function (exports, Ember, layout) {
 
   'use strict';
 
@@ -69903,6 +69898,18 @@ define('ember-cli-app-version/templates/app-version', ['exports'], function (exp
   }()));
 
 });
+define('ember-cli-app-version', ['ember-cli-app-version/index', 'ember', 'exports'], function(__index__, __Ember__, __exports__) {
+  'use strict';
+  var keys = Object.keys || __Ember__['default'].keys;
+  var forEach = Array.prototype.forEach && function(array, cb) {
+    array.forEach(cb);
+  } || __Ember__['default'].EnumerableUtils.forEach;
+
+  forEach(keys(__index__), (function(key) {
+    __exports__[key] = __index__[key];
+  }));
+});
+
 define('sl-ember-test-helpers', ['sl-ember-test-helpers/index', 'ember', 'exports'], function(__index__, __Ember__, __exports__) {
   'use strict';
   var keys = Object.keys || __Ember__['default'].keys;
