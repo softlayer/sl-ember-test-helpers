@@ -23,15 +23,15 @@ module.exports = {
 
         return this.insertIntoFile( firstFile, firstText, { after: firstLocationText } )
             // Execution of registration function
-            .then( () => {
+            .then( function() {
                 return this.insertIntoFile( secondFile, secondText, { after: secondLocationText } );
-            })
-            .then( () => {
+            }.bind( this ))
+            .then( function() {
                 return this.insertIntoFile( thirdFile, thirdText, { after: thirdLocationText } );
-            })
-            .then( () => {
+            }.bind( this ))
+            .then( function() {
                 return this.addAddonToProject( 'ember-sinon' );
-            });
+            }.bind( this ));
     },
 
     normalizeEntityName: function() {}
