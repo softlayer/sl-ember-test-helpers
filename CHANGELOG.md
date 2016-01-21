@@ -2,7 +2,7 @@
 
 ### 1.10.0
 
-* [#158](https://github.com/softlayer/sl-ember-test-helpers/issues/158) [ENHANCEMENT] Add `globalLibraries` helper
+* [#156](https://github.com/softlayer/sl-ember-test-helpers/issues/156) [ENHANCEMENT] Add `globalLibraries` helper
 
 [View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.9.0...v1.10.0)
 
