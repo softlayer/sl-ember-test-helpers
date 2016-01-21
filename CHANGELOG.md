@@ -2,7 +2,13 @@
 
 ### 1.10.0
 
-* [#158](https://github.com/softlayer/sl-ember-test-helpers/issues/158) [ENHANCEMENT] Add `globalLibraries` helper
+* [#156](https://github.com/softlayer/sl-ember-test-helpers/issues/156) [ENHANCEMENT] Add `globalLibraries` helper
+* [#160](https://github.com/softlayer/sl-ember-test-helpers/pull/160) BUGFIX Lock down version of jQuery in bower.json
+* [#145](https://github.com/softlayer/sl-ember-test-helpers/pull/146) DOCUMENTATION Update *CONTRIBUTING.md* to add linting guidance
+* [#155](https://github.com/softlayer/sl-ember-test-helpers/pull/155) INTERNAL Upgrade `ember-qunit` dependency
+* [#150](https://github.com/softlayer/sl-ember-test-helpers/issues/150) INTERNAL Remove `ember-cli-sri` dependency
+* [#148](https://github.com/softlayer/sl-ember-test-helpers/issues/148) INTERNAL Upgrade sl-eslint dependency
+* [#139](https://github.com/softlayer/sl-ember-test-helpers/pull/139) INTERNAL Upgrade ember-cli-htmlbars dependency
 
 [View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.9.0...v1.10.0)
 
