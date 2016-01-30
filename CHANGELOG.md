@@ -1,8 +1,13 @@
 # sl-ember-test-helpers Changelog
 
-### 1.10.0
+### 1.11.0
 
 * [#156](https://github.com/softlayer/sl-ember-test-helpers/issues/156) [ENHANCEMENT] Add `globalLibraries` helper
+
+[View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.10.0...v1.11.0)
+
+### 1.10.0
+
 * [#160](https://github.com/softlayer/sl-ember-test-helpers/pull/160) BUGFIX Lock down version of jQuery in bower.json
 * [#145](https://github.com/softlayer/sl-ember-test-helpers/pull/146) DOCUMENTATION Update *CONTRIBUTING.md* to add linting guidance
 * [#155](https://github.com/softlayer/sl-ember-test-helpers/pull/155) INTERNAL Upgrade `ember-qunit` dependency
