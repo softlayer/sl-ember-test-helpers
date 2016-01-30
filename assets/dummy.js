@@ -386,7 +386,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
         var el3 = dom.createTextNode("\n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("h1");
-        var el4 = dom.createTextNode("sl-ember-test-helpers 1.10.0");
+        var el4 = dom.createTextNode("sl-ember-test-helpers 1.11.0");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n        ");
@@ -523,6 +523,7 @@ define('dummy/tests/helpers/sl/register-test-helpers', ['exports', 'ember', 'dum
         Ember['default'].Test.registerHelper('contains', synchronous.contains);
         Ember['default'].Test.registerHelper('Ajax', synchronous.AjaxHelper);
         Ember['default'].Test.registerHelper('requires', synchronous.requires);
+        Ember['default'].Test.registerHelper('globalLibraries', synchronous.globalLibraries);
     }
 
 });
@@ -604,6 +605,56 @@ define('dummy/tests/helpers/sl/synchronous/contains', ['exports', 'ember', 'dumm
 
         return utils.doArraysIntersect(utils.convertToArray(underTest), utils.convertToArray(testFor));
     }
+
+});
+define('dummy/tests/helpers/sl/synchronous/global-libraries', ['exports', 'ember', 'sinon'], function (exports, Ember, sinon) {
+
+    'use strict';
+
+    exports.setupSpies = setupSpies;
+    exports.triggerEvents = triggerEvents;
+    exports.called = called;
+    exports.restoreSpies = restoreSpies;
+    exports.resetSpies = resetSpies;
+
+    var called = undefined;
+    var jqueryAliasSpy = undefined;
+    var jquerySpy = undefined;
+    var emberJquerySpy = undefined;
+
+    function setupSpies() {
+        exports.jqueryAliasSpy = jqueryAliasSpy = sinon['default'].spy(window, '$');
+        exports.jquerySpy = jquerySpy = sinon['default'].spy(window, 'jQuery');
+        exports.emberJquerySpy = emberJquerySpy = sinon['default'].spy(Ember['default'], '$');
+    }
+
+    function triggerEvents(component) {
+        Ember['default'].run(function () {
+            ['willInsertElement', 'didInsertElement', 'willClearRender', 'willDestroyElement'].map(function (event) {
+                component.trigger(event);
+            });
+        });
+    }
+
+    function called() {
+        return jqueryAliasSpy.called || jquerySpy.called || emberJquerySpy.called;
+    }
+
+    function restoreSpies() {
+        window.$.restore();
+        window.jQuery.restore();
+        Ember['default'].$.restore();
+    }
+
+    function resetSpies() {
+        jqueryAliasSpy.reset();
+        jquerySpy.reset();
+        emberJquerySpy.reset();
+    }
+
+    exports.jqueryAliasSpy = jqueryAliasSpy;
+    exports.jquerySpy = jquerySpy;
+    exports.emberJquerySpy = emberJquerySpy;
 
 });
 define('dummy/tests/helpers/sl/synchronous/requires', ['exports', 'ember'], function (exports, Ember) {
@@ -700,7 +751,7 @@ define('dummy/tests/helpers/sl/synchronous/requires', ['exports', 'ember'], func
     exports['default'] = requiresHelper;
 
 });
-define('dummy/tests/helpers/sl/synchronous', ['exports', 'dummy/tests/helpers/sl/synchronous/ajax', 'dummy/tests/helpers/sl/synchronous/contains', 'dummy/tests/helpers/sl/synchronous/requires'], function (exports, AjaxHelper, contains, requires) {
+define('dummy/tests/helpers/sl/synchronous', ['exports', 'dummy/tests/helpers/sl/synchronous/ajax', 'dummy/tests/helpers/sl/synchronous/contains', 'dummy/tests/helpers/sl/synchronous/requires', 'dummy/tests/helpers/sl/synchronous/global-libraries'], function (exports, AjaxHelper, contains, requires, globalLibraries) {
 
 	'use strict';
 
@@ -709,6 +760,7 @@ define('dummy/tests/helpers/sl/synchronous', ['exports', 'dummy/tests/helpers/sl
 	exports.AjaxHelper = AjaxHelper['default'];
 	exports.contains = contains['default'];
 	exports.requires = requires['default'];
+	exports.globalLibraries = globalLibraries;
 
 });
 define('dummy/tests/helpers/sl/utils/utils', ['exports', 'ember'], function (exports, Ember) {
@@ -1093,6 +1145,104 @@ define('dummy/tests/unit/helpers/sl/synchronous/contains-test.jshint', function 
   QUnit.test('unit/helpers/sl/synchronous/contains-test.js should pass jshint', function(assert) { 
     assert.expect(1);
     assert.ok(true, 'unit/helpers/sl/synchronous/contains-test.js should pass jshint.'); 
+  });
+
+});
+define('dummy/tests/unit/helpers/sl/synchronous/global-libaries-test', ['ember', 'ember-qunit', 'dummy/tests/helpers/sl/synchronous/global-libraries', 'sinon'], function (Ember, ember_qunit, globalLibraries, sinon) {
+
+    'use strict';
+
+    module('Unit | Helpers | sl/synchronous/global-libraries');
+
+    ember_qunit.test('it exists', function (assert) {
+        assert.ok(globalLibraries, 'it exists');
+    });
+
+    ember_qunit.test('Passes when global libraries are not referenced', function (assert) {
+        var component = Ember['default'].Object.extend().create({
+            trigger: function trigger() {}
+        });
+
+        globalLibraries.setupSpies();
+
+        globalLibraries.triggerEvents(component);
+
+        assert.notOk(globalLibraries.called());
+
+        globalLibraries.restoreSpies();
+    });
+
+    ember_qunit.test('triggerEvents triggers respective events', function (assert) {
+        var events = {
+            'willInsertElement': sinon['default'].spy(),
+            'didInsertElement': sinon['default'].spy(),
+            'willClearRender': sinon['default'].spy(),
+            'willDestroyElement': sinon['default'].spy()
+        };
+
+        var component = {
+            trigger: function trigger(eventName) {
+                this.events[eventName]();
+            },
+
+            events: events
+        };
+
+        globalLibraries.triggerEvents(component);
+
+        Object.keys(events).forEach(function (eventName) {
+            var spy = events[eventName];
+            assert.ok(spy.called, eventName + ' was triggered');
+        });
+    });
+
+    ember_qunit.test('called() returns true when $ is referenced', function (assert) {
+        globalLibraries.setupSpies();
+
+        window.$();
+
+        assert.ok(globalLibraries.called());
+
+        globalLibraries.restoreSpies();
+    });
+
+    ember_qunit.test('called() returns true when jQuery is referenced', function (assert) {
+        globalLibraries.setupSpies();
+
+        window.jQuery();
+
+        assert.ok(globalLibraries.called());
+
+        globalLibraries.restoreSpies();
+    });
+
+    ember_qunit.test('called() returns true when Ember.$ is referenced', function (assert) {
+        globalLibraries.setupSpies();
+
+        Ember['default'].$();
+
+        assert.ok(globalLibraries.called());
+
+        globalLibraries.restoreSpies();
+    });
+
+    ember_qunit.test('called() returns false when global libraries are not referenced', function (assert) {
+        globalLibraries.setupSpies();
+
+        assert.notOk(globalLibraries.called());
+
+        globalLibraries.restoreSpies();
+    });
+
+});
+define('dummy/tests/unit/helpers/sl/synchronous/global-libaries-test.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - unit/helpers/sl/synchronous');
+  QUnit.test('unit/helpers/sl/synchronous/global-libaries-test.js should pass jshint', function(assert) { 
+    assert.expect(1);
+    assert.ok(true, 'unit/helpers/sl/synchronous/global-libaries-test.js should pass jshint.'); 
   });
 
 });
@@ -1497,7 +1647,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"1.10.0+51f52d70"});
+  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"v1.11.0"});
 }
 
 /* jshint ignore:end */
