@@ -21,18 +21,17 @@ module.exports = {
         var thirdText = '    "contains",' + EOL + '    "requires",';
         var thirdLocationText = '"predef": [' + EOL;
 
-        // Import statement
         return this.insertIntoFile( firstFile, firstText, { after: firstLocationText } )
-
             // Execution of registration function
             .then( function() {
                 return this.insertIntoFile( secondFile, secondText, { after: secondLocationText } );
-            }.bind(this))
-
-            // .jshintrc file
+            }.bind( this ))
             .then( function() {
                 return this.insertIntoFile( thirdFile, thirdText, { after: thirdLocationText } );
-            }.bind(this));
+            }.bind( this ))
+            .then( function() {
+                return this.addAddonToProject( 'ember-sinon' );
+            }.bind( this ));
     },
 
     normalizeEntityName: function() {}
