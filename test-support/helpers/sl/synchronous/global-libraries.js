@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import sinon from 'sinon';
 
-export let called;
 export let jqueryAliasSpy;
 export let jquerySpy;
 export let emberJquerySpy;
