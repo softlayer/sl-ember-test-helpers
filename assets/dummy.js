@@ -386,7 +386,7 @@ define('dummy/templates/index', ['exports'], function (exports) {
         var el3 = dom.createTextNode("\n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("h1");
-        var el4 = dom.createTextNode("sl-ember-test-helpers 1.11.0");
+        var el4 = dom.createTextNode("sl-ember-test-helpers 1.11.1");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n        ");
@@ -484,9 +484,9 @@ define('dummy/tests/app.jshint', function () {
   'use strict';
 
   QUnit.module('JSHint - .');
-  QUnit.test('app.js should pass jshint', function(assert) { 
+  QUnit.test('app.js should pass jshint', function(assert) {
     assert.expect(1);
-    assert.ok(true, 'app.js should pass jshint.'); 
+    assert.ok(true, 'app.js should pass jshint.');
   });
 
 });
@@ -509,9 +509,9 @@ define('dummy/tests/helpers/resolver.jshint', function () {
   'use strict';
 
   QUnit.module('JSHint - helpers');
-  QUnit.test('helpers/resolver.js should pass jshint', function(assert) { 
+  QUnit.test('helpers/resolver.js should pass jshint', function(assert) {
     assert.expect(1);
-    assert.ok(true, 'helpers/resolver.js should pass jshint.'); 
+    assert.ok(true, 'helpers/resolver.js should pass jshint.');
   });
 
 });
@@ -879,9 +879,9 @@ define('dummy/tests/helpers/start-app.jshint', function () {
   'use strict';
 
   QUnit.module('JSHint - helpers');
-  QUnit.test('helpers/start-app.js should pass jshint', function(assert) { 
+  QUnit.test('helpers/start-app.js should pass jshint', function(assert) {
     assert.expect(1);
-    assert.ok(true, 'helpers/start-app.js should pass jshint.'); 
+    assert.ok(true, 'helpers/start-app.js should pass jshint.');
   });
 
 });
@@ -890,9 +890,9 @@ define('dummy/tests/router.jshint', function () {
   'use strict';
 
   QUnit.module('JSHint - .');
-  QUnit.test('router.js should pass jshint', function(assert) { 
+  QUnit.test('router.js should pass jshint', function(assert) {
     assert.expect(1);
-    assert.ok(true, 'router.js should pass jshint.'); 
+    assert.ok(true, 'router.js should pass jshint.');
   });
 
 });
@@ -908,9 +908,9 @@ define('dummy/tests/test-helper.jshint', function () {
   'use strict';
 
   QUnit.module('JSHint - .');
-  QUnit.test('test-helper.js should pass jshint', function(assert) { 
+  QUnit.test('test-helper.js should pass jshint', function(assert) {
     assert.expect(1);
-    assert.ok(true, 'test-helper.js should pass jshint.'); 
+    assert.ok(true, 'test-helper.js should pass jshint.');
   });
 
 });
@@ -972,9 +972,9 @@ define('dummy/tests/unit/helpers/sl/synchronous/ajax-test.jshint', function () {
   'use strict';
 
   QUnit.module('JSHint - unit/helpers/sl/synchronous');
-  QUnit.test('unit/helpers/sl/synchronous/ajax-test.js should pass jshint', function(assert) { 
+  QUnit.test('unit/helpers/sl/synchronous/ajax-test.js should pass jshint', function(assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/helpers/sl/synchronous/ajax-test.js should pass jshint.'); 
+    assert.ok(true, 'unit/helpers/sl/synchronous/ajax-test.js should pass jshint.');
   });
 
 });
@@ -1142,9 +1142,9 @@ define('dummy/tests/unit/helpers/sl/synchronous/contains-test.jshint', function 
   'use strict';
 
   QUnit.module('JSHint - unit/helpers/sl/synchronous');
-  QUnit.test('unit/helpers/sl/synchronous/contains-test.js should pass jshint', function(assert) { 
+  QUnit.test('unit/helpers/sl/synchronous/contains-test.js should pass jshint', function(assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/helpers/sl/synchronous/contains-test.js should pass jshint.'); 
+    assert.ok(true, 'unit/helpers/sl/synchronous/contains-test.js should pass jshint.');
   });
 
 });
@@ -1240,9 +1240,9 @@ define('dummy/tests/unit/helpers/sl/synchronous/global-libaries-test.jshint', fu
   'use strict';
 
   QUnit.module('JSHint - unit/helpers/sl/synchronous');
-  QUnit.test('unit/helpers/sl/synchronous/global-libaries-test.js should pass jshint', function(assert) { 
+  QUnit.test('unit/helpers/sl/synchronous/global-libaries-test.js should pass jshint', function(assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/helpers/sl/synchronous/global-libaries-test.js should pass jshint.'); 
+    assert.ok(true, 'unit/helpers/sl/synchronous/global-libaries-test.js should pass jshint.');
   });
 
 });
@@ -1386,9 +1386,9 @@ define('dummy/tests/unit/helpers/sl/synchronous/requires-test.jshint', function 
   'use strict';
 
   QUnit.module('JSHint - unit/helpers/sl/synchronous');
-  QUnit.test('unit/helpers/sl/synchronous/requires-test.js should pass jshint', function(assert) { 
+  QUnit.test('unit/helpers/sl/synchronous/requires-test.js should pass jshint', function(assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/helpers/sl/synchronous/requires-test.js should pass jshint.'); 
+    assert.ok(true, 'unit/helpers/sl/synchronous/requires-test.js should pass jshint.');
   });
 
 });
@@ -1613,9 +1613,9 @@ define('dummy/tests/unit/helpers/sl/utils/utils-test.jshint', function () {
   'use strict';
 
   QUnit.module('JSHint - unit/helpers/sl/utils');
-  QUnit.test('unit/helpers/sl/utils/utils-test.js should pass jshint', function(assert) { 
+  QUnit.test('unit/helpers/sl/utils/utils-test.js should pass jshint', function(assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/helpers/sl/utils/utils-test.js should pass jshint.'); 
+    assert.ok(true, 'unit/helpers/sl/utils/utils-test.js should pass jshint.');
   });
 
 });
@@ -1647,7 +1647,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"v1.11.0"});
+  require("dummy/app")["default"].create({"name":"sl-ember-test-helpers","version":"v1.11.1"});
 }
 
 /* jshint ignore:end */
