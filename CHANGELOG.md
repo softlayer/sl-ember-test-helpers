@@ -1,5 +1,13 @@
 # sl-ember-test-helpers Changelog
 
+### 1.11.1
+
+**BUG FIX**
+
+* [#166](https://github.com/softlayer/sl-ember-test-helpers/pull/166) Removed unused called variable
+
+[View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.11.0...v1.11.1)
+
 ### 1.11.0
 
 **ENHANCEMENT**
