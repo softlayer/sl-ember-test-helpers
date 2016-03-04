@@ -1,5 +1,13 @@
 # sl-ember-test-helpers Changelog
 
+### 1.13.0
+
+**BREAKING ENHANCEMENT**
+
+* [#172](https://github.com/softlayer/sl-ember-test-helpers/issues/172) Upgrade to Ember CLI 2.4.1
+
+[View complete changeset](https://github.com/softlayer/sl-ember-test-helpers/compare/v1.12.0...v1.13.0)
+
 ### 1.12.0
 
 **BREAKING ENHANCEMENT**
