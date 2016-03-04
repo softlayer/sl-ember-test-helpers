@@ -3,12 +3,12 @@
   "version": "1.12.0",
   "description": "Ember CLI Addon - Provides and registers test helpers for use in the testing of your application",
   "scripts": {
-    "build": "ember build",
-    "docs": "ember ember-cli-jsdoc",
+    "build": "node_modules/.bin/ember build",
+    "docs": "node_modules/.bin/ember ember-cli-jsdoc",
     "lint": "node_modules/.bin/sl-eslint",
     "lint-all": "node_modules/.bin/sl-eslint addon app tests",
-    "start": "ember server",
-    "test": "ember ember-cli-jsdoc && npm run lint-all && ember test"
+    "start": "node_modules/.bin/ember server",
+    "test": "npm run docs && npm run lint-all && node_modules/.bin/ember test"
   },
   "homepage": "http://softlayer.github.io/sl-ember-test-helpers",
   "bugs": "https://github.com/softlayer/sl-ember-test-helpers/issues",
