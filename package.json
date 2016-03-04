@@ -1,6 +1,6 @@
 {
   "name": "sl-ember-test-helpers",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "description": "Ember CLI Addon - Provides and registers test helpers for use in the testing of your application",
   "scripts": {
     "build": "node_modules/.bin/ember build",
